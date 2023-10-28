@@ -1,0 +1,77 @@
+{% load static %}
+
+{% block content %}  
+
+    <!-- Navbar Start -->
+    <div class="container-fluid nav-bar bg-transparent">
+        <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
+            <a href="{% url 'index' %}" class="navbar-brand d-flex align-items-center text-center">
+                <div class="icon p-2 me-2">
+                    <img class="img-fluid" src="{% static 'img/icon-deal.png' %}" alt="Icon" style="width: 30px; height: 30px;">
+                </div>
+                <h1 class="m-0 text-primary">InnEats</h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+           
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto">                    
+                    <a href="{% url 'about' %}" class="nav-item nav-link">TEAM def Troll</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">페이지</a>
+                        <div class="dropdown-menu rounded-0 m-0">
+                            <a href="{% url 'accommodation' keyword='우도면' %}">&nbsp;&nbsp;&nbsp;&nbsp;숙소<br><br></a>                                                    
+                            <a href="{% url 'attraction' keyword='우도면' %}" >&nbsp;&nbsp;&nbsp;&nbsp;여행지<br><br></a>                    
+                            <a href="{% url 'map_main' %}" >&nbsp;&nbsp;&nbsp;&nbsp;맛집|여행지도<br><br></a>
+                            <a href="{% url 'contact' %}" >&nbsp;&nbsp;&nbsp;&nbsp;고객센터<br><br></a>
+                        </div>
+                    </div> 
+                 
+                    {% if user_info.is_authenticated %}
+                        <a href="{% url 'youtube_list_user' %}" class="nav-item nav-link">유투브:{{ user.preferred_region_no.preferred_region }}</a>
+                    {% else %}
+                        <a href="{% url 'youtube_list' keyword='제주도' %}" class="nav-item nav-link">유투브</a>
+                    {% endif %}
+
+                    {% comment %} 로그인 시 블로그 타입, 현재 지역 설정 적용 중 -kdy {% endcomment %}
+                    {% if user_info.is_authenticated %}
+                        <a href="{% url 'naver_blog_list' keyword='제주도' %}" class="nav-item nav-link">블로그</a>
+                    {% else %}
+                        <a href="{% url 'naver_blog_list' keyword='제주도' %}" class="nav-item nav-link">블로그</a>
+                    {% endif %}                    
+
+
+                    
+
+
+                    {% comment %} 로그인 user만 마이페이지에 접근가능, 로그인 안한 사용자의 경우 자동으로 로그인 창으로 리다이렉트 {% endcomment %}                    
+                    {% if user_info.is_authenticated %}
+                        <a href="{% url 'my_page' %}" class="nav-item nav-link">MY PAGE:{{user.username}}</a>
+                    {% else %}
+                        <a href="{% url 'sign_in' %}" class="nav-item nav-link">MY PAGE</a>
+                    {% endif %}
+
+                </div>
+                {% comment %} <a href="" class="btn btn-primary px-3 d-none d-lg-flex"></a>  {% endcomment %}
+            </div>
+
+            {% comment %} 로그인 user만 마이페이지에 접근가능, 로그인 안한 사용자의 경우 자동으로 로그인 창으로 리다이렉트 {% endcomment %}  
+            <!-- 회원가입 로그인 박스 시작 - kdy -->
+            <div id="loginBox">    
+                {% if user.is_authenticated %}
+                    <div id="loginSignIn">{{ user.username }}님 로그인 중</div>
+                    <a href="{% url 'sign_out' %}"><div id="loginSignOut" class="btn-primary">로그아웃</div></a>
+
+                {% else %}
+                    <div id="loginSignUp"><a href="{% url 'sign_up' %}">회원가입</a></div>
+                    <div id="loginSignIn"><a href="{% url 'sign_in' %}">로그인</a></div>
+                {% endif %}    
+            </div>
+            <!-- 회원가입 로그인 박스 끝 - kdy -->
+            
+        </nav>
+    </div>
+    <!-- Navbar End -->
+
+{% endblock content %}

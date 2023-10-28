@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+        <!-- About Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                        <div class="about-img position-relative overflow-hidden p-5 pe-0">
+                            <img class="img-fluid w-100" src={{attraction_info.visitkorea_firstimage}}>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                        <h1 class="mb-4">{{attraction_info.visitkorea_title}}</h1>
+                <p class="mb-4"><i class="fa fa-map-marker-alt text-primary me-2"></i>{{attraction_info.visitkorea_address}}</p>
+                <p><i class="fa fa-check text-primary me-3"></i>{{attraction_info.visitkorea_overview}}</p>
+                <p><i class="fa fa-check text-primary me-3"></i></p>
+                        <a href="" class="btn btn-primary py-3 px-4 me-2">여행지 유튜브</a>
+                        <a href="" class="btn btn-dark py-3 px-4">여행지 블로그</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- About End -->
+         <!-- Call to Action Start -->
+         <!-- <div class="container-xxl py-5">
+            <div class="container">
+                <div class="bg-light rounded p-3">
+                    <div class="bg-white rounded p-4" style="border: 1px dashed rgba(0, 185, 142, .3)">
+                        <div class="row g-5 align-items-center">
+                            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                                <img class="img-fluid rounded w-100" src="../../../static/img/call-to-action.jpg" alt="">
+                            </div>
+                            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+        <!-- Call to Action End -->
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+
+{% endblock content %}

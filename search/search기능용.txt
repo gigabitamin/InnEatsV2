@@ -1,0 +1,6 @@
+{% block search_content %}
+    {% comment %} 검색창을 숨기려면 내용을 비워두거나 다른 내용으로 채웁니다. {% endcomment %}
+    {# 검색창을 숨기는 코드 또는 내용을 여기에 추가 #}
+{% endblock search_content %}
+
+검색창 없애려면 이거 넣어주세요

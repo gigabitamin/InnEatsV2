@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% comment %} <h1>제주시 맛집</h1> {% endcomment %}
+{% comment %} <a href="{% url 'map_detail' %}">
+    <img src="{% static 'your_image_path_here' %}" alt="Your Image Description">
+</a> {% endcomment %}
+{% comment %} <iframe width="50%" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="{% url 'display_map' %}"></iframe> {% endcomment %}
+{% comment %} <h3 class="jeju_map">제주도의 맛집을 지도로</h1> {% endcomment %}
+{% comment %} <style>
+
+    h3.jeju_map {
+        color: #198754;
+        text-align: center;
+        padding: 30px 10px 20px 20px;
+        border-radius: 5px;
+    }
+
+    table.custom-border {
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    }
+
+    table.custom-border {
+        width: 70%;
+        border-collapse: collapse;
+        margin: 20px auto;
+    }
+
+    table.custom-border td {
+    border: 1px solid black;
+    padding: 10px; /* 원하는 간격 값으로 조정하세요 */
+    }
+
+    table.custom-border, table.custom-border th, table.custom-border td {
+        border: 2px solid #198754;
+        padding: 15px;
+        text-align: center;       
+        vertical-align: middle;
+    }
+
+    table.custom-border td {
+        padding: 10px;
+        text-align: center;       /* 수평 중앙 정렬 */
+        vertical-align: middle;   /* 수직 중앙 정렬 */
+    }
+
+</style>
+<table class="custom-border">
+    <tr>
+        <td><a href="{% url 'my_map_detail' 'jeju-city' %}">제주시 맛집지도</a></td>
+        <td><a href="{% url 'my_map_detail' 'aewol-eup' %}">애월읍 맛집지도</a></td>
+        <!-- ... 다른 지역들에 대한 셀도 추가합니다. -->
+    </tr>
+    <tr>
+        <td><a href="{% url 'my_map_detail' 'hallim-eup' %}">한림읍 맛집지도</a></td>
+        <td><a href="{% url 'my_map_detail' 'hngyeong-myeon' %}">한경면 맛집지도</a></td>
+    </tr>
+    <tr>
+        <td><a href="{% url 'my_map_detail' 'daejeong-eup' %}">대정읍 맛집지도</a></td>
+        <td><a href="{% url 'my_map_detail' 'andeok-myeon' %}">안덕면 맛집지도</a></td>
+    </tr>
+    <tr>
+        <td><a href="{% url 'my_map_detail' 'seogwipo-city' %}">서귀포시 맛집지도</a></td>
+        <td><a href="{% url 'my_map_detail' 'namwon-eup' %}">남원읍 맛집지도</a></td>
+    </tr>
+    <tr>
+        <td><a href="{% url 'my_map_detail' 'seongsan-eup' %}">성산읍 맛집지도</a></td>
+        <td><a href="{% url 'my_map_detail' 'gujwa-eup' %}">구좌읍 맛집지도</a></td>
+    </tr>
+    <tr>
+        <td colspan="2"><a href="{% url 'my_map_detail' 'jocheon-eup' %}">조천읍 맛집지도</a></td>
+    </tr>
+</table> {% endcomment %}
+
+
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h1 class="mb-3">제주도의 맛집을 지도로</h1>
+            <p>바다와 바람, 자연 그대로의 맛을 담은 제주도의 맛집들. <br>
+            지금 바로 지도에서 당신만의 미식 여행을 시작하세요. <br><br><span style="font-weight:bold;">지역별로 손쉽게 맛집을 찾아보고, 제주의 맛을 풍성하게 경험해보세요.</span></p>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                <a class="cat-item d-block bg-light text-center rounded p-3" href="{% url 'my_map_detail' 'jeju-city' %}">
+                    <div class="rounded p-4">
+                        <h6>제주시 맛집지도</h6>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                <a class="cat-item d-block bg-light text-center rounded p-3" href="{% url 'my_map_detail' 'aewol-eup' %}">
+                    <div class="rounded p-4">
+                        <h6>애월읍 맛집지도</h6>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                <a class="cat-item d-block bg-light text-center rounded p-3" href="{% url 'my_map_detail' 'hallim-eup' %}">
+                    <div class="rounded p-4">
+                        <h6>한림읍 맛집지도</h6>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                <a class="cat-item d-block bg-light text-center rounded p-3" href="{% url 'my_map_detail' 'hngyeong-myeon' %}">
+                    <div class="rounded p-4">
+                        <h6>한경면 맛집지도</h6>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                <a class="cat-item d-block bg-light text-center rounded p-3" href="{% url 'my_map_detail' 'daejeong-eup' %}">
+                    <div class="rounded p-4">
+                        <h6>대정읍 맛집지도</h6>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                <a class="cat-item d-block bg-light text-center rounded p-3" href="{% url 'my_map_detail' 'andeok-myeon' %}">
+                    <div class="rounded p-4">
+                        <h6>안덕면 맛집지도</h6>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                <a class="cat-item d-block bg-light text-center rounded p-3" href="{% url 'my_map_detail' 'seogwipo-city' %}">
+                    <div class="rounded p-4">
+                        <h6>서귀포시 맛집지도</h6>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                <a class="cat-item d-block bg-light text-center rounded p-3" href="{% url 'my_map_detail' 'namwon-eup' %}">
+                    <div class="rounded p-4">
+                        <h6>남원읍 맛집지도</h6>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                <a class="cat-item d-block bg-light text-center rounded p-3" href="{% url 'my_map_detail' 'seongsan-eup' %}">
+                    <div class="rounded p-4">
+                        <h6>성산읍 맛집지도</h6>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                <a class="cat-item d-block bg-light text-center rounded p-3" href="{% url 'my_map_detail' 'gujwa-eup' %}">
+                    <div class="rounded p-4">
+                        <h6>구좌읍 맛집지도</h6>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                <a class="cat-item d-block bg-light text-center rounded p-3" href="{% url 'my_map_detail' 'jocheon-eup' %}">
+                    <div class="rounded p-4">
+                        <h6>조천읍 맛집지도</h6>
+                    </div>
+                </a>
+            </div>
+            <!-- ... 다른 지역들에 대한 코드도 이와 같은 형식으로 추가합니다. ... -->
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

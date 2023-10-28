@@ -1,0 +1,3591 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_62e1237a61d2e2d6cd67e4e5cc1601f9 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.css"/>
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_62e1237a61d2e2d6cd67e4e5cc1601f9" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_62e1237a61d2e2d6cd67e4e5cc1601f9 = L.map(
+                "map_62e1237a61d2e2d6cd67e4e5cc1601f9",
+                {
+                    center: [33.28, 126.71],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 12,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_0290e280ce869f65c77f18ec96621784 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca target=\"_blank\" href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+            var tile_layer_f494851616aab4cea20826940cfbfeb4 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca target=\"_blank\" href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+            var mini_map_64b66dad58b90941221040a3ad9b01a8 = new L.Control.MiniMap(
+                tile_layer_f494851616aab4cea20826940cfbfeb4,
+                {"autoToggleDisplay": false, "centerFixed": false, "collapsedHeight": 25, "collapsedWidth": 25, "height": 150, "minimized": false, "position": "bottomright", "toggleDisplay": false, "width": 150, "zoomAnimation": false, "zoomLevelOffset": -5}
+            );
+            map_62e1237a61d2e2d6cd67e4e5cc1601f9.addControl(mini_map_64b66dad58b90941221040a3ad9b01a8);
+        
+    
+            var marker_a49968e000090ca37d2b9125615e9023 = L.marker(
+                [33.26955169609136, 126.67454135567792],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_3c93d7e3b23268b9720428d7ec6fd7aa = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_619a6c851cc082f3c6a257bc843f36f0 = $(`<div id="html_619a6c851cc082f3c6a257bc843f36f0" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1853543760" target="_blank">제주특별자치도 서귀포시 남원읍 태위로360번길 192</a></div>`)[0];
+                popup_3c93d7e3b23268b9720428d7ec6fd7aa.setContent(html_619a6c851cc082f3c6a257bc843f36f0);
+            
+        
+
+        marker_a49968e000090ca37d2b9125615e9023.bindPopup(popup_3c93d7e3b23268b9720428d7ec6fd7aa)
+        ;
+
+        
+    
+    
+            marker_a49968e000090ca37d2b9125615e9023.bindTooltip(
+                `<div>
+                     테이블앤데스크
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c6b3917aebeeac56f8dc3db32bb320ce = L.marker(
+                [33.272913444179565, 126.68451546433884],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_03fcd677ad514626280d803869f420a5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4625738d768b527d5e47938d9db54bba = $(`<div id="html_4625738d768b527d5e47938d9db54bba" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/337455511" target="_blank">제주특별자치도 서귀포시 남원읍 태위로360번길 30-8</a></div>`)[0];
+                popup_03fcd677ad514626280d803869f420a5.setContent(html_4625738d768b527d5e47938d9db54bba);
+            
+        
+
+        marker_c6b3917aebeeac56f8dc3db32bb320ce.bindPopup(popup_03fcd677ad514626280d803869f420a5)
+        ;
+
+        
+    
+    
+            marker_c6b3917aebeeac56f8dc3db32bb320ce.bindTooltip(
+                `<div>
+                     모노클제주
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_821e7d9ae3be14b98fd728845494169b = L.marker(
+                [33.271813839702624, 126.66368139257779],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_83cd5c5a2a3c9e1dfdb4cf2bcd085526 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_82fd6fad2a35e90646df138fbc4707ca = $(`<div id="html_82fd6fad2a35e90646df138fbc4707ca" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/12285089" target="_blank">제주특별자치도 서귀포시 남원읍 위미중앙로196번길 13</a></div>`)[0];
+                popup_83cd5c5a2a3c9e1dfdb4cf2bcd085526.setContent(html_82fd6fad2a35e90646df138fbc4707ca);
+            
+        
+
+        marker_821e7d9ae3be14b98fd728845494169b.bindPopup(popup_83cd5c5a2a3c9e1dfdb4cf2bcd085526)
+        ;
+
+        
+    
+    
+            marker_821e7d9ae3be14b98fd728845494169b.bindTooltip(
+                `<div>
+                     일송회수산
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_98e2b514b51ba70995715d728aa1c05e = L.marker(
+                [33.272294301337155, 126.67655338473118],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_126f0348bc96b089eb69140c971fe332 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9e019e334f00116600f43f7cad733f31 = $(`<div id="html_9e019e334f00116600f43f7cad733f31" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/18815393" target="_blank">제주특별자치도 서귀포시 남원읍 위미중앙로300번길 28</a></div>`)[0];
+                popup_126f0348bc96b089eb69140c971fe332.setContent(html_9e019e334f00116600f43f7cad733f31);
+            
+        
+
+        marker_98e2b514b51ba70995715d728aa1c05e.bindPopup(popup_126f0348bc96b089eb69140c971fe332)
+        ;
+
+        
+    
+    
+            marker_98e2b514b51ba70995715d728aa1c05e.bindTooltip(
+                `<div>
+                     와랑와랑
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_e06d9eef6d704327a5a079312406c73c = L.marker(
+                [33.2703750807513, 126.664105507705],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_71ab37ea11addf93005e8053223d617a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_417532fb85d1a5eee243d47ee9955296 = $(`<div id="html_417532fb85d1a5eee243d47ee9955296" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1303171193" target="_blank">제주특별자치도 서귀포시 남원읍 위미중앙로196번길 6-37</a></div>`)[0];
+                popup_71ab37ea11addf93005e8053223d617a.setContent(html_417532fb85d1a5eee243d47ee9955296);
+            
+        
+
+        marker_e06d9eef6d704327a5a079312406c73c.bindPopup(popup_71ab37ea11addf93005e8053223d617a)
+        ;
+
+        
+    
+    
+            marker_e06d9eef6d704327a5a079312406c73c.bindTooltip(
+                `<div>
+                     위미항활어회센터
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_257b71b297942e8b41c05d8e8ba9fc48 = L.marker(
+                [33.27445759895956, 126.6681086198523],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_ac1990ba43826a7dfad6be75baa1b32a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a83d35ba8a357d991e95ec9219dd33fb = $(`<div id="html_a83d35ba8a357d991e95ec9219dd33fb" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/26547799" target="_blank">제주특별자치도 서귀포시 남원읍 위미중앙로241번길 24</a></div>`)[0];
+                popup_ac1990ba43826a7dfad6be75baa1b32a.setContent(html_a83d35ba8a357d991e95ec9219dd33fb);
+            
+        
+
+        marker_257b71b297942e8b41c05d8e8ba9fc48.bindPopup(popup_ac1990ba43826a7dfad6be75baa1b32a)
+        ;
+
+        
+    
+    
+            marker_257b71b297942e8b41c05d8e8ba9fc48.bindTooltip(
+                `<div>
+                     탐라밥상
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_4bec2d7d4d7e3b60db57964a50842ca7 = L.marker(
+                [33.27231847981811, 126.68384997587258],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_a76a604ab4aa6792707db1a4bcba5fec = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_176a60c514226585662c304e66721263 = $(`<div id="html_176a60c514226585662c304e66721263" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1800317555" target="_blank">제주특별자치도 서귀포시 남원읍 태위로360번길 46</a></div>`)[0];
+                popup_a76a604ab4aa6792707db1a4bcba5fec.setContent(html_176a60c514226585662c304e66721263);
+            
+        
+
+        marker_4bec2d7d4d7e3b60db57964a50842ca7.bindPopup(popup_a76a604ab4aa6792707db1a4bcba5fec)
+        ;
+
+        
+    
+    
+            marker_4bec2d7d4d7e3b60db57964a50842ca7.bindTooltip(
+                `<div>
+                     루브린라운지
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a4777ffb5ef2979c6befd74a41f10d8a = L.marker(
+                [33.2740040607408, 126.663074051355],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_67bf3a1fb04c5a2f7e3dd072c174c6c7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_cb6639fcfe56de0ab00db72ad22a8596 = $(`<div id="html_cb6639fcfe56de0ab00db72ad22a8596" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1139379251" target="_blank">제주특별자치도 서귀포시 남원읍 위미중앙로 179</a></div>`)[0];
+                popup_67bf3a1fb04c5a2f7e3dd072c174c6c7.setContent(html_cb6639fcfe56de0ab00db72ad22a8596);
+            
+        
+
+        marker_a4777ffb5ef2979c6befd74a41f10d8a.bindPopup(popup_67bf3a1fb04c5a2f7e3dd072c174c6c7)
+        ;
+
+        
+    
+    
+            marker_a4777ffb5ef2979c6befd74a41f10d8a.bindTooltip(
+                `<div>
+                     소랑밥상
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_35f91b11f03e2fb47b65a8536c279fcb = L.marker(
+                [33.27177359765006, 126.66380390869811],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_9aae16fbf1504eb0cfd610b1c9667944 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9214802d0db40af083397ce6b397637a = $(`<div id="html_9214802d0db40af083397ce6b397637a" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/27169548" target="_blank">제주특별자치도 서귀포시 남원읍 위미중앙로196번길 15</a></div>`)[0];
+                popup_9aae16fbf1504eb0cfd610b1c9667944.setContent(html_9214802d0db40af083397ce6b397637a);
+            
+        
+
+        marker_35f91b11f03e2fb47b65a8536c279fcb.bindPopup(popup_9aae16fbf1504eb0cfd610b1c9667944)
+        ;
+
+        
+    
+    
+            marker_35f91b11f03e2fb47b65a8536c279fcb.bindTooltip(
+                `<div>
+                     위미항면카페
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_318e00308c79055b163b8d10a475f752 = L.marker(
+                [33.2701188089393, 126.673504454732],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_eeed87144c372b90e9b6870eacc9b705 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c7875e51f830d0a4068c96b995a57170 = $(`<div id="html_c7875e51f830d0a4068c96b995a57170" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/115229312" target="_blank">제주특별자치도 서귀포시 남원읍 위미중앙로 274-43</a></div>`)[0];
+                popup_eeed87144c372b90e9b6870eacc9b705.setContent(html_c7875e51f830d0a4068c96b995a57170);
+            
+        
+
+        marker_318e00308c79055b163b8d10a475f752.bindPopup(popup_eeed87144c372b90e9b6870eacc9b705)
+        ;
+
+        
+    
+    
+            marker_318e00308c79055b163b8d10a475f752.bindTooltip(
+                `<div>
+                     위미애머물다 락쿤
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_64795979caea513e9a936f30a325c8b2 = L.marker(
+                [33.273518868907274, 126.69738301780977],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_07e1f58b854793208b4bd10f88439b27 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b0e8691da1cae46cdbfaea2dde632b1e = $(`<div id="html_b0e8691da1cae46cdbfaea2dde632b1e" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1769750048" target="_blank">제주특별자치도 서귀포시 남원읍 태위로510번길 63</a></div>`)[0];
+                popup_07e1f58b854793208b4bd10f88439b27.setContent(html_b0e8691da1cae46cdbfaea2dde632b1e);
+            
+        
+
+        marker_64795979caea513e9a936f30a325c8b2.bindPopup(popup_07e1f58b854793208b4bd10f88439b27)
+        ;
+
+        
+    
+    
+            marker_64795979caea513e9a936f30a325c8b2.bindTooltip(
+                `<div>
+                     제주메밀이야기
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_5ba099c0a96e66e8f9f771224626277c = L.marker(
+                [33.2726336445096, 126.698569989222],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_4997fd74e82e4f484d60835f7709f4a4 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1b9f725373b829af1672c76e0ea0556f = $(`<div id="html_1b9f725373b829af1672c76e0ea0556f" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/491495630" target="_blank">제주특별자치도 서귀포시 남원읍 태위로510번길 49</a></div>`)[0];
+                popup_4997fd74e82e4f484d60835f7709f4a4.setContent(html_1b9f725373b829af1672c76e0ea0556f);
+            
+        
+
+        marker_5ba099c0a96e66e8f9f771224626277c.bindPopup(popup_4997fd74e82e4f484d60835f7709f4a4)
+        ;
+
+        
+    
+    
+            marker_5ba099c0a96e66e8f9f771224626277c.bindTooltip(
+                `<div>
+                     더컨테이너
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_047159d245f1c1b2cbe688469fd1d860 = L.marker(
+                [33.274347692312, 126.689791345764],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_3eef852d6582c95f8966c1d42bab7ab6 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2585e2cbea404678e9779eead9969fd2 = $(`<div id="html_2585e2cbea404678e9779eead9969fd2" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1564244372" target="_blank">제주특별자치도 서귀포시 남원읍 태위로398번길 7</a></div>`)[0];
+                popup_3eef852d6582c95f8966c1d42bab7ab6.setContent(html_2585e2cbea404678e9779eead9969fd2);
+            
+        
+
+        marker_047159d245f1c1b2cbe688469fd1d860.bindPopup(popup_3eef852d6582c95f8966c1d42bab7ab6)
+        ;
+
+        
+    
+    
+            marker_047159d245f1c1b2cbe688469fd1d860.bindTooltip(
+                `<div>
+                     취향의섬 키친
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_9c8b5a8546093efd4efa572f01fd2fa7 = L.marker(
+                [33.274240988610835, 126.66266740381627],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_504cf575696b2d2867afd762d8a06a97 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_08eb0df783435e56b57e722fa9603a3a = $(`<div id="html_08eb0df783435e56b57e722fa9603a3a" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/427346179" target="_blank">제주특별자치도 서귀포시 남원읍 위미중앙로 178</a></div>`)[0];
+                popup_504cf575696b2d2867afd762d8a06a97.setContent(html_08eb0df783435e56b57e722fa9603a3a);
+            
+        
+
+        marker_9c8b5a8546093efd4efa572f01fd2fa7.bindPopup(popup_504cf575696b2d2867afd762d8a06a97)
+        ;
+
+        
+    
+    
+            marker_9c8b5a8546093efd4efa572f01fd2fa7.bindTooltip(
+                `<div>
+                     위미다온국밥
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_bc28958ecb845531165a606a5074e64b = L.marker(
+                [33.27267851657619, 126.66335284939075],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_5f0eae54f6bcb6c2451886c6eaf8f1b0 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_06963122613fd67a132ff8051757b688 = $(`<div id="html_06963122613fd67a132ff8051757b688" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1985214776" target="_blank">제주특별자치도 서귀포시 남원읍 위미중앙로 199</a></div>`)[0];
+                popup_5f0eae54f6bcb6c2451886c6eaf8f1b0.setContent(html_06963122613fd67a132ff8051757b688);
+            
+        
+
+        marker_bc28958ecb845531165a606a5074e64b.bindPopup(popup_5f0eae54f6bcb6c2451886c6eaf8f1b0)
+        ;
+
+        
+    
+    
+            marker_bc28958ecb845531165a606a5074e64b.bindTooltip(
+                `<div>
+                     주야진
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_ef5efaf22fe506893072bb977420f73c = L.marker(
+                [33.2731175628163, 126.663335064041],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_cf331f86805003b0865a801d2bc2c71b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_96a37440f6354b1cbd1c79f1957709b8 = $(`<div id="html_96a37440f6354b1cbd1c79f1957709b8" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/24962250" target="_blank">제주특별자치도 서귀포시 남원읍 위미중앙로 191</a></div>`)[0];
+                popup_cf331f86805003b0865a801d2bc2c71b.setContent(html_96a37440f6354b1cbd1c79f1957709b8);
+            
+        
+
+        marker_ef5efaf22fe506893072bb977420f73c.bindPopup(popup_cf331f86805003b0865a801d2bc2c71b)
+        ;
+
+        
+    
+    
+            marker_ef5efaf22fe506893072bb977420f73c.bindTooltip(
+                `<div>
+                     뽀르또카페Porto Caffe
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_bde957c4562017c783d545948a1df855 = L.marker(
+                [33.2760210014731, 126.676999059308],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_285666f565699b404bf75d5270dc0353 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_baa3beee7228614581f1c2dcfe516df5 = $(`<div id="html_baa3beee7228614581f1c2dcfe516df5" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/2061851154" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 275-2</a></div>`)[0];
+                popup_285666f565699b404bf75d5270dc0353.setContent(html_baa3beee7228614581f1c2dcfe516df5);
+            
+        
+
+        marker_bde957c4562017c783d545948a1df855.bindPopup(popup_285666f565699b404bf75d5270dc0353)
+        ;
+
+        
+    
+    
+            marker_bde957c4562017c783d545948a1df855.bindTooltip(
+                `<div>
+                     동박낭
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_8f0bb43fd3aacbce17f54d9daa4c73af = L.marker(
+                [33.27577945955309, 126.7000694530754],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_89d52885ec5fd1fd00264eaf695f294e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_cfaff21d3c5e81a05e1217814a9293cd = $(`<div id="html_cfaff21d3c5e81a05e1217814a9293cd" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1193502982" target="_blank">제주특별자치도 서귀포시 남원읍 태위로495번길 7</a></div>`)[0];
+                popup_89d52885ec5fd1fd00264eaf695f294e.setContent(html_cfaff21d3c5e81a05e1217814a9293cd);
+            
+        
+
+        marker_8f0bb43fd3aacbce17f54d9daa4c73af.bindPopup(popup_89d52885ec5fd1fd00264eaf695f294e)
+        ;
+
+        
+    
+    
+            marker_8f0bb43fd3aacbce17f54d9daa4c73af.bindTooltip(
+                `<div>
+                     남원흑돼지 연탄골목
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_19b3900420615b03933e9345e152dad4 = L.marker(
+                [33.27551351118977, 126.66646232960494],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_0543fd604c502094a285d6d0a3cf8246 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f8fb915e1e5b6d993b0b9cebd1e2cdf1 = $(`<div id="html_f8fb915e1e5b6d993b0b9cebd1e2cdf1" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1624310743" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 177</a></div>`)[0];
+                popup_0543fd604c502094a285d6d0a3cf8246.setContent(html_f8fb915e1e5b6d993b0b9cebd1e2cdf1);
+            
+        
+
+        marker_19b3900420615b03933e9345e152dad4.bindPopup(popup_0543fd604c502094a285d6d0a3cf8246)
+        ;
+
+        
+    
+    
+            marker_19b3900420615b03933e9345e152dad4.bindTooltip(
+                `<div>
+                     도바나
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_8df7e7d14248cc7ebd68259ce33dc59e = L.marker(
+                [33.2764557284141, 126.665460478325],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_cdcf3f2f26eeaf0b8339fda544cb1f2e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_546d20c6003afd78cd413549f3292969 = $(`<div id="html_546d20c6003afd78cd413549f3292969" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/917328798" target="_blank">제주특별자치도 서귀포시 남원읍 태위로151번길 14-14</a></div>`)[0];
+                popup_cdcf3f2f26eeaf0b8339fda544cb1f2e.setContent(html_546d20c6003afd78cd413549f3292969);
+            
+        
+
+        marker_8df7e7d14248cc7ebd68259ce33dc59e.bindPopup(popup_cdcf3f2f26eeaf0b8339fda544cb1f2e)
+        ;
+
+        
+    
+    
+            marker_8df7e7d14248cc7ebd68259ce33dc59e.bindTooltip(
+                `<div>
+                     벨라위미
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6a44a68598eea1cf59ebb5e166007ca8 = L.marker(
+                [33.2753778557836, 126.687829830714],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_fa4e8fccdb1106cda8285ef2eb18d4fd = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2cbdbf830c775f713aa9f4671e0c5b11 = $(`<div id="html_2cbdbf830c775f713aa9f4671e0c5b11" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/24879042" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 381</a></div>`)[0];
+                popup_fa4e8fccdb1106cda8285ef2eb18d4fd.setContent(html_2cbdbf830c775f713aa9f4671e0c5b11);
+            
+        
+
+        marker_6a44a68598eea1cf59ebb5e166007ca8.bindPopup(popup_fa4e8fccdb1106cda8285ef2eb18d4fd)
+        ;
+
+        
+    
+    
+            marker_6a44a68598eea1cf59ebb5e166007ca8.bindTooltip(
+                `<div>
+                     털보네고양이
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_06f3d8797aa19a5c64f06c3595f72e3f = L.marker(
+                [33.27560297478446, 126.67712618608613],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_619e709cdacfa51f245352e6dd4fb89e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_18a3302a6907693bbc65d1f563f8b5b7 = $(`<div id="html_18a3302a6907693bbc65d1f563f8b5b7" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1227717000" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 278</a></div>`)[0];
+                popup_619e709cdacfa51f245352e6dd4fb89e.setContent(html_18a3302a6907693bbc65d1f563f8b5b7);
+            
+        
+
+        marker_06f3d8797aa19a5c64f06c3595f72e3f.bindPopup(popup_619e709cdacfa51f245352e6dd4fb89e)
+        ;
+
+        
+    
+    
+            marker_06f3d8797aa19a5c64f06c3595f72e3f.bindTooltip(
+                `<div>
+                     위미동백식당
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_603a2be1012147fdce3f9a56c63bbc60 = L.marker(
+                [33.2754208591068, 126.70928363593],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_d3b88e8a0c521aa15258b70fb9d7f151 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f1d7c02364bb4f80336fc6423a4ae9e5 = $(`<div id="html_f1d7c02364bb4f80336fc6423a4ae9e5" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1625606823" target="_blank">제주특별자치도 서귀포시 남원읍 남태해안로 9</a></div>`)[0];
+                popup_d3b88e8a0c521aa15258b70fb9d7f151.setContent(html_f1d7c02364bb4f80336fc6423a4ae9e5);
+            
+        
+
+        marker_603a2be1012147fdce3f9a56c63bbc60.bindPopup(popup_d3b88e8a0c521aa15258b70fb9d7f151)
+        ;
+
+        
+    
+    
+            marker_603a2be1012147fdce3f9a56c63bbc60.bindTooltip(
+                `<div>
+                     썬데이지
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_1f10aed7e7f2f026eaec6e4a30d9055f = L.marker(
+                [33.2751761566314, 126.698160877038],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_e92d6eb8f6b02a8ce19202d6929330e5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_eca53841b6a5a58309922db3a37ec732 = $(`<div id="html_eca53841b6a5a58309922db3a37ec732" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/25018671" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 477</a></div>`)[0];
+                popup_e92d6eb8f6b02a8ce19202d6929330e5.setContent(html_eca53841b6a5a58309922db3a37ec732);
+            
+        
+
+        marker_1f10aed7e7f2f026eaec6e4a30d9055f.bindPopup(popup_e92d6eb8f6b02a8ce19202d6929330e5)
+        ;
+
+        
+    
+    
+            marker_1f10aed7e7f2f026eaec6e4a30d9055f.bindTooltip(
+                `<div>
+                     마블링 남원점
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f9f116fdeaa7c557c08c86f45bfaf558 = L.marker(
+                [33.275376885084, 126.674444606316],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_106fabf33a82264ca47d5ebbdfcb5c85 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_279beb0aed21b76430ff6f1ebae1ee6c = $(`<div id="html_279beb0aed21b76430ff6f1ebae1ee6c" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1836801155" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 255</a></div>`)[0];
+                popup_106fabf33a82264ca47d5ebbdfcb5c85.setContent(html_279beb0aed21b76430ff6f1ebae1ee6c);
+            
+        
+
+        marker_f9f116fdeaa7c557c08c86f45bfaf558.bindPopup(popup_106fabf33a82264ca47d5ebbdfcb5c85)
+        ;
+
+        
+    
+    
+            marker_f9f116fdeaa7c557c08c86f45bfaf558.bindTooltip(
+                `<div>
+                     오리프
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_d842f3015537590aa918c405a18e510e = L.marker(
+                [33.2752579630562, 126.666654365142],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_9057217757721300bca0f10afe95dfdc = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_788fa02e92ab959a9218c27b0aac9494 = $(`<div id="html_788fa02e92ab959a9218c27b0aac9494" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/604372289" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 180</a></div>`)[0];
+                popup_9057217757721300bca0f10afe95dfdc.setContent(html_788fa02e92ab959a9218c27b0aac9494);
+            
+        
+
+        marker_d842f3015537590aa918c405a18e510e.bindPopup(popup_9057217757721300bca0f10afe95dfdc)
+        ;
+
+        
+    
+    
+            marker_d842f3015537590aa918c405a18e510e.bindTooltip(
+                `<div>
+                     위미테이블
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_dd848dc305e755cd093390ce71020130 = L.marker(
+                [33.27537307939454, 126.67471296895376],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_4882f73f49d393cef4e73dc38dbbaffb = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a6d93748fc4b66646582bb2740a6a745 = $(`<div id="html_a6d93748fc4b66646582bb2740a6a745" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/787484760" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 257</a></div>`)[0];
+                popup_4882f73f49d393cef4e73dc38dbbaffb.setContent(html_a6d93748fc4b66646582bb2740a6a745);
+            
+        
+
+        marker_dd848dc305e755cd093390ce71020130.bindPopup(popup_4882f73f49d393cef4e73dc38dbbaffb)
+        ;
+
+        
+    
+    
+            marker_dd848dc305e755cd093390ce71020130.bindTooltip(
+                `<div>
+                     위미모녀분식
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_4a9df03711b1a3e56dd46dd33221fa77 = L.marker(
+                [33.2752690561736, 126.688307877952],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_a1b23c9f94a00da3326ff4fe68ecb429 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a7864786785f4121047a6bbcf258f4bc = $(`<div id="html_a7864786785f4121047a6bbcf258f4bc" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/243898099" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 383</a></div>`)[0];
+                popup_a1b23c9f94a00da3326ff4fe68ecb429.setContent(html_a7864786785f4121047a6bbcf258f4bc);
+            
+        
+
+        marker_4a9df03711b1a3e56dd46dd33221fa77.bindPopup(popup_a1b23c9f94a00da3326ff4fe68ecb429)
+        ;
+
+        
+    
+    
+            marker_4a9df03711b1a3e56dd46dd33221fa77.bindTooltip(
+                `<div>
+                     하나비
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_833094c29c63642afc78061e0a37bfa6 = L.marker(
+                [33.2760425957935, 126.676981805351],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_5f5c4a39602ae970119b841bdc42c2d3 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3f090eafddc4bdb056e6ab7cf0ffa0f9 = $(`<div id="html_3f090eafddc4bdb056e6ab7cf0ffa0f9" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1809453366" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 275-2</a></div>`)[0];
+                popup_5f5c4a39602ae970119b841bdc42c2d3.setContent(html_3f090eafddc4bdb056e6ab7cf0ffa0f9);
+            
+        
+
+        marker_833094c29c63642afc78061e0a37bfa6.bindPopup(popup_5f5c4a39602ae970119b841bdc42c2d3)
+        ;
+
+        
+    
+    
+            marker_833094c29c63642afc78061e0a37bfa6.bindTooltip(
+                `<div>
+                     동백낭
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_311cd45ace695690e2d589036d381c14 = L.marker(
+                [33.2764178986542, 126.717027119721],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_599b77fd2bfbf3ab978c5fd258365c51 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4189e9d69dac5dc1bb011fcb6a8fb3b6 = $(`<div id="html_4189e9d69dac5dc1bb011fcb6a8fb3b6" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1330958435" target="_blank">제주특별자치도 서귀포시 남원읍 남태해안로 101</a></div>`)[0];
+                popup_599b77fd2bfbf3ab978c5fd258365c51.setContent(html_4189e9d69dac5dc1bb011fcb6a8fb3b6);
+            
+        
+
+        marker_311cd45ace695690e2d589036d381c14.bindPopup(popup_599b77fd2bfbf3ab978c5fd258365c51)
+        ;
+
+        
+    
+    
+            marker_311cd45ace695690e2d589036d381c14.bindTooltip(
+                `<div>
+                     소랑벨101
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_fee23b66cff35228ff406b2fe704b14b = L.marker(
+                [33.27527263306527, 126.68829605791478],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_adffe7cd505bfedc727c6ab5b8b14af0 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6152cee2e483e9c5a01a92582822ac06 = $(`<div id="html_6152cee2e483e9c5a01a92582822ac06" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1518913311" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 383</a></div>`)[0];
+                popup_adffe7cd505bfedc727c6ab5b8b14af0.setContent(html_6152cee2e483e9c5a01a92582822ac06);
+            
+        
+
+        marker_fee23b66cff35228ff406b2fe704b14b.bindPopup(popup_adffe7cd505bfedc727c6ab5b8b14af0)
+        ;
+
+        
+    
+    
+            marker_fee23b66cff35228ff406b2fe704b14b.bindTooltip(
+                `<div>
+                     올드패션
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6d89524f3b53191839c28df477c01d14 = L.marker(
+                [33.27845174643633, 126.71692394896294],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_a6d1e445aca7b50641d85d2c0c5897ce = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_35b5cb488a4102cf292202595a404521 = $(`<div id="html_35b5cb488a4102cf292202595a404521" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/17682261" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 658</a></div>`)[0];
+                popup_a6d1e445aca7b50641d85d2c0c5897ce.setContent(html_35b5cb488a4102cf292202595a404521);
+            
+        
+
+        marker_6d89524f3b53191839c28df477c01d14.bindPopup(popup_a6d1e445aca7b50641d85d2c0c5897ce)
+        ;
+
+        
+    
+    
+            marker_6d89524f3b53191839c28df477c01d14.bindTooltip(
+                `<div>
+                     범일분식
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_08133c72d1ec1281b2e152f26bc53122 = L.marker(
+                [33.2783370048548, 126.718807119111],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_c290b97ec2e8cddacb832d6362b2be28 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7d1c96eee66a64ce96783b8ebb71aa1f = $(`<div id="html_7d1c96eee66a64ce96783b8ebb71aa1f" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1728677481" target="_blank">제주특별자치도 서귀포시 남원읍 남원회관로 53</a></div>`)[0];
+                popup_c290b97ec2e8cddacb832d6362b2be28.setContent(html_7d1c96eee66a64ce96783b8ebb71aa1f);
+            
+        
+
+        marker_08133c72d1ec1281b2e152f26bc53122.bindPopup(popup_c290b97ec2e8cddacb832d6362b2be28)
+        ;
+
+        
+    
+    
+            marker_08133c72d1ec1281b2e152f26bc53122.bindTooltip(
+                `<div>
+                     원조남원포구식당
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_36cf563ed877670877981bdb9629c893 = L.marker(
+                [33.2778526190947, 126.721517999804],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_202e054decb13273fcae06a7b8da0b27 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_74aa5edb341e65c3a507a870048cb3ee = $(`<div id="html_74aa5edb341e65c3a507a870048cb3ee" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/673236051" target="_blank">제주특별자치도 서귀포시 남원읍 남태해안로 155</a></div>`)[0];
+                popup_202e054decb13273fcae06a7b8da0b27.setContent(html_74aa5edb341e65c3a507a870048cb3ee);
+            
+        
+
+        marker_36cf563ed877670877981bdb9629c893.bindPopup(popup_202e054decb13273fcae06a7b8da0b27)
+        ;
+
+        
+    
+    
+            marker_36cf563ed877670877981bdb9629c893.bindTooltip(
+                `<div>
+                     제주어향원
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_3d52c7f3e4f3df34ee91c94e65de3750 = L.marker(
+                [33.2783041674437, 126.718639769047],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_e166f8b380bad7db8a212a47dc48dde0 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a6fdd4ecf5eedd4c1e4c7afb1bb9d7f8 = $(`<div id="html_a6fdd4ecf5eedd4c1e4c7afb1bb9d7f8" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/9442731" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 672-7</a></div>`)[0];
+                popup_e166f8b380bad7db8a212a47dc48dde0.setContent(html_a6fdd4ecf5eedd4c1e4c7afb1bb9d7f8);
+            
+        
+
+        marker_3d52c7f3e4f3df34ee91c94e65de3750.bindPopup(popup_e166f8b380bad7db8a212a47dc48dde0)
+        ;
+
+        
+    
+    
+            marker_3d52c7f3e4f3df34ee91c94e65de3750.bindTooltip(
+                `<div>
+                     짜장마을
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_ca20e0402a2956bd92c5b520f9d2a164 = L.marker(
+                [33.27770561254335, 126.71317259260383],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_6e3bd6a4c6e33cefb2bd57a4c8db1dde = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a54522a7c310eefbfe67e20883434b22 = $(`<div id="html_a54522a7c310eefbfe67e20883434b22" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1611326804" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 623</a></div>`)[0];
+                popup_6e3bd6a4c6e33cefb2bd57a4c8db1dde.setContent(html_a54522a7c310eefbfe67e20883434b22);
+            
+        
+
+        marker_ca20e0402a2956bd92c5b520f9d2a164.bindPopup(popup_6e3bd6a4c6e33cefb2bd57a4c8db1dde)
+        ;
+
+        
+    
+    
+            marker_ca20e0402a2956bd92c5b520f9d2a164.bindTooltip(
+                `<div>
+                     미향해장국 남원점
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_ec06bf872169df37043751d0883f26af = L.marker(
+                [33.277963870268835, 126.72046890780732],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_ca7de189cbf1ecdfe7b0c749fb98cbf7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f2bce072654d1472cc34ed53769a4d7e = $(`<div id="html_f2bce072654d1472cc34ed53769a4d7e" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1598075933" target="_blank">제주특별자치도 서귀포시 남원읍 남태해안로 145</a></div>`)[0];
+                popup_ca7de189cbf1ecdfe7b0c749fb98cbf7.setContent(html_f2bce072654d1472cc34ed53769a4d7e);
+            
+        
+
+        marker_ec06bf872169df37043751d0883f26af.bindPopup(popup_ca7de189cbf1ecdfe7b0c749fb98cbf7)
+        ;
+
+        
+    
+    
+            marker_ec06bf872169df37043751d0883f26af.bindTooltip(
+                `<div>
+                     엄마표밥상
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a62ad9d8d2988f75762a55f5cdc01d6c = L.marker(
+                [33.278240480672395, 126.71958351912572],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_063f5aa5a8a40d44b661ae968c0f2423 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8e42967b82f48874f3b6aec0758403ac = $(`<div id="html_8e42967b82f48874f3b6aec0758403ac" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/26876324" target="_blank">제주특별자치도 서귀포시 남원읍 남태해안로 135</a></div>`)[0];
+                popup_063f5aa5a8a40d44b661ae968c0f2423.setContent(html_8e42967b82f48874f3b6aec0758403ac);
+            
+        
+
+        marker_a62ad9d8d2988f75762a55f5cdc01d6c.bindPopup(popup_063f5aa5a8a40d44b661ae968c0f2423)
+        ;
+
+        
+    
+    
+            marker_a62ad9d8d2988f75762a55f5cdc01d6c.bindTooltip(
+                `<div>
+                     이디야커피 제주남원점
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c4abca88578dc6bc917c5c81eeb5b159 = L.marker(
+                [33.2784459972005, 126.718362368243],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_929dee04b32e885d4c92bdb77d546e16 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_22e73d4edf72c933123161156558738c = $(`<div id="html_22e73d4edf72c933123161156558738c" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1297845544" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 672-6</a></div>`)[0];
+                popup_929dee04b32e885d4c92bdb77d546e16.setContent(html_22e73d4edf72c933123161156558738c);
+            
+        
+
+        marker_c4abca88578dc6bc917c5c81eeb5b159.bindPopup(popup_929dee04b32e885d4c92bdb77d546e16)
+        ;
+
+        
+    
+    
+            marker_c4abca88578dc6bc917c5c81eeb5b159.bindTooltip(
+                `<div>
+                     괸당네식당 본점
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7aa35b2f2d324f9999243e9df0f1c3e1 = L.marker(
+                [33.2785478890721, 126.719562141016],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_43c122d45b11e0e820848f6fd444d7aa = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_52e73cb14b5c480bfbaab6a106aec459 = $(`<div id="html_52e73cb14b5c480bfbaab6a106aec459" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/10635036" target="_blank">제주특별자치도 서귀포시 남원읍 남원회관로 61</a></div>`)[0];
+                popup_43c122d45b11e0e820848f6fd444d7aa.setContent(html_52e73cb14b5c480bfbaab6a106aec459);
+            
+        
+
+        marker_7aa35b2f2d324f9999243e9df0f1c3e1.bindPopup(popup_43c122d45b11e0e820848f6fd444d7aa)
+        ;
+
+        
+    
+    
+            marker_7aa35b2f2d324f9999243e9df0f1c3e1.bindTooltip(
+                `<div>
+                     오구삼구민물장어
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_adeee228b1ee8ec55584c0c4091cbd2e = L.marker(
+                [33.27764227124044, 126.71385657043977],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_a44ee08dbe552b3acda82d190727b294 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_60c6d3283ea144fec65b9298469e2c4b = $(`<div id="html_60c6d3283ea144fec65b9298469e2c4b" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/714419387" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 628</a></div>`)[0];
+                popup_a44ee08dbe552b3acda82d190727b294.setContent(html_60c6d3283ea144fec65b9298469e2c4b);
+            
+        
+
+        marker_adeee228b1ee8ec55584c0c4091cbd2e.bindPopup(popup_a44ee08dbe552b3acda82d190727b294)
+        ;
+
+        
+    
+    
+            marker_adeee228b1ee8ec55584c0c4091cbd2e.bindTooltip(
+                `<div>
+                     제주회토랑
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_e711b1f00cff2e0037ce0be869cc0a90 = L.marker(
+                [33.2784989671939, 126.718660612816],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_d6241339cb2fd38db03e69296768802e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2442af42f14f7fbb97f744d67a8ca523 = $(`<div id="html_2442af42f14f7fbb97f744d67a8ca523" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/10177658" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 672-5</a></div>`)[0];
+                popup_d6241339cb2fd38db03e69296768802e.setContent(html_2442af42f14f7fbb97f744d67a8ca523);
+            
+        
+
+        marker_e711b1f00cff2e0037ce0be869cc0a90.bindPopup(popup_d6241339cb2fd38db03e69296768802e)
+        ;
+
+        
+    
+    
+            marker_e711b1f00cff2e0037ce0be869cc0a90.bindTooltip(
+                `<div>
+                     경인식당
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_cc0461ea4e4a25a525d2f8772f3a4f28 = L.marker(
+                [33.27846315230551, 126.71718153620547],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_3138a53ca382cd620ff864966244f7ff = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_976f45671873ed7c84fdcbb419bf01dc = $(`<div id="html_976f45671873ed7c84fdcbb419bf01dc" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1985306608" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 660</a></div>`)[0];
+                popup_3138a53ca382cd620ff864966244f7ff.setContent(html_976f45671873ed7c84fdcbb419bf01dc);
+            
+        
+
+        marker_cc0461ea4e4a25a525d2f8772f3a4f28.bindPopup(popup_3138a53ca382cd620ff864966244f7ff)
+        ;
+
+        
+    
+    
+            marker_cc0461ea4e4a25a525d2f8772f3a4f28.bindTooltip(
+                `<div>
+                     메가MGC커피 제주남원점
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_3db5bba7db43c751d13607691ec36d23 = L.marker(
+                [33.277886332298806, 126.71807434021059],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_3fc74c88d0273d0063346401be7641f6 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0061c216f7eea338df9c161931fcd436 = $(`<div id="html_0061c216f7eea338df9c161931fcd436" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/643238559" target="_blank">제주특별자치도 서귀포시 남원읍 남원회관로 46</a></div>`)[0];
+                popup_3fc74c88d0273d0063346401be7641f6.setContent(html_0061c216f7eea338df9c161931fcd436);
+            
+        
+
+        marker_3db5bba7db43c751d13607691ec36d23.bindPopup(popup_3fc74c88d0273d0063346401be7641f6)
+        ;
+
+        
+    
+    
+            marker_3db5bba7db43c751d13607691ec36d23.bindTooltip(
+                `<div>
+                     백정
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_5e174f5837d80faf7eddf7d19ab8f21e = L.marker(
+                [33.2785983704307, 126.719557685862],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_e72f06c2aec9a4a4e5365ae793dbb64b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_897e859b51c9c62c1a8db2d4abecadde = $(`<div id="html_897e859b51c9c62c1a8db2d4abecadde" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/15106919" target="_blank">제주특별자치도 서귀포시 남원읍 남원회관로 61</a></div>`)[0];
+                popup_e72f06c2aec9a4a4e5365ae793dbb64b.setContent(html_897e859b51c9c62c1a8db2d4abecadde);
+            
+        
+
+        marker_5e174f5837d80faf7eddf7d19ab8f21e.bindPopup(popup_e72f06c2aec9a4a4e5365ae793dbb64b)
+        ;
+
+        
+    
+    
+            marker_5e174f5837d80faf7eddf7d19ab8f21e.bindTooltip(
+                `<div>
+                     포항아구찜
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_23808148e8674ca5618e60ba1cee3f88 = L.marker(
+                [33.27818777608058, 126.71980159398116],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_aa21f62813994e19447238ca6e02dd30 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_86cdb74d95a195b8c8f62522f4666dbb = $(`<div id="html_86cdb74d95a195b8c8f62522f4666dbb" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1192763071" target="_blank">제주특별자치도 서귀포시 남원읍 남태해안로 137</a></div>`)[0];
+                popup_aa21f62813994e19447238ca6e02dd30.setContent(html_86cdb74d95a195b8c8f62522f4666dbb);
+            
+        
+
+        marker_23808148e8674ca5618e60ba1cee3f88.bindPopup(popup_aa21f62813994e19447238ca6e02dd30)
+        ;
+
+        
+    
+    
+            marker_23808148e8674ca5618e60ba1cee3f88.bindTooltip(
+                `<div>
+                     서울감자탕 서귀포2호점
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_956555d12ad68829eab7afbfaf5440c1 = L.marker(
+                [33.2792552939115, 126.705746813337],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_30e6d31c319fc5ce50d4d74885688f8d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_807367cac1e72c06f283505d61eb5c91 = $(`<div id="html_807367cac1e72c06f283505d61eb5c91" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1543687936" target="_blank">제주특별자치도 서귀포시 남원읍 남원체육관로 191</a></div>`)[0];
+                popup_30e6d31c319fc5ce50d4d74885688f8d.setContent(html_807367cac1e72c06f283505d61eb5c91);
+            
+        
+
+        marker_956555d12ad68829eab7afbfaf5440c1.bindPopup(popup_30e6d31c319fc5ce50d4d74885688f8d)
+        ;
+
+        
+    
+    
+            marker_956555d12ad68829eab7afbfaf5440c1.bindTooltip(
+                `<div>
+                     만월당
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_179a1ac84dd530605738329e0dc29d0d = L.marker(
+                [33.27890969869904, 126.71728636671946],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_0ea999cb00b0cad0309218632d300a92 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b0027816d9126ffeac514fda649f269c = $(`<div id="html_b0027816d9126ffeac514fda649f269c" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/19451963" target="_blank">제주특별자치도 서귀포시 남원읍 태위로663번길 1-1</a></div>`)[0];
+                popup_0ea999cb00b0cad0309218632d300a92.setContent(html_b0027816d9126ffeac514fda649f269c);
+            
+        
+
+        marker_179a1ac84dd530605738329e0dc29d0d.bindPopup(popup_0ea999cb00b0cad0309218632d300a92)
+        ;
+
+        
+    
+    
+            marker_179a1ac84dd530605738329e0dc29d0d.bindTooltip(
+                `<div>
+                     흑염소마루
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_fd12786b51f6f729a71d64b9e14437be = L.marker(
+                [33.27921962541548, 126.71997112176376],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_e09cec76045e6c415010f934b80715db = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b27798617cb16232f0a9d6400b429b4b = $(`<div id="html_b27798617cb16232f0a9d6400b429b4b" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/10792046" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 688</a></div>`)[0];
+                popup_e09cec76045e6c415010f934b80715db.setContent(html_b27798617cb16232f0a9d6400b429b4b);
+            
+        
+
+        marker_fd12786b51f6f729a71d64b9e14437be.bindPopup(popup_e09cec76045e6c415010f934b80715db)
+        ;
+
+        
+    
+    
+            marker_fd12786b51f6f729a71d64b9e14437be.bindTooltip(
+                `<div>
+                     중앙닭집
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_75794d1857881a4d647fc5db323d3299 = L.marker(
+                [33.27909728214964, 126.71849767734018],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_1d279ef1bd6f42a4c044fdc27f816425 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7dbf94da11a6c8afe6cf4e26f5f3710c = $(`<div id="html_7dbf94da11a6c8afe6cf4e26f5f3710c" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/390938454" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 673-1</a></div>`)[0];
+                popup_1d279ef1bd6f42a4c044fdc27f816425.setContent(html_7dbf94da11a6c8afe6cf4e26f5f3710c);
+            
+        
+
+        marker_75794d1857881a4d647fc5db323d3299.bindPopup(popup_1d279ef1bd6f42a4c044fdc27f816425)
+        ;
+
+        
+    
+    
+            marker_75794d1857881a4d647fc5db323d3299.bindTooltip(
+                `<div>
+                     도담이김밥
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_63d7a9ad818bbb86d8d8d3838e2538df = L.marker(
+                [33.2787912798418, 126.704743632968],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_be3cd35391382064019143002e1f3b06 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4324f9c8f9451e9722247e2abc1134f4 = $(`<div id="html_4324f9c8f9451e9722247e2abc1134f4" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/9383814" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 551-44</a></div>`)[0];
+                popup_be3cd35391382064019143002e1f3b06.setContent(html_4324f9c8f9451e9722247e2abc1134f4);
+            
+        
+
+        marker_63d7a9ad818bbb86d8d8d3838e2538df.bindPopup(popup_be3cd35391382064019143002e1f3b06)
+        ;
+
+        
+    
+    
+            marker_63d7a9ad818bbb86d8d8d3838e2538df.bindTooltip(
+                `<div>
+                     제남가든
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f19b73ee20603c5f9a1a2bc1e28a16f2 = L.marker(
+                [33.27884476376355, 126.71847057844128],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_6f0e35b5b244850f2e303eab4a525e33 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_fead246fdc8f3be32762bb62aa0eb405 = $(`<div id="html_fead246fdc8f3be32762bb62aa0eb405" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/20620854" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 672-1</a></div>`)[0];
+                popup_6f0e35b5b244850f2e303eab4a525e33.setContent(html_fead246fdc8f3be32762bb62aa0eb405);
+            
+        
+
+        marker_f19b73ee20603c5f9a1a2bc1e28a16f2.bindPopup(popup_6f0e35b5b244850f2e303eab4a525e33)
+        ;
+
+        
+    
+    
+            marker_f19b73ee20603c5f9a1a2bc1e28a16f2.bindTooltip(
+                `<div>
+                     파리바게뜨 제주남원점
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_79815a3e475ee348652cd0898d244ae6 = L.marker(
+                [33.27916112049635, 126.71961599919226],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_c4c9eea6bef7c2e60519cd963f224f45 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_25c5bb9abe759669a13a406bee407f0a = $(`<div id="html_25c5bb9abe759669a13a406bee407f0a" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/56623419" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 684</a></div>`)[0];
+                popup_c4c9eea6bef7c2e60519cd963f224f45.setContent(html_25c5bb9abe759669a13a406bee407f0a);
+            
+        
+
+        marker_79815a3e475ee348652cd0898d244ae6.bindPopup(popup_c4c9eea6bef7c2e60519cd963f224f45)
+        ;
+
+        
+    
+    
+            marker_79815a3e475ee348652cd0898d244ae6.bindTooltip(
+                `<div>
+                     투빅커피 남원점
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_dc5a8c553f759e69c4803ca207067ea3 = L.marker(
+                [33.27889906627529, 126.72055931640807],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_b1e17333d1dd63fbbe090550f5187bac = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_17b91c29ae845ba1a4c37755eb12f73b = $(`<div id="html_17b91c29ae845ba1a4c37755eb12f73b" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/190642437" target="_blank">제주특별자치도 서귀포시 남원읍 남원회관로 71</a></div>`)[0];
+                popup_b1e17333d1dd63fbbe090550f5187bac.setContent(html_17b91c29ae845ba1a4c37755eb12f73b);
+            
+        
+
+        marker_dc5a8c553f759e69c4803ca207067ea3.bindPopup(popup_b1e17333d1dd63fbbe090550f5187bac)
+        ;
+
+        
+    
+    
+            marker_dc5a8c553f759e69c4803ca207067ea3.bindTooltip(
+                `<div>
+                     똥파리와달봉이네
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_d40bf13112c87ba70a2b903817abbd9e = L.marker(
+                [33.2791634440671, 126.719846781844],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_1e828257f173ba1c3b653c4120550586 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_21f8136d86de279bfb1d4257a543f7e6 = $(`<div id="html_21f8136d86de279bfb1d4257a543f7e6" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/142139598" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 686</a></div>`)[0];
+                popup_1e828257f173ba1c3b653c4120550586.setContent(html_21f8136d86de279bfb1d4257a543f7e6);
+            
+        
+
+        marker_d40bf13112c87ba70a2b903817abbd9e.bindPopup(popup_1e828257f173ba1c3b653c4120550586)
+        ;
+
+        
+    
+    
+            marker_d40bf13112c87ba70a2b903817abbd9e.bindTooltip(
+                `<div>
+                     은설식당
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_4b363ef983f864638d664f991191f973 = L.marker(
+                [33.278973077869836, 126.72179997718689],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_61cb1ec5ca79d67e1ab3fdb95141a106 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0ca13ca1ffc96c25d5dff7062c002996 = $(`<div id="html_0ca13ca1ffc96c25d5dff7062c002996" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1618242054" target="_blank">제주특별자치도 서귀포시 남원읍 태위로700번길 9</a></div>`)[0];
+                popup_61cb1ec5ca79d67e1ab3fdb95141a106.setContent(html_0ca13ca1ffc96c25d5dff7062c002996);
+            
+        
+
+        marker_4b363ef983f864638d664f991191f973.bindPopup(popup_61cb1ec5ca79d67e1ab3fdb95141a106)
+        ;
+
+        
+    
+    
+            marker_4b363ef983f864638d664f991191f973.bindTooltip(
+                `<div>
+                     추가네추어탕
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_5aa8b2b45e79dd8a81429c78f905d08c = L.marker(
+                [33.2791593554896, 126.718834538938],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_c520290bb7f15985c9dc752e39797088 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_18a2ad2233785c9da4a22299feb7ef81 = $(`<div id="html_18a2ad2233785c9da4a22299feb7ef81" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/10546124" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 677</a></div>`)[0];
+                popup_c520290bb7f15985c9dc752e39797088.setContent(html_18a2ad2233785c9da4a22299feb7ef81);
+            
+        
+
+        marker_5aa8b2b45e79dd8a81429c78f905d08c.bindPopup(popup_c520290bb7f15985c9dc752e39797088)
+        ;
+
+        
+    
+    
+            marker_5aa8b2b45e79dd8a81429c78f905d08c.bindTooltip(
+                `<div>
+                     수원닭집
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a555d32985a3bc2ebba101c256dd2e1e = L.marker(
+                [33.2792382307418, 126.720225468389],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_1a428456d2d5d7ba0e387fc0af08154c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_bc170f7284638381306db86ddc650950 = $(`<div id="html_bc170f7284638381306db86ddc650950" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/416297397" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 690-2</a></div>`)[0];
+                popup_1a428456d2d5d7ba0e387fc0af08154c.setContent(html_bc170f7284638381306db86ddc650950);
+            
+        
+
+        marker_a555d32985a3bc2ebba101c256dd2e1e.bindPopup(popup_1a428456d2d5d7ba0e387fc0af08154c)
+        ;
+
+        
+    
+    
+            marker_a555d32985a3bc2ebba101c256dd2e1e.bindTooltip(
+                `<div>
+                     남원회센터
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c2cde30e741f5bd9e79b20e511da1dd2 = L.marker(
+                [33.2790345358602, 126.717864548781],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_1bbf6ff308b839dd7460857a42113d6c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ab0f8e3ac343545cc8c0ce2dfe4da6fc = $(`<div id="html_ab0f8e3ac343545cc8c0ce2dfe4da6fc" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/11084413" target="_blank">제주특별자치도 서귀포시 남원읍 남한로 1</a></div>`)[0];
+                popup_1bbf6ff308b839dd7460857a42113d6c.setContent(html_ab0f8e3ac343545cc8c0ce2dfe4da6fc);
+            
+        
+
+        marker_c2cde30e741f5bd9e79b20e511da1dd2.bindPopup(popup_1bbf6ff308b839dd7460857a42113d6c)
+        ;
+
+        
+    
+    
+            marker_c2cde30e741f5bd9e79b20e511da1dd2.bindTooltip(
+                `<div>
+                     마당갈비
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_32bdd7f8fe1b68ec71381c7c449d107c = L.marker(
+                [33.27880516882426, 126.72170819413171],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_05506c79bbb4d91edb436d67a5be54e9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4b1e7d5927586ddc7cf9d14c0c2f28ea = $(`<div id="html_4b1e7d5927586ddc7cf9d14c0c2f28ea" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/312015931" target="_blank">제주특별자치도 서귀포시 남원읍 태위로700번길 11</a></div>`)[0];
+                popup_05506c79bbb4d91edb436d67a5be54e9.setContent(html_4b1e7d5927586ddc7cf9d14c0c2f28ea);
+            
+        
+
+        marker_32bdd7f8fe1b68ec71381c7c449d107c.bindPopup(popup_05506c79bbb4d91edb436d67a5be54e9)
+        ;
+
+        
+    
+    
+            marker_32bdd7f8fe1b68ec71381c7c449d107c.bindTooltip(
+                `<div>
+                     라향
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_253ec444de65bc7c606cf2aa929bb39a = L.marker(
+                [33.2790829272744, 126.721733075381],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_d646efb44e128a00b5f4d7fe4d2823e5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a5e48d83cdb4f235cc08d6a1bf9aff0c = $(`<div id="html_a5e48d83cdb4f235cc08d6a1bf9aff0c" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/16745881" target="_blank">제주특별자치도 서귀포시 남원읍 태위로700번길 7</a></div>`)[0];
+                popup_d646efb44e128a00b5f4d7fe4d2823e5.setContent(html_a5e48d83cdb4f235cc08d6a1bf9aff0c);
+            
+        
+
+        marker_253ec444de65bc7c606cf2aa929bb39a.bindPopup(popup_d646efb44e128a00b5f4d7fe4d2823e5)
+        ;
+
+        
+    
+    
+            marker_253ec444de65bc7c606cf2aa929bb39a.bindTooltip(
+                `<div>
+                     장터가든
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f7dd06ecf9938a90ff8da66e8c07f3e5 = L.marker(
+                [33.27946796369964, 126.7197438317436],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_9f2664e8952c1c020e7f2e3032c62ed2 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_5b74ca18f482509365dab86bdfea6196 = $(`<div id="html_5b74ca18f482509365dab86bdfea6196" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/9621098" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 685-1</a></div>`)[0];
+                popup_9f2664e8952c1c020e7f2e3032c62ed2.setContent(html_5b74ca18f482509365dab86bdfea6196);
+            
+        
+
+        marker_f7dd06ecf9938a90ff8da66e8c07f3e5.bindPopup(popup_9f2664e8952c1c020e7f2e3032c62ed2)
+        ;
+
+        
+    
+    
+            marker_f7dd06ecf9938a90ff8da66e8c07f3e5.bindTooltip(
+                `<div>
+                     희야네식당
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a6b0e8acf82b54fd04f4eaa0a02b0af3 = L.marker(
+                [33.27991740751935, 126.71794114402574],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_d873d54d21a551614384182665184a88 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_71baf84d5fc647ac8fc0be98232973ab = $(`<div id="html_71baf84d5fc647ac8fc0be98232973ab" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/678467133" target="_blank">제주특별자치도 서귀포시 남원읍 남한로 10-1</a></div>`)[0];
+                popup_d873d54d21a551614384182665184a88.setContent(html_71baf84d5fc647ac8fc0be98232973ab);
+            
+        
+
+        marker_a6b0e8acf82b54fd04f4eaa0a02b0af3.bindPopup(popup_d873d54d21a551614384182665184a88)
+        ;
+
+        
+    
+    
+            marker_a6b0e8acf82b54fd04f4eaa0a02b0af3.bindTooltip(
+                `<div>
+                     남원수제돈까스
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7f4a36c8a91f863754901dabeb7812d3 = L.marker(
+                [33.2799308554997, 126.726788489879],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_66aeda1ba46ae0bf7f3ea9684ad2a410 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e1fd287e8090ad03c265cf7d36ff6622 = $(`<div id="html_e1fd287e8090ad03c265cf7d36ff6622" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1931265647" target="_blank">제주특별자치도 서귀포시 남원읍 남태해안로 211</a></div>`)[0];
+                popup_66aeda1ba46ae0bf7f3ea9684ad2a410.setContent(html_e1fd287e8090ad03c265cf7d36ff6622);
+            
+        
+
+        marker_7f4a36c8a91f863754901dabeb7812d3.bindPopup(popup_66aeda1ba46ae0bf7f3ea9684ad2a410)
+        ;
+
+        
+    
+    
+            marker_7f4a36c8a91f863754901dabeb7812d3.bindTooltip(
+                `<div>
+                     청해수산회센터
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_653d32ed3bf246ffcc454a2ee7186f16 = L.marker(
+                [33.27969348302017, 126.72382221651873],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_c78399ff85a54687d89181a4a28c8c83 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_179a93626f5649c3fbd5e9a352774a1a = $(`<div id="html_179a93626f5649c3fbd5e9a352774a1a" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/131441326" target="_blank">제주특별자치도 서귀포시 남원읍 남원회관로 104</a></div>`)[0];
+                popup_c78399ff85a54687d89181a4a28c8c83.setContent(html_179a93626f5649c3fbd5e9a352774a1a);
+            
+        
+
+        marker_653d32ed3bf246ffcc454a2ee7186f16.bindPopup(popup_c78399ff85a54687d89181a4a28c8c83)
+        ;
+
+        
+    
+    
+            marker_653d32ed3bf246ffcc454a2ee7186f16.bindTooltip(
+                `<div>
+                     아주르블루
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_5a3dc9b719f2cb3f4edf48efabe0f0e9 = L.marker(
+                [33.279595043003226, 126.7241552952874],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_b0e06b525ce22113f2e4729f7107eb1e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a03246c25c7018ea2ce209de51528f60 = $(`<div id="html_a03246c25c7018ea2ce209de51528f60" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/2126710067" target="_blank">제주특별자치도 서귀포시 남원읍 태위로724번길 11</a></div>`)[0];
+                popup_b0e06b525ce22113f2e4729f7107eb1e.setContent(html_a03246c25c7018ea2ce209de51528f60);
+            
+        
+
+        marker_5a3dc9b719f2cb3f4edf48efabe0f0e9.bindPopup(popup_b0e06b525ce22113f2e4729f7107eb1e)
+        ;
+
+        
+    
+    
+            marker_5a3dc9b719f2cb3f4edf48efabe0f0e9.bindTooltip(
+                `<div>
+                     낭만화로구이
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_80306dc2da2807088cb932ae7e302c7e = L.marker(
+                [33.279718644913, 126.722974112444],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_479c4544c4daf551f24defd62d6e31b1 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_45e908854a402b174d09928391118b63 = $(`<div id="html_45e908854a402b174d09928391118b63" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1743973542" target="_blank">제주특별자치도 서귀포시 남원읍 남원회관로 97</a></div>`)[0];
+                popup_479c4544c4daf551f24defd62d6e31b1.setContent(html_45e908854a402b174d09928391118b63);
+            
+        
+
+        marker_80306dc2da2807088cb932ae7e302c7e.bindPopup(popup_479c4544c4daf551f24defd62d6e31b1)
+        ;
+
+        
+    
+    
+            marker_80306dc2da2807088cb932ae7e302c7e.bindTooltip(
+                `<div>
+                     남원소바
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f17f10219011afaac8341059056fde06 = L.marker(
+                [33.27960118950176, 126.72286499178357],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_dd2e8e4514ad20fa8c8b451bd7254ebc = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_af2845082de17fe591d245662fa4c47a = $(`<div id="html_af2845082de17fe591d245662fa4c47a" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/27304255" target="_blank">제주특별자치도 서귀포시 남원읍 남원회관로 97</a></div>`)[0];
+                popup_dd2e8e4514ad20fa8c8b451bd7254ebc.setContent(html_af2845082de17fe591d245662fa4c47a);
+            
+        
+
+        marker_f17f10219011afaac8341059056fde06.bindPopup(popup_dd2e8e4514ad20fa8c8b451bd7254ebc)
+        ;
+
+        
+    
+    
+            marker_f17f10219011afaac8341059056fde06.bindTooltip(
+                `<div>
+                     자매해장국
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_928e6ef100fd5b4836f36bd9119c3a6b = L.marker(
+                [33.2796418014165, 126.72006531067],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_c085187767e2bb5eef1e52f80032cb2f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_70723bf6ed66433c07e6f227207c78af = $(`<div id="html_70723bf6ed66433c07e6f227207c78af" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/496864181" target="_blank">제주특별자치도 서귀포시 남원읍 태위로689번길 1-1</a></div>`)[0];
+                popup_c085187767e2bb5eef1e52f80032cb2f.setContent(html_70723bf6ed66433c07e6f227207c78af);
+            
+        
+
+        marker_928e6ef100fd5b4836f36bd9119c3a6b.bindPopup(popup_c085187767e2bb5eef1e52f80032cb2f)
+        ;
+
+        
+    
+    
+            marker_928e6ef100fd5b4836f36bd9119c3a6b.bindTooltip(
+                `<div>
+                     짜장마루
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_538d276f83ac293e41512e09f55a9e85 = L.marker(
+                [33.2795354275466, 126.718078700242],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_4b92645121d2792b59e6c760807c80e1 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_89addbb5fdd52f5ffefe792462cbe847 = $(`<div id="html_89addbb5fdd52f5ffefe792462cbe847" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/2020532587" target="_blank">제주특별자치도 서귀포시 남원읍 남한로 8</a></div>`)[0];
+                popup_4b92645121d2792b59e6c760807c80e1.setContent(html_89addbb5fdd52f5ffefe792462cbe847);
+            
+        
+
+        marker_538d276f83ac293e41512e09f55a9e85.bindPopup(popup_4b92645121d2792b59e6c760807c80e1)
+        ;
+
+        
+    
+    
+            marker_538d276f83ac293e41512e09f55a9e85.bindTooltip(
+                `<div>
+                     카페봄봄 제주서귀남원점
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6fc001395e7ed14ec4820d7d37d845f6 = L.marker(
+                [33.27952285933792, 126.72009789371516],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_8159070ec79476e5ff1e44f625625a57 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ac5d09428a37fb39e06ab870c164f162 = $(`<div id="html_ac5d09428a37fb39e06ab870c164f162" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1669692006" target="_blank">제주특별자치도 서귀포시 남원읍 태위로689번길 1</a></div>`)[0];
+                popup_8159070ec79476e5ff1e44f625625a57.setContent(html_ac5d09428a37fb39e06ab870c164f162);
+            
+        
+
+        marker_6fc001395e7ed14ec4820d7d37d845f6.bindPopup(popup_8159070ec79476e5ff1e44f625625a57)
+        ;
+
+        
+    
+    
+            marker_6fc001395e7ed14ec4820d7d37d845f6.bindTooltip(
+                `<div>
+                     이모네손칼국수
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_4fa353e634e721fa481c83ac2fcebdfb = L.marker(
+                [33.2797001657428, 126.718759810647],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_9d59a45228320748e31c9d7663b66b7e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c38be7d27c3487408d376287a67e43bb = $(`<div id="html_c38be7d27c3487408d376287a67e43bb" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/18239083" target="_blank">제주특별자치도 서귀포시 남원읍 태위로679번길 7</a></div>`)[0];
+                popup_9d59a45228320748e31c9d7663b66b7e.setContent(html_c38be7d27c3487408d376287a67e43bb);
+            
+        
+
+        marker_4fa353e634e721fa481c83ac2fcebdfb.bindPopup(popup_9d59a45228320748e31c9d7663b66b7e)
+        ;
+
+        
+    
+    
+            marker_4fa353e634e721fa481c83ac2fcebdfb.bindTooltip(
+                `<div>
+                     가회식당
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c5b528606084f6977a430ed26e7851b6 = L.marker(
+                [33.27953632673772, 126.71807762390436],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_8e426f1ebebdc3a9a1c7953d785afce5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d4d5ac5811de7dc29fb988665d95be0d = $(`<div id="html_d4d5ac5811de7dc29fb988665d95be0d" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1290360051" target="_blank">제주특별자치도 서귀포시 남원읍 남한로 8</a></div>`)[0];
+                popup_8e426f1ebebdc3a9a1c7953d785afce5.setContent(html_d4d5ac5811de7dc29fb988665d95be0d);
+            
+        
+
+        marker_c5b528606084f6977a430ed26e7851b6.bindPopup(popup_8e426f1ebebdc3a9a1c7953d785afce5)
+        ;
+
+        
+    
+    
+            marker_c5b528606084f6977a430ed26e7851b6.bindTooltip(
+                `<div>
+                     달리는커피 서귀포남원점
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_17aae912d3bb91fc71a75e0abbfd0ce4 = L.marker(
+                [33.2798739477715, 126.719055525816],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_cf314baf650b1d2dc23c0244c82eee88 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6eee08fbf71742882310bad777bdb1d0 = $(`<div id="html_6eee08fbf71742882310bad777bdb1d0" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/27580053" target="_blank">제주특별자치도 서귀포시 남원읍 태위로679번길 8</a></div>`)[0];
+                popup_cf314baf650b1d2dc23c0244c82eee88.setContent(html_6eee08fbf71742882310bad777bdb1d0);
+            
+        
+
+        marker_17aae912d3bb91fc71a75e0abbfd0ce4.bindPopup(popup_cf314baf650b1d2dc23c0244c82eee88)
+        ;
+
+        
+    
+    
+            marker_17aae912d3bb91fc71a75e0abbfd0ce4.bindTooltip(
+                `<div>
+                     남원올레
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f005c32ec1fa23ebecd76645f5515797 = L.marker(
+                [33.2795263449817, 126.720044210256],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_5ac01207d20ac695bdf579302ea5a581 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3244864c856b8ed00cab5d090d96ceb8 = $(`<div id="html_3244864c856b8ed00cab5d090d96ceb8" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1896686285" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 689</a></div>`)[0];
+                popup_5ac01207d20ac695bdf579302ea5a581.setContent(html_3244864c856b8ed00cab5d090d96ceb8);
+            
+        
+
+        marker_f005c32ec1fa23ebecd76645f5515797.bindPopup(popup_5ac01207d20ac695bdf579302ea5a581)
+        ;
+
+        
+    
+    
+            marker_f005c32ec1fa23ebecd76645f5515797.bindTooltip(
+                `<div>
+                     페리카나 남원점
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_1db210246cc08119df8e9be24ef0cf73 = L.marker(
+                [33.2795040771251, 126.71976518527079],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_2f9ee34fac5821b4696c724f67480c41 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0de4c4f98fe559a2e08c0ae5c14678d2 = $(`<div id="html_0de4c4f98fe559a2e08c0ae5c14678d2" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/277332652" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 685-1</a></div>`)[0];
+                popup_2f9ee34fac5821b4696c724f67480c41.setContent(html_0de4c4f98fe559a2e08c0ae5c14678d2);
+            
+        
+
+        marker_1db210246cc08119df8e9be24ef0cf73.bindPopup(popup_2f9ee34fac5821b4696c724f67480c41)
+        ;
+
+        
+    
+    
+            marker_1db210246cc08119df8e9be24ef0cf73.bindTooltip(
+                `<div>
+                     서중주막
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_0a7cb109d614fb696ab7302e6b60df46 = L.marker(
+                [33.28136939135345, 126.71141837004248],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_15351efe598d113cd07a5abb0ec81758 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_fb19360924ce9879c91f947560c9fd95 = $(`<div id="html_fb19360924ce9879c91f947560c9fd95" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1685614536" target="_blank">제주특별자치도 서귀포시 남원읍 남한로21번길 56</a></div>`)[0];
+                popup_15351efe598d113cd07a5abb0ec81758.setContent(html_fb19360924ce9879c91f947560c9fd95);
+            
+        
+
+        marker_0a7cb109d614fb696ab7302e6b60df46.bindPopup(popup_15351efe598d113cd07a5abb0ec81758)
+        ;
+
+        
+    
+    
+            marker_0a7cb109d614fb696ab7302e6b60df46.bindTooltip(
+                `<div>
+                     백한철꽈배기식빵
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7f66d46ad3053a4ee9af2f788bfc8853 = L.marker(
+                [33.2802386798792, 126.720866350141],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_69c201225989059eed07b073f3f160f4 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7930931d951d6ea9a854bacb62091573 = $(`<div id="html_7930931d951d6ea9a854bacb62091573" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/27433518" target="_blank">제주특별자치도 서귀포시 남원읍 남조로 5</a></div>`)[0];
+                popup_69c201225989059eed07b073f3f160f4.setContent(html_7930931d951d6ea9a854bacb62091573);
+            
+        
+
+        marker_7f66d46ad3053a4ee9af2f788bfc8853.bindPopup(popup_69c201225989059eed07b073f3f160f4)
+        ;
+
+        
+    
+    
+            marker_7f66d46ad3053a4ee9af2f788bfc8853.bindTooltip(
+                `<div>
+                     흑돼지일번지
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_bfe0bcc31d98882feb165a067787d5cc = L.marker(
+                [33.282161832241904, 126.73527920194446],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_00cf80ee3a60c5c4400580066e6ed8cd = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4dd347571d381cc6c866ee036b4c4202 = $(`<div id="html_4dd347571d381cc6c866ee036b4c4202" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/219326001" target="_blank">제주특별자치도 서귀포시 남원읍 태위로834번길 11-6</a></div>`)[0];
+                popup_00cf80ee3a60c5c4400580066e6ed8cd.setContent(html_4dd347571d381cc6c866ee036b4c4202);
+            
+        
+
+        marker_bfe0bcc31d98882feb165a067787d5cc.bindPopup(popup_00cf80ee3a60c5c4400580066e6ed8cd)
+        ;
+
+        
+    
+    
+            marker_bfe0bcc31d98882feb165a067787d5cc.bindTooltip(
+                `<div>
+                     소요0617
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_5bc17199ded5ccaf68adc1ed56d737d3 = L.marker(
+                [33.2810581403452, 126.741229535654],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_9e40b0de45c11edbf330a8c42ea8e97a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ef98247fd6c5c9d8a083cfa3a2a236c8 = $(`<div id="html_ef98247fd6c5c9d8a083cfa3a2a236c8" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/22461647" target="_blank">제주특별자치도 서귀포시 남원읍 태위로894번길 45</a></div>`)[0];
+                popup_9e40b0de45c11edbf330a8c42ea8e97a.setContent(html_ef98247fd6c5c9d8a083cfa3a2a236c8);
+            
+        
+
+        marker_5bc17199ded5ccaf68adc1ed56d737d3.bindPopup(popup_9e40b0de45c11edbf330a8c42ea8e97a)
+        ;
+
+        
+    
+    
+            marker_5bc17199ded5ccaf68adc1ed56d737d3.bindTooltip(
+                `<div>
+                     마더카페
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_95ac87c195526d5824a556bf352157be = L.marker(
+                [33.2818615253293, 126.746053513607],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_959468b39554bc19cf5d14cc45eb385a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_33d86cd546c8d6623214f9beca0b1af4 = $(`<div id="html_33d86cd546c8d6623214f9beca0b1af4" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/12611086" target="_blank">제주특별자치도 서귀포시 남원읍 남태해안로 435</a></div>`)[0];
+                popup_959468b39554bc19cf5d14cc45eb385a.setContent(html_33d86cd546c8d6623214f9beca0b1af4);
+            
+        
+
+        marker_95ac87c195526d5824a556bf352157be.bindPopup(popup_959468b39554bc19cf5d14cc45eb385a)
+        ;
+
+        
+    
+    
+            marker_95ac87c195526d5824a556bf352157be.bindTooltip(
+                `<div>
+                     태흥횟집
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_fbee75d4f609ff91fbc48b4e8195f2d0 = L.marker(
+                [33.28055732758364, 126.73126393836027],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_7357620988a938ce2748616ba56dcb21 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_670342a95cd293709ebc4fac3f6ba22c = $(`<div id="html_670342a95cd293709ebc4fac3f6ba22c" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1872624931" target="_blank">제주특별자치도 서귀포시 남원읍 남태해안로 259</a></div>`)[0];
+                popup_7357620988a938ce2748616ba56dcb21.setContent(html_670342a95cd293709ebc4fac3f6ba22c);
+            
+        
+
+        marker_fbee75d4f609ff91fbc48b4e8195f2d0.bindPopup(popup_7357620988a938ce2748616ba56dcb21)
+        ;
+
+        
+    
+    
+            marker_fbee75d4f609ff91fbc48b4e8195f2d0.bindTooltip(
+                `<div>
+                     초이당
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_46f71c688ce84e2b5aca55a5fc74724a = L.marker(
+                [33.282225558707545, 126.72072476753397],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_f099325a67256d9782406c4baf3dedc9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6a4049a963687371f620d6ede1a959ea = $(`<div id="html_6a4049a963687371f620d6ede1a959ea" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1196253055" target="_blank">제주특별자치도 서귀포시 남원읍 남조로 30</a></div>`)[0];
+                popup_f099325a67256d9782406c4baf3dedc9.setContent(html_6a4049a963687371f620d6ede1a959ea);
+            
+        
+
+        marker_46f71c688ce84e2b5aca55a5fc74724a.bindPopup(popup_f099325a67256d9782406c4baf3dedc9)
+        ;
+
+        
+    
+    
+            marker_46f71c688ce84e2b5aca55a5fc74724a.bindTooltip(
+                `<div>
+                     일품순두부 남원점
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_9593a2acf15815672a400a2028d464fc = L.marker(
+                [33.2808121318483, 126.717678488534],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_19d28bb684dc72731af0df5782fc69a0 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_587bec67dc1e3e0d78fbe6c4f503b01b = $(`<div id="html_587bec67dc1e3e0d78fbe6c4f503b01b" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/11057425" target="_blank">제주특별자치도 서귀포시 남원읍 남한로 22</a></div>`)[0];
+                popup_19d28bb684dc72731af0df5782fc69a0.setContent(html_587bec67dc1e3e0d78fbe6c4f503b01b);
+            
+        
+
+        marker_9593a2acf15815672a400a2028d464fc.bindPopup(popup_19d28bb684dc72731af0df5782fc69a0)
+        ;
+
+        
+    
+    
+            marker_9593a2acf15815672a400a2028d464fc.bindTooltip(
+                `<div>
+                     별맛해장국
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_1ad43a66e68ce94ee584f9f4bc2032ef = L.marker(
+                [33.28027902739647, 126.73773880679838],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_0c13f28cbb2303e2d05d6f260b4b0251 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_dd51e2a90e5da10c47e59cefadb1fc5a = $(`<div id="html_dd51e2a90e5da10c47e59cefadb1fc5a" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1294878233" target="_blank">제주특별자치도 서귀포시 남원읍 남태해안로 335</a></div>`)[0];
+                popup_0c13f28cbb2303e2d05d6f260b4b0251.setContent(html_dd51e2a90e5da10c47e59cefadb1fc5a);
+            
+        
+
+        marker_1ad43a66e68ce94ee584f9f4bc2032ef.bindPopup(popup_0c13f28cbb2303e2d05d6f260b4b0251)
+        ;
+
+        
+    
+    
+            marker_1ad43a66e68ce94ee584f9f4bc2032ef.bindTooltip(
+                `<div>
+                     해선락와사비
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_e2812fc8fbee6079628e51c13acce5b1 = L.marker(
+                [33.2809888964414, 126.718095497181],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_0f4ae74fa222321acf074f55f390acfd = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ecab12385c9077958b6a5be8278124e8 = $(`<div id="html_ecab12385c9077958b6a5be8278124e8" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/543235235" target="_blank">제주특별자치도 서귀포시 남원읍 남한로 22-1</a></div>`)[0];
+                popup_0f4ae74fa222321acf074f55f390acfd.setContent(html_ecab12385c9077958b6a5be8278124e8);
+            
+        
+
+        marker_e2812fc8fbee6079628e51c13acce5b1.bindPopup(popup_0f4ae74fa222321acf074f55f390acfd)
+        ;
+
+        
+    
+    
+            marker_e2812fc8fbee6079628e51c13acce5b1.bindTooltip(
+                `<div>
+                     카츠소랑
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_71c2580206e66f9dd29bef7017f07ce8 = L.marker(
+                [33.2801922735473, 126.718678796903],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_fcbfb57ff852b2eea8bef029a089041c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_39476ff612a4d430bbeac506565260f2 = $(`<div id="html_39476ff612a4d430bbeac506565260f2" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1526211336" target="_blank">제주특별자치도 서귀포시 남원읍 태위로679번길 11</a></div>`)[0];
+                popup_fcbfb57ff852b2eea8bef029a089041c.setContent(html_39476ff612a4d430bbeac506565260f2);
+            
+        
+
+        marker_71c2580206e66f9dd29bef7017f07ce8.bindPopup(popup_fcbfb57ff852b2eea8bef029a089041c)
+        ;
+
+        
+    
+    
+            marker_71c2580206e66f9dd29bef7017f07ce8.bindTooltip(
+                `<div>
+                     틴우드맨
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f5606c06fbc3fcbb847a62135631493e = L.marker(
+                [33.2813313747048, 126.71447788042],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_4052a2940d5099d81c38f638261f2c5a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_472587f378faf74bb7122704161fd118 = $(`<div id="html_472587f378faf74bb7122704161fd118" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/425388112" target="_blank">제주특별자치도 서귀포시 남원읍 남한로21번길 28</a></div>`)[0];
+                popup_4052a2940d5099d81c38f638261f2c5a.setContent(html_472587f378faf74bb7122704161fd118);
+            
+        
+
+        marker_f5606c06fbc3fcbb847a62135631493e.bindPopup(popup_4052a2940d5099d81c38f638261f2c5a)
+        ;
+
+        
+    
+    
+            marker_f5606c06fbc3fcbb847a62135631493e.bindTooltip(
+                `<div>
+                     카페 세러데이아일랜드
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_17b4faa9bbf7b69515a64068595ffaa8 = L.marker(
+                [33.280692907931915, 126.73141917480154],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_bbbdbbc2a67cd77a526df9b375397533 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7d25496d8bad51426be751018dd3c335 = $(`<div id="html_7d25496d8bad51426be751018dd3c335" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1937373790" target="_blank">제주특별자치도 서귀포시 남원읍 남태해안로 259</a></div>`)[0];
+                popup_bbbdbbc2a67cd77a526df9b375397533.setContent(html_7d25496d8bad51426be751018dd3c335);
+            
+        
+
+        marker_17b4faa9bbf7b69515a64068595ffaa8.bindPopup(popup_bbbdbbc2a67cd77a526df9b375397533)
+        ;
+
+        
+    
+    
+            marker_17b4faa9bbf7b69515a64068595ffaa8.bindTooltip(
+                `<div>
+                     정육도 제주본점
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_fd487e166ebc9e3c11c37a057fe9351d = L.marker(
+                [33.2804335694204, 126.724159098626],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_dce6eb9fd42f245891d86cf5de77b3aa = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_42425698337f82bd7e9774c2f3706781 = $(`<div id="html_42425698337f82bd7e9774c2f3706781" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/996629692" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 728</a></div>`)[0];
+                popup_dce6eb9fd42f245891d86cf5de77b3aa.setContent(html_42425698337f82bd7e9774c2f3706781);
+            
+        
+
+        marker_fd487e166ebc9e3c11c37a057fe9351d.bindPopup(popup_dce6eb9fd42f245891d86cf5de77b3aa)
+        ;
+
+        
+    
+    
+            marker_fd487e166ebc9e3c11c37a057fe9351d.bindTooltip(
+                `<div>
+                     애삘레0592
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_3ba85dd51a3954081993dce8c6a1b5b5 = L.marker(
+                [33.2820382183577, 126.720813389298],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_41542976f68111a038630f888db27de8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_fb51c2170ac31870fadfc2f77f59d6ed = $(`<div id="html_fb51c2170ac31870fadfc2f77f59d6ed" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/26913800" target="_blank">제주특별자치도 서귀포시 남원읍 남조로 26</a></div>`)[0];
+                popup_41542976f68111a038630f888db27de8.setContent(html_fb51c2170ac31870fadfc2f77f59d6ed);
+            
+        
+
+        marker_3ba85dd51a3954081993dce8c6a1b5b5.bindPopup(popup_41542976f68111a038630f888db27de8)
+        ;
+
+        
+    
+    
+            marker_3ba85dd51a3954081993dce8c6a1b5b5.bindTooltip(
+                `<div>
+                     서울돈까스&김밥
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_ca60ba07aa6b2225b9622fb1c5b3591f = L.marker(
+                [33.28292672909579, 126.67052411847497],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_456fa26ced6aef26d7978ed3c79b94f4 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_67f093ebd4c2fec2df0c59839bf68676 = $(`<div id="html_67f093ebd4c2fec2df0c59839bf68676" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/2065544005" target="_blank">제주특별자치도 서귀포시 남원읍 위미대성로 58</a></div>`)[0];
+                popup_456fa26ced6aef26d7978ed3c79b94f4.setContent(html_67f093ebd4c2fec2df0c59839bf68676);
+            
+        
+
+        marker_ca60ba07aa6b2225b9622fb1c5b3591f.bindPopup(popup_456fa26ced6aef26d7978ed3c79b94f4)
+        ;
+
+        
+    
+    
+            marker_ca60ba07aa6b2225b9622fb1c5b3591f.bindTooltip(
+                `<div>
+                     흑돼지브라더스 본점
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a390ef98677f98cb9805c5d64725a74a = L.marker(
+                [33.2843951316906, 126.72163892624052],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_bb57d4d6fcb1ba99107e4b3ef0589838 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b76d5c24404f2df324ba1e1b7e66a101 = $(`<div id="html_b76d5c24404f2df324ba1e1b7e66a101" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/849935841" target="_blank">제주특별자치도 서귀포시 남원읍 남조로 52</a></div>`)[0];
+                popup_bb57d4d6fcb1ba99107e4b3ef0589838.setContent(html_b76d5c24404f2df324ba1e1b7e66a101);
+            
+        
+
+        marker_a390ef98677f98cb9805c5d64725a74a.bindPopup(popup_bb57d4d6fcb1ba99107e4b3ef0589838)
+        ;
+
+        
+    
+    
+            marker_a390ef98677f98cb9805c5d64725a74a.bindTooltip(
+                `<div>
+                     투썸플레이스 제주남원농협하나로마트점
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_fc65b83abfdbb816d0b0341cc5e1cf90 = L.marker(
+                [33.28280934345165, 126.71811862924918],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_7f9da21c7143ad8a0766117b67ddc178 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_512daa1d0595864875f19b29e086e3d3 = $(`<div id="html_512daa1d0595864875f19b29e086e3d3" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/20084361" target="_blank">제주특별자치도 서귀포시 남원읍 일주동로 7133</a></div>`)[0];
+                popup_7f9da21c7143ad8a0766117b67ddc178.setContent(html_512daa1d0595864875f19b29e086e3d3);
+            
+        
+
+        marker_fc65b83abfdbb816d0b0341cc5e1cf90.bindPopup(popup_7f9da21c7143ad8a0766117b67ddc178)
+        ;
+
+        
+    
+    
+            marker_fc65b83abfdbb816d0b0341cc5e1cf90.bindTooltip(
+                `<div>
+                     타모라돈까스
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6bd4dc44451c862eec23ba7cfcdb0a44 = L.marker(
+                [33.2837367561842, 126.727661195221],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_72d7ca820d4c7be5baf3d30b7dcb9eec = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f821740bae51a44ec80031499940c195 = $(`<div id="html_f821740bae51a44ec80031499940c195" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/536533433" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 773-19</a></div>`)[0];
+                popup_72d7ca820d4c7be5baf3d30b7dcb9eec.setContent(html_f821740bae51a44ec80031499940c195);
+            
+        
+
+        marker_6bd4dc44451c862eec23ba7cfcdb0a44.bindPopup(popup_72d7ca820d4c7be5baf3d30b7dcb9eec)
+        ;
+
+        
+    
+    
+            marker_6bd4dc44451c862eec23ba7cfcdb0a44.bindTooltip(
+                `<div>
+                     땡큐브레드앤슾
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_0e065dd730caa8ebfee5bc5f604ac454 = L.marker(
+                [33.2831330679576, 126.716945336751],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_5b6e49e262ed7e5bbd0420299754c2e7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c1de7d6253c8de3b0c4f167c39cd4291 = $(`<div id="html_c1de7d6253c8de3b0c4f167c39cd4291" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/2092581151" target="_blank">제주특별자치도 서귀포시 남원읍 일주동로 7146</a></div>`)[0];
+                popup_5b6e49e262ed7e5bbd0420299754c2e7.setContent(html_c1de7d6253c8de3b0c4f167c39cd4291);
+            
+        
+
+        marker_0e065dd730caa8ebfee5bc5f604ac454.bindPopup(popup_5b6e49e262ed7e5bbd0420299754c2e7)
+        ;
+
+        
+    
+    
+            marker_0e065dd730caa8ebfee5bc5f604ac454.bindTooltip(
+                `<div>
+                     남원생오리
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_fb9fc83df3710449c7c8d0b1ae61ca3f = L.marker(
+                [33.282982041011, 126.707786818635],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_4d7850daf4b5d83a2579961d1f3593de = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9da6ca3e70e460954fc7cca23379fe73 = $(`<div id="html_9da6ca3e70e460954fc7cca23379fe73" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/236444329" target="_blank">제주특별자치도 서귀포시 남원읍 남위남성로 10-2</a></div>`)[0];
+                popup_4d7850daf4b5d83a2579961d1f3593de.setContent(html_9da6ca3e70e460954fc7cca23379fe73);
+            
+        
+
+        marker_fb9fc83df3710449c7c8d0b1ae61ca3f.bindPopup(popup_4d7850daf4b5d83a2579961d1f3593de)
+        ;
+
+        
+    
+    
+            marker_fb9fc83df3710449c7c8d0b1ae61ca3f.bindTooltip(
+                `<div>
+                     준이순대국밥
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_48c063125d40adececfebdbe8cce138c = L.marker(
+                [33.2830741411312, 126.719189121149],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_7c13254c96ec5d8c055afd4838049ec5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6ba2c7f0f4fa58ac70fddf5d5f584cea = $(`<div id="html_6ba2c7f0f4fa58ac70fddf5d5f584cea" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1332241203" target="_blank">제주특별자치도 서귀포시 남원읍 일주동로 7123</a></div>`)[0];
+                popup_7c13254c96ec5d8c055afd4838049ec5.setContent(html_6ba2c7f0f4fa58ac70fddf5d5f584cea);
+            
+        
+
+        marker_48c063125d40adececfebdbe8cce138c.bindPopup(popup_7c13254c96ec5d8c055afd4838049ec5)
+        ;
+
+        
+    
+    
+            marker_48c063125d40adececfebdbe8cce138c.bindTooltip(
+                `<div>
+                     한울이네
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6a09779dd9a29c07519f0244f7f17d76 = L.marker(
+                [33.2828639592418, 126.718347106522],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_62f817fb37040698bf7f1e3eb63b3303 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4c5c64dc66bbb3e16c83f091a8a839c1 = $(`<div id="html_4c5c64dc66bbb3e16c83f091a8a839c1" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1072061555" target="_blank">제주특별자치도 서귀포시 남원읍 일주동로 7131</a></div>`)[0];
+                popup_62f817fb37040698bf7f1e3eb63b3303.setContent(html_4c5c64dc66bbb3e16c83f091a8a839c1);
+            
+        
+
+        marker_6a09779dd9a29c07519f0244f7f17d76.bindPopup(popup_62f817fb37040698bf7f1e3eb63b3303)
+        ;
+
+        
+    
+    
+            marker_6a09779dd9a29c07519f0244f7f17d76.bindTooltip(
+                `<div>
+                     소풍
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_5dd4cc9b6eb4faf57eb37ef50bf2c520 = L.marker(
+                [33.2826530689781, 126.720785668174],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_f0abd8993dccd860d527718cfd9b9c79 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0f7044586f6cd51a87c883c7825aaeb4 = $(`<div id="html_0f7044586f6cd51a87c883c7825aaeb4" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/2069686967" target="_blank">제주특별자치도 서귀포시 남원읍 남조로 32</a></div>`)[0];
+                popup_f0abd8993dccd860d527718cfd9b9c79.setContent(html_0f7044586f6cd51a87c883c7825aaeb4);
+            
+        
+
+        marker_5dd4cc9b6eb4faf57eb37ef50bf2c520.bindPopup(popup_f0abd8993dccd860d527718cfd9b9c79)
+        ;
+
+        
+    
+    
+            marker_5dd4cc9b6eb4faf57eb37ef50bf2c520.bindTooltip(
+                `<div>
+                     안순네밥집
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_0393cd9603621a3913e5527830e112f8 = L.marker(
+                [33.2827426332668, 126.717725947817],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_89bad88960d22ecdb82e61247fb52ee9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3765560e2481e2dee0896a8af82e2197 = $(`<div id="html_3765560e2481e2dee0896a8af82e2197" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/544387002" target="_blank">제주특별자치도 서귀포시 남원읍 일주동로 7137</a></div>`)[0];
+                popup_89bad88960d22ecdb82e61247fb52ee9.setContent(html_3765560e2481e2dee0896a8af82e2197);
+            
+        
+
+        marker_0393cd9603621a3913e5527830e112f8.bindPopup(popup_89bad88960d22ecdb82e61247fb52ee9)
+        ;
+
+        
+    
+    
+            marker_0393cd9603621a3913e5527830e112f8.bindTooltip(
+                `<div>
+                     육장갈비 제주남원점
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7386a493711403d4c97d66e27035a237 = L.marker(
+                [33.282741736517, 126.717728097675],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_96bb751f6fa148490b9f14d53867092a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a4f7dfa993ad05d80d2670cbe34e4686 = $(`<div id="html_a4f7dfa993ad05d80d2670cbe34e4686" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1050137537" target="_blank">제주특별자치도 서귀포시 남원읍 일주동로 7137</a></div>`)[0];
+                popup_96bb751f6fa148490b9f14d53867092a.setContent(html_a4f7dfa993ad05d80d2670cbe34e4686);
+            
+        
+
+        marker_7386a493711403d4c97d66e27035a237.bindPopup(popup_96bb751f6fa148490b9f14d53867092a)
+        ;
+
+        
+    
+    
+            marker_7386a493711403d4c97d66e27035a237.bindTooltip(
+                `<div>
+                     카페슬로우
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_d3dfce6f8ec76820bb860cc6ba3b872c = L.marker(
+                [33.28396363646154, 126.73671440174066],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_b65a2e19571c9660a0e1b8d628d7daeb = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9906b0d7d3fbea11d30405d91f740d7a = $(`<div id="html_9906b0d7d3fbea11d30405d91f740d7a" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1093773844" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 853</a></div>`)[0];
+                popup_b65a2e19571c9660a0e1b8d628d7daeb.setContent(html_9906b0d7d3fbea11d30405d91f740d7a);
+            
+        
+
+        marker_d3dfce6f8ec76820bb860cc6ba3b872c.bindPopup(popup_b65a2e19571c9660a0e1b8d628d7daeb)
+        ;
+
+        
+    
+    
+            marker_d3dfce6f8ec76820bb860cc6ba3b872c.bindTooltip(
+                `<div>
+                     옥돔집
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_9c95f124a40325b377db8f319c04510b = L.marker(
+                [33.28356052627952, 126.72339137438154],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_16ce417fb80753e1c3cebebc4736f12e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0f05daaf469da63abffcaf7b81db5676 = $(`<div id="html_0f05daaf469da63abffcaf7b81db5676" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1256746760" target="_blank">제주특별자치도 서귀포시 남원읍 태위로723번길 30-16</a></div>`)[0];
+                popup_16ce417fb80753e1c3cebebc4736f12e.setContent(html_0f05daaf469da63abffcaf7b81db5676);
+            
+        
+
+        marker_9c95f124a40325b377db8f319c04510b.bindPopup(popup_16ce417fb80753e1c3cebebc4736f12e)
+        ;
+
+        
+    
+    
+            marker_9c95f124a40325b377db8f319c04510b.bindTooltip(
+                `<div>
+                     내노키
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_3ea5a1b9c159248aa372c98de721dbcf = L.marker(
+                [33.28285700500139, 126.73275762716537],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_8bcc542bb093e645c641f5d41fa4722f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a0bcae07606c3a088e5eb43f6e0c7a25 = $(`<div id="html_a0bcae07606c3a088e5eb43f6e0c7a25" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1369299428" target="_blank">제주특별자치도 서귀포시 남원읍 남태해안로 285-11</a></div>`)[0];
+                popup_8bcc542bb093e645c641f5d41fa4722f.setContent(html_a0bcae07606c3a088e5eb43f6e0c7a25);
+            
+        
+
+        marker_3ea5a1b9c159248aa372c98de721dbcf.bindPopup(popup_8bcc542bb093e645c641f5d41fa4722f)
+        ;
+
+        
+    
+    
+            marker_3ea5a1b9c159248aa372c98de721dbcf.bindTooltip(
+                `<div>
+                     무제
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_19cec791c5a930e331d000d4f0491666 = L.marker(
+                [33.2829094141328, 126.715344414643],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_3accd26e618bb9fe9be54842ddcf693c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3dc050120221f29649f9d43ea861777d = $(`<div id="html_3dc050120221f29649f9d43ea861777d" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/15697563" target="_blank">제주특별자치도 서귀포시 남원읍 일주동로 7166</a></div>`)[0];
+                popup_3accd26e618bb9fe9be54842ddcf693c.setContent(html_3dc050120221f29649f9d43ea861777d);
+            
+        
+
+        marker_19cec791c5a930e331d000d4f0491666.bindPopup(popup_3accd26e618bb9fe9be54842ddcf693c)
+        ;
+
+        
+    
+    
+            marker_19cec791c5a930e331d000d4f0491666.bindTooltip(
+                `<div>
+                     하나로한밭식당
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c87d6802773ce59bf61af4e8ee06433b = L.marker(
+                [33.2874583063361, 126.749335233781],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_95635d91a7e79756ce345cdb39d1875b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c936d42c09608290ba1d4880448b9ef1 = $(`<div id="html_c936d42c09608290ba1d4880448b9ef1" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/10034148" target="_blank">제주특별자치도 서귀포시 남원읍 남태해안로 509</a></div>`)[0];
+                popup_95635d91a7e79756ce345cdb39d1875b.setContent(html_c936d42c09608290ba1d4880448b9ef1);
+            
+        
+
+        marker_c87d6802773ce59bf61af4e8ee06433b.bindPopup(popup_95635d91a7e79756ce345cdb39d1875b)
+        ;
+
+        
+    
+    
+            marker_c87d6802773ce59bf61af4e8ee06433b.bindTooltip(
+                `<div>
+                     태흥2리어촌계횟집
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_bfa16ee89114476c60b8da32a85f2578 = L.marker(
+                [33.287563241303964, 126.74950670114988],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_36d7f317f42a79b8545ec75fc996500d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1e2ee4c24654d67c589f6981de669fc9 = $(`<div id="html_1e2ee4c24654d67c589f6981de669fc9" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/613710652" target="_blank">제주특별자치도 서귀포시 남원읍 남태해안로 509</a></div>`)[0];
+                popup_36d7f317f42a79b8545ec75fc996500d.setContent(html_1e2ee4c24654d67c589f6981de669fc9);
+            
+        
+
+        marker_bfa16ee89114476c60b8da32a85f2578.bindPopup(popup_36d7f317f42a79b8545ec75fc996500d)
+        ;
+
+        
+    
+    
+            marker_bfa16ee89114476c60b8da32a85f2578.bindTooltip(
+                `<div>
+                     옥돔마을
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_131eb79aec300d64cbb3677023d0e2d9 = L.marker(
+                [33.28731238974644, 126.66618127283304],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_d76bb09585175f2c1896c4917dd786c0 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f3192c3b19305f3a470f03fa7cfc5258 = $(`<div id="html_f3192c3b19305f3a470f03fa7cfc5258" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1284012918" target="_blank">제주특별자치도 서귀포시 남원읍 위미상원북로24번길 88</a></div>`)[0];
+                popup_d76bb09585175f2c1896c4917dd786c0.setContent(html_f3192c3b19305f3a470f03fa7cfc5258);
+            
+        
+
+        marker_131eb79aec300d64cbb3677023d0e2d9.bindPopup(popup_d76bb09585175f2c1896c4917dd786c0)
+        ;
+
+        
+    
+    
+            marker_131eb79aec300d64cbb3677023d0e2d9.bindTooltip(
+                `<div>
+                     카페드노아
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6fe553be8e12d87c11a9286ef3f5270b = L.marker(
+                [33.2854894281409, 126.74241880171],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_2b878bb093006e7715fad2fe7bc9878a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_13aaa5250153353de157a328a6ed3b8e = $(`<div id="html_13aaa5250153353de157a328a6ed3b8e" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/170820359" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 907</a></div>`)[0];
+                popup_2b878bb093006e7715fad2fe7bc9878a.setContent(html_13aaa5250153353de157a328a6ed3b8e);
+            
+        
+
+        marker_6fe553be8e12d87c11a9286ef3f5270b.bindPopup(popup_2b878bb093006e7715fad2fe7bc9878a)
+        ;
+
+        
+    
+    
+            marker_6fe553be8e12d87c11a9286ef3f5270b.bindTooltip(
+                `<div>
+                     밥통
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_778ed6f679daf3665f095c3b6b390815 = L.marker(
+                [33.2861537170019, 126.744499495804],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_116b19f4578addcd1805f7ec5e3c3369 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_984fc418b796859a2f21bf2a25e888a9 = $(`<div id="html_984fc418b796859a2f21bf2a25e888a9" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1024104421" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 929</a></div>`)[0];
+                popup_116b19f4578addcd1805f7ec5e3c3369.setContent(html_984fc418b796859a2f21bf2a25e888a9);
+            
+        
+
+        marker_778ed6f679daf3665f095c3b6b390815.bindPopup(popup_116b19f4578addcd1805f7ec5e3c3369)
+        ;
+
+        
+    
+    
+            marker_778ed6f679daf3665f095c3b6b390815.bindTooltip(
+                `<div>
+                     여행가게
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_cbd4b212629d90c55f58e22d3309db63 = L.marker(
+                [33.2887217328164, 126.751250073847],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_60f421b73b2dc08b6f06e0eb33c8220e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_fad8a41d56d87b7a6227670290547cee = $(`<div id="html_fad8a41d56d87b7a6227670290547cee" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1485099377" target="_blank">제주특별자치도 서귀포시 남원읍 남태해안로 533</a></div>`)[0];
+                popup_60f421b73b2dc08b6f06e0eb33c8220e.setContent(html_fad8a41d56d87b7a6227670290547cee);
+            
+        
+
+        marker_cbd4b212629d90c55f58e22d3309db63.bindPopup(popup_60f421b73b2dc08b6f06e0eb33c8220e)
+        ;
+
+        
+    
+    
+            marker_cbd4b212629d90c55f58e22d3309db63.bindTooltip(
+                `<div>
+                     미스터크랩 태흥
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_36d3b1a0a64596c515a1df694bbe1066 = L.marker(
+                [33.2866951488161, 126.745599365304],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_530fb6b015fe3a1996d39fd0cb4faab7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b5b73312cd9a681d764a1fb693141172 = $(`<div id="html_b5b73312cd9a681d764a1fb693141172" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1177931147" target="_blank">제주특별자치도 서귀포시 남원읍 태신로 4</a></div>`)[0];
+                popup_530fb6b015fe3a1996d39fd0cb4faab7.setContent(html_b5b73312cd9a681d764a1fb693141172);
+            
+        
+
+        marker_36d3b1a0a64596c515a1df694bbe1066.bindPopup(popup_530fb6b015fe3a1996d39fd0cb4faab7)
+        ;
+
+        
+    
+    
+            marker_36d3b1a0a64596c515a1df694bbe1066.bindTooltip(
+                `<div>
+                     쥬쥬쿠키
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_225b0b424b1c23771be4959ac699f009 = L.marker(
+                [33.2870544418688, 126.746257476215],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_f02b0249fd107754a56e208ce518d706 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d6c05732715c7b52ed9fae47ba134bc1 = $(`<div id="html_d6c05732715c7b52ed9fae47ba134bc1" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/461741651" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 947</a></div>`)[0];
+                popup_f02b0249fd107754a56e208ce518d706.setContent(html_d6c05732715c7b52ed9fae47ba134bc1);
+            
+        
+
+        marker_225b0b424b1c23771be4959ac699f009.bindPopup(popup_f02b0249fd107754a56e208ce518d706)
+        ;
+
+        
+    
+    
+            marker_225b0b424b1c23771be4959ac699f009.bindTooltip(
+                `<div>
+                     폴개촌
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_803ba0005ca855323c52ab552678e09a = L.marker(
+                [33.287148929337235, 126.72620131765868],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_f66d3ad787c47fe293300e3357aee958 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6472eb7ae6cc1dcc2bbf243ecdc2cb32 = $(`<div id="html_6472eb7ae6cc1dcc2bbf243ecdc2cb32" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1379025071" target="_blank">제주특별자치도 서귀포시 남원읍 태수로143번길 133-4</a></div>`)[0];
+                popup_f66d3ad787c47fe293300e3357aee958.setContent(html_6472eb7ae6cc1dcc2bbf243ecdc2cb32);
+            
+        
+
+        marker_803ba0005ca855323c52ab552678e09a.bindPopup(popup_f66d3ad787c47fe293300e3357aee958)
+        ;
+
+        
+    
+    
+            marker_803ba0005ca855323c52ab552678e09a.bindTooltip(
+                `<div>
+                     남쪽바람
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_109d9b7d6a531d0ccee59228b0f9c07f = L.marker(
+                [33.2855528938656, 126.728188020806],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_8eafbdd5046d91f1ebb085d3b0ed4a1e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_26d943afd5f4d1c19ebb5841bc5770af = $(`<div id="html_26d943afd5f4d1c19ebb5841bc5770af" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1406811468" target="_blank">제주특별자치도 서귀포시 남원읍 일주동로 7036</a></div>`)[0];
+                popup_8eafbdd5046d91f1ebb085d3b0ed4a1e.setContent(html_26d943afd5f4d1c19ebb5841bc5770af);
+            
+        
+
+        marker_109d9b7d6a531d0ccee59228b0f9c07f.bindPopup(popup_8eafbdd5046d91f1ebb085d3b0ed4a1e)
+        ;
+
+        
+    
+    
+            marker_109d9b7d6a531d0ccee59228b0f9c07f.bindTooltip(
+                `<div>
+                     러빙헛 제주서귀포점
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_dc32dc664dbe662a9c2a5291165a97bf = L.marker(
+                [33.285999482198946, 126.70270972311963],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_c14512eb64d5dfb8b6f382e42f9b8aaa = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_504d287650f1361b2eb0964fa02c6f86 = $(`<div id="html_504d287650f1361b2eb0964fa02c6f86" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1669068957" target="_blank">제주특별자치도 서귀포시 남원읍 남위남성로 67</a></div>`)[0];
+                popup_c14512eb64d5dfb8b6f382e42f9b8aaa.setContent(html_504d287650f1361b2eb0964fa02c6f86);
+            
+        
+
+        marker_dc32dc664dbe662a9c2a5291165a97bf.bindPopup(popup_c14512eb64d5dfb8b6f382e42f9b8aaa)
+        ;
+
+        
+    
+    
+            marker_dc32dc664dbe662a9c2a5291165a97bf.bindTooltip(
+                `<div>
+                     카페예리엘
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_61e1809ddbf6c9ae40b4cf36dd08dc3c = L.marker(
+                [33.2864444900505, 126.745156723759],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_0d5eec238c3bf4f3454f65e422a0640d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_305f68f65b1380778176387894112bf1 = $(`<div id="html_305f68f65b1380778176387894112bf1" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/685412929" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 937</a></div>`)[0];
+                popup_0d5eec238c3bf4f3454f65e422a0640d.setContent(html_305f68f65b1380778176387894112bf1);
+            
+        
+
+        marker_61e1809ddbf6c9ae40b4cf36dd08dc3c.bindPopup(popup_0d5eec238c3bf4f3454f65e422a0640d)
+        ;
+
+        
+    
+    
+            marker_61e1809ddbf6c9ae40b4cf36dd08dc3c.bindTooltip(
+                `<div>
+                     졔주
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_94af5a65626814edb1b7509bab477394 = L.marker(
+                [33.2887488417691, 126.75128005663],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_d91fba05395ee95571e28e145ccb539f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_07fc882a1ba1f5e77a6e2ffc06bd3f5b = $(`<div id="html_07fc882a1ba1f5e77a6e2ffc06bd3f5b" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/1702376289" target="_blank">제주특별자치도 서귀포시 남원읍 남태해안로 533</a></div>`)[0];
+                popup_d91fba05395ee95571e28e145ccb539f.setContent(html_07fc882a1ba1f5e77a6e2ffc06bd3f5b);
+            
+        
+
+        marker_94af5a65626814edb1b7509bab477394.bindPopup(popup_d91fba05395ee95571e28e145ccb539f)
+        ;
+
+        
+    
+    
+            marker_94af5a65626814edb1b7509bab477394.bindTooltip(
+                `<div>
+                     미스커피
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_3f07aa51262761273c6f05fa664aabbc = L.marker(
+                [33.2879966966576, 126.749840410784],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_4f8d0b8bfe67ced201c7e50395d1cb58 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_78f237d545feb6373a3b65ffa9678175 = $(`<div id="html_78f237d545feb6373a3b65ffa9678175" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/125274663" target="_blank">제주특별자치도 서귀포시 남원읍 태위로 984-7</a></div>`)[0];
+                popup_4f8d0b8bfe67ced201c7e50395d1cb58.setContent(html_78f237d545feb6373a3b65ffa9678175);
+            
+        
+
+        marker_3f07aa51262761273c6f05fa664aabbc.bindPopup(popup_4f8d0b8bfe67ced201c7e50395d1cb58)
+        ;
+
+        
+    
+    
+            marker_3f07aa51262761273c6f05fa664aabbc.bindTooltip(
+                `<div>
+                     빅썸카페
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_540e1d85c77e3c00ac26d7d694425f7f = L.marker(
+                [33.2883039220395, 126.744847502964],
+                {}
+            ).addTo(map_62e1237a61d2e2d6cd67e4e5cc1601f9);
+        
+    
+        var popup_fd2ce57f1b38f016ee23832a913158ea = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a82fc1c8812d15b189fa0a702dcc2351 = $(`<div id="html_a82fc1c8812d15b189fa0a702dcc2351" style="width: 100.0%; height: 100.0%;"><a href="http://place.map.kakao.com/164856055" target="_blank">제주특별자치도 서귀포시 남원읍 태신로 22</a></div>`)[0];
+                popup_fd2ce57f1b38f016ee23832a913158ea.setContent(html_a82fc1c8812d15b189fa0a702dcc2351);
+            
+        
+
+        marker_540e1d85c77e3c00ac26d7d694425f7f.bindPopup(popup_fd2ce57f1b38f016ee23832a913158ea)
+        ;
+
+        
+    
+    
+            marker_540e1d85c77e3c00ac26d7d694425f7f.bindTooltip(
+                `<div>
+                     모행
+                 </div>`,
+                {"sticky": true}
+            );
+        
+</script>
+</html>
