@@ -4,7 +4,7 @@
 {% load youtube_filters %}
 
 <!-- base.html 랑 다른 title -->
-{% block title %} Youtube list:{{ keyword }}{% endblock %}
+{% comment %} {% block title %} Youtube list:{{ keyword }}{% endblock %} {% endcomment %}
 
 {% comment %} <iframe width="560" height="315" src="{{ youtube.youtube_link|youtube_embed_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> {% endcomment %}
  
@@ -87,7 +87,7 @@
                 <!-- 오늘의 추천 채널(채널 링크가 있다면) or 오늘의 추천 영상 둘 중 하나 선택 -->
                 <!-- recommend_keyword 사용 -->
                 <h1 class="mb-3">{{keyword}} 오늘의 추천 영상 </h1>
-                <p>{{ youtube.youtube_title }}</p>
+                
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
 
@@ -101,7 +101,7 @@
                             <a href="{{ youtube.youtube_link }}" title="영상으로 이동"><img class="img-fluid flex-shrink-0 rounded"></a>
                             <a href="{{ youtube.youtube_link }}" title="채널로 이동"><div class="ps-3">
                                 <h6 class="fw-bold mb-1">{{ youtube.youtube_name }}</h6>
-                                <small> {{ youtube.youtube_views|intcomma }}</small>
+                                <small> 조회수 {{ youtube.youtube_views }}</small>
                             </div></a>
                         </div>
                     </div>
@@ -177,23 +177,18 @@
                         {% endfor %}
                     </div>
                 </div>
+
                 <br><div class="col-12 text-center">
                     <a class="btn btn-primary py-3 px-5" href="https://www.youtube.com/results?search_query={{keyword}}">{{keyword}} : 추천영상 보러가기</a>
                 </div><br>
+
             </div>
         </div>
     </div>
-
+    <!-- 유투브 반복 끝 -->
 </div>
 
-</div>
 
-
-
-        {% comment %} if (!selectedPortal.value) {
-            alert("포탈을 선택하세요.");
-            return;
-        } {% endcomment %}
 
 <script>
     function search_result() {
@@ -204,19 +199,6 @@
 
 
 
-<script>
-    function portal_search() {
-        let keyword = document.getElementById("search_keyword").value;
-        let portalSelect = document.getElementById("portal_select");
-        let selectedPortal = portalSelect.options[portalSelect.selectedIndex].value;
-        let url = "http://127.0.0.1:8000/" + selectedPortal + "/" + encodeURIComponent(keyword);
-                
-
-        if (keyword != ''){
-            window.location.href = url;
-        }        
-    } 
-</script>
 
 {% endblock content %}
 

@@ -17,9 +17,8 @@ from django.shortcuts import get_object_or_404, render, redirect
 from .models import Hotelcounts
 
 def index(request):
-    user_info = request.user
     hotel_data = Hotelcounts.objects.all()
-    return render(request, 'inneats_app/index.html', {'user_info':user_info,'hotel_data':hotel_data})
+    return render(request, 'inneats_app/index.html', {'hotel_data':hotel_data})
     
 def about(request):    
     return render(request, 'inneats_app/about.html')

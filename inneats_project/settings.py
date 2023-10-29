@@ -76,6 +76,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # 로그인 사용자용 user_info 컨텍스트 프로세서 -kdy
+                'kdy_app.user_info.user_info',                
             ],
         },
     },

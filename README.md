@@ -5,7 +5,12 @@
 
 ==============================================================
 
-
+1.1.3 / 231029 / 
+kdy_app에 로그인 유저의 정보 user_info 를 render 시 추가해주는 user_info.py 컨텍스트 프로세서 작성
+settings.py TEMPLATES OPTIONS 에 추가
+index youtube blog my_page 등 페이지마다 추가해뒀던 user_info 구문 삭제 수정
+수정 후 모든 페이지에서 로그인 유저의 user_info 관련 테이블 정보 출력 가능
+수정 폼에서 선호 여행 지역 labels 가 안먹히던 문제 수정 완료
 
 1.1.2 / 231029 /
 유투브 블로그 검색창 수정, daily_hotel forms 수정,

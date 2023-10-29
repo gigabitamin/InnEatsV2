@@ -210,9 +210,9 @@ def my_page(request):
 
     img_data = api.month_trend()
 
-    return render(request, 'kdy_app/my_page.html', {'user_info': user_info, 'img_data': img_data, 'last_date_str':last_date_str, 'first_date_str':first_date_str})
+    return render(request, 'kdy_app/my_page.html', {'user_info' : user_info, 'img_data': img_data, 'last_date_str':last_date_str, 'first_date_str':first_date_str})
 
-
+ 
 # @login_required
 # def my_page(request):
 #     user_info = request.user  # 현재 로그인한 사용자
@@ -347,7 +347,7 @@ def send_mail(to_email, inneats_user_id):
 
 # 유저 선호도에 따른 필터링 결과 출력
 
-# @login_required
+@login_required
 def naver_blog_list_user(request, keyword):
     user_info = request.user  # 현재 로그인한 사용자
     preferred_region_no = get_user_preferred_region(user_info.username) # 테마 타입이 일치하는 유저 정보 
@@ -359,7 +359,7 @@ def naver_blog_list_user(request, keyword):
 
     naver_blog_list = Youtube.objects.all()
     # 추천영상 알고리즘에 포함
-    if len(naver_blog_data) > 1:
+    if len(naver_blog_data) >= 1:
         naver_blog_data1 = naver_blog_data[0]
     else:
         naver_blog_data1 = naver_blog_list[0]
@@ -380,7 +380,7 @@ def youtube_list_user(request, keyword):
 
     youtube_list = Youtube.objects.all()
     # 추천영상 알고리즘에 포함
-    if len(youtube_data) > 1:
+    if len(youtube_data) >= 1:
         youtube_data1 = youtube_data[0]
     else:
         youtube_data1 = youtube_list[0]
@@ -519,9 +519,9 @@ def upload_image(request):
 
 
 
-
+@login_required
 def my_page_update(request, id):  
-    user_info = get_object_or_404(UsersAppUser, pk=id)    
+    user_info = get_object_or_404(UsersAppUser, pk=id)
     if request.method == "POST":
         user_form = UserInfoForm(request.POST, instance=user_info)
         if user_form.is_valid():
@@ -531,9 +531,9 @@ def my_page_update(request, id):
     else:
         user_form = UserInfoForm(instance=user_info)
     
-    return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info':user_info})
+    return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info_update':user_info})
 
-
+@login_required
 def my_page_update_username(request, id):  
     user_info = get_object_or_404(UsersAppUser, pk=id)    
     if request.method == "POST":
@@ -547,7 +547,7 @@ def my_page_update_username(request, id):
     
     return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info':user_info})
 
-
+@login_required
 def my_page_update_email(request, id):  
     user_info = get_object_or_404(UsersAppUser, pk=id)    
     if request.method == "POST":
@@ -561,6 +561,7 @@ def my_page_update_email(request, id):
     
     return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info':user_info})
 
+@login_required
 def my_page_update_password(request, id):  
     user_info = get_object_or_404(UsersAppUser, pk=id)    
     if request.method == "POST":
@@ -574,6 +575,8 @@ def my_page_update_password(request, id):
     
     return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info':user_info})
 
+
+@login_required
 def my_page_update_user_name(request, id):  
     user_info = get_object_or_404(UsersAppUser, pk=id)    
     if request.method == "POST":
@@ -587,6 +590,7 @@ def my_page_update_user_name(request, id):
     
     return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info':user_info})
 
+@login_required
 def my_page_update_user_phone(request, id):  
     user_info = get_object_or_404(UsersAppUser, pk=id)    
     if request.method == "POST":
@@ -600,6 +604,7 @@ def my_page_update_user_phone(request, id):
     
     return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info':user_info})
 
+@login_required
 def my_page_update_user_address(request, id):  
     user_info = get_object_or_404(UsersAppUser, pk=id)    
     if request.method == "POST":
@@ -613,8 +618,7 @@ def my_page_update_user_address(request, id):
     
     return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info':user_info})
 
-
-
+@login_required
 def my_page_update_preferred_region_no(request, id):  
     user_info = get_object_or_404(UsersAppUser, pk=id)    
     if request.method == "POST":
@@ -628,8 +632,7 @@ def my_page_update_preferred_region_no(request, id):
     
     return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info':user_info})
 
-
-
+@login_required
 def my_page_update_preferred_accommodation_type_no(request, id):  
     user_info = get_object_or_404(UsersAppUser, pk=id)    
     if request.method == "POST":
@@ -639,10 +642,10 @@ def my_page_update_preferred_accommodation_type_no(request, id):
             user_info.save()
             return redirect('index')
     else:
-        user_form = UserInfoForm_preferred_accommodation_type_no(instance=user_info)
-    
+        user_form = UserInfoForm_preferred_accommodation_type_no(instance=user_info)    
     return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info':user_info})
 
+@login_required
 def my_page_update_preferred_tour_theme_type_no(request, id):  
     user_info = get_object_or_404(UsersAppUser, pk=id)    
     if request.method == "POST":
@@ -652,8 +655,7 @@ def my_page_update_preferred_tour_theme_type_no(request, id):
             user_info.save()
             return redirect('index')
     else:
-        user_form = UserInfoForm_preferred_tour_theme_type_no(instance=user_info)
-    
+        user_form = UserInfoForm_preferred_tour_theme_type_no(instance=user_info)    
     return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info':user_info})
 
 

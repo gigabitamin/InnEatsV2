@@ -14,7 +14,7 @@
 
 
 <div class="sign_up_box">
-    <form action="{% url 'my_page_update' user_info.id %}" method="post">
+    <form action="#" method="post">
     <br><div><h1>{{ user_info.username }} 님의 마이 페이지</h1></div><br>
         {% csrf_token %}
         <table id="my_page_table">
@@ -31,16 +31,26 @@
             <tr><th class='lbl'>선호 여행 지역</th><td>{{user_info.preferred_region_no.preferred_region}}</td></tr>
             <tr><th class='lbl'>선호 숙박 형태</th><td>{{user_info.preferred_accommodation_type_no.preferred_accommodation_type}}</td></tr>
             <tr><th class='lbl'>선호 여행 테마</th><td>{{user_info.preferred_tour_theme_type_no.preferred_tour_theme_type}}</td></tr>
-            <tr>
-                <td class='lbl'></td>
-            </tr>            
         </table>
-    </form>
+    </form>  
+</div>
+<div class="sign_up_box" class="btn-primary">
+    <a href="{% url 'my_page_update' user_info.id %}">
+        <button id=myPageUpdateBtn type="submit" class="btn-primary">회원 정보 수정</button></a>
+    <a href="{% url 'my_page_delete_move' user_info.id %}">
+        <button id=myPageUpdateBtn type="submit">회원 탈퇴</button></a> 
 </div>
 
-<div class="sign_up_box" class="btn-primary">
-<a href="{% url 'my_page_update' user_info.id %}">
-                <button id=myPageUpdateBtn type="submit" class="btn-primary">전체 정보 수정</button></a>
+
+
+
+<div class="sign_up_box">
+
+</div>
+
+{% comment %} <div class="sign_up_box" class="btn-primary">
+    <a href="{% url 'my_page_update_email' user_info.id %}">
+        <button id=myPageUpdateBtn_email type="submit" class="btn-primary">이메일 수정</button></a>
 </div>
 
 <div class="sign_up_box">    
@@ -50,12 +60,9 @@
     <form action="{% url 'my_page_update_user_phone' user_info.id %}" method="post">{% csrf_token %}<button id=myPageUpdateBtn type="submit" class="btn-primary">전화번호 수정</button></form>
     <form action="{% url 'my_page_update_user_address' user_info.id %}" method="post">{% csrf_token %}<button id=myPageUpdateBtn type="submit" class="btn-primary">주소 수정</button></form>    
     <form action="{% url 'my_page_update_preferred_region_no' user_info.id %}" method="post">{% csrf_token %}<button id=myPageUpdateBtn type="submit" class="btn-primary">선호 타입</button></form>
-</div>
+</div> {% endcomment %}
 
-<div class="sign_up_box">
-<a href="{% url 'my_page_delete_move' user_info.id %}">
-    <button id=myPageUpdateBtn type="submit">회원 탈퇴</button></a>
-</div>
+
 
 <h1 style="text-align:center;">검색 트렌드</h1>
 <div class="sign_up_box">

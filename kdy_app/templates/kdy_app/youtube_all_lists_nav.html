@@ -22,7 +22,7 @@
     {% if user_info.is_authenticated %}
         <a href="{% url 'search_hotels' keyword=user_info.preferred_region_no.preferred_region %}" class="nav-item nav-link">호텔 검색</a>
     {% else %}
-        <a href="{% url 'search_hotels' keyword=keyword %}" class="nav-item nav-link">호텔 검색</a>
+        <a href="{% url 'search_hotels' keyword='서울' %}" class="nav-item nav-link">호텔 검색</a>
     {% endif %}
     
 

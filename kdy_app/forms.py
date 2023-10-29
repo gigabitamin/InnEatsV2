@@ -61,14 +61,18 @@ class ImageForm(forms.Form):
 
 
 class UserInfoForm(forms.ModelForm):
-    preferred_region_no = forms.ModelChoiceField(queryset=PreferredRegion.objects.all())
-    preferred_accommodation_type_no = forms.ModelChoiceField(queryset=PreferredAccommodationType.objects.all())
-    preferred_tour_theme_type_no = forms.ModelChoiceField(queryset=PreferredTourThemeType.objects.all())
+    # preferred_region_no = forms.ModelChoiceField(queryset=PreferredRegion.objects.all())
+    # preferred_accommodation_type_no = forms.ModelChoiceField(queryset=PreferredAccommodationType.objects.all())
+    # preferred_tour_theme_type_no = forms.ModelChoiceField(queryset=PreferredTourThemeType.objects.all())
+    # preferred_accommodation_type = forms.CharField(max_length=45)
+    # preferred_region = forms.CharField(max_length=45)
+    # preferred_tour_theme_type = forms.CharField(max_length=45)
 
     class Meta:
         model = UsersAppUser
         
         fields = (
+            # 'profile_image'
             'username',
             'email',                     
             'user_name',
@@ -77,10 +81,13 @@ class UserInfoForm(forms.ModelForm):
             'preferred_region_no',            
             'preferred_accommodation_type_no',
             'preferred_tour_theme_type_no',
-            # 'profile_image'    
+        #     'preferred_region',            
+        #     'preferred_accommodation_type',
+        #     'preferred_tour_theme_type',    
         )
 
         labels = {
+            # 'profile_image':'프로필 이미지'
             'username':'아이디',
             'email':'이메일',            
             'user_name':'성명',
@@ -89,7 +96,9 @@ class UserInfoForm(forms.ModelForm):
             'preferred_region_no':'선호 여행 지역',
             'preferred_accommodation_type_no':'선호 여행 타입',
             'preferred_tour_theme_type_no':'선호 여행 테마',
-            # 'profile_image':'프로필 이미지'            
+            # 'preferred_region':'선호 여행 지역',
+            # 'preferred_accommodation_type':'선호 여행 타입',
+            # 'preferred_tour_theme_type':'선호 여행 테마',       
         }
 
 
