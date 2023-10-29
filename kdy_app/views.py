@@ -1,3 +1,17 @@
+
+### 경고 메세지
+# import warnings
+# warnings.filterwarnings("ignore", category=UserWarning, module="tkinter")
+
+# matplotlib 관련
+# plt.rcParams['axes.unicode_minus'] = False
+# plt.rcParams['font.family'] = 'Malgun Gothic'
+# plt.rcParams['axes.grid'] = False
+# pd.set_option('display.max_columns', 250)
+# pd.set_option('display.max_rows', 250)
+# pd.set_option('display.width', 100)
+# pd.options.display.float_format = '{:.2f}'.format
+
 import urllib.request
 # import datetime
 from datetime import datetime, timedelta
@@ -62,36 +76,106 @@ import io
 import base64
 import matplotlib.pyplot as plt
 
-### 경고 메세지
-# import warnings
-# warnings.filterwarnings("ignore", category=UserWarning, module="tkinter")
+# hotel_search_detail 관련
+# from inneats_app.models import Visitkorea
+# from inneats_app.models import Restaurant
+# from inneats_app.models import Accommodation
 
-
-plt.rcParams['axes.unicode_minus'] = False
-plt.rcParams['font.family'] = 'Malgun Gothic'
-plt.rcParams['axes.grid'] = False
-pd.set_option('display.max_columns', 250)
-pd.set_option('display.max_rows', 250)
-pd.set_option('display.width', 100)
-pd.options.display.float_format = '{:.2f}'.format
 
 
 # 데일리 호텔 필터링 정렬 처리 결과물 -> limit 걸어서 추천 리스트 로 출력해줄 리스트도 따로 작성해서 같이 변수 처리
-def search_hotels(request):
-    # 'daily_hotel_name' 또는 'daily_hotel_address'에서 '애월' 문자열을 포함하고, 'daily_hotel_price'가 NULL이 아닌 행을 검색
-    result = DailyHotel.objects.filter(
-        (Q(daily_hotel_name__icontains='애월') | Q(daily_hotel_address__icontains='애월')) &
+def search_hotels(request, keyword):
+    # 'daily_hotel_name' 또는 'daily_hotel_address'에서 keyword 문자열을 포함하고, 'daily_hotel_price'가 NULL이 아닌 행을 검색
+    results = DailyHotel.objects.filter(
+        (Q(daily_hotel_name__icontains=keyword) | Q(daily_hotel_address__icontains=keyword)) &
         Q(daily_hotel_price__isnull=False)
     ).order_by(
-        '-daily_hotel_rating', 'daily_hotel_price', '-daily_hotel_discount_rate',
-        '-daily_hotel_review_clear', '-daily_hotel_review_service',
-        '-daily_hotel_review_facility', '-daily_hotel_review_location'
+        '-daily_hotel_review_clear', '-daily_hotel_review_service', # 청결도 우선순위
+        '-daily_hotel_review_facility', '-daily_hotel_review_location', '-daily_hotel_discount_rate'
     )
 
-    # 상위 10개 결과 추출
-    top_10_result = result[:10]
+    result_all = sorted(results, key=lambda x: x.daily_hotel_price)
 
-    return render(request, 'search_results.html', {'result': result, 'top_10_result': top_10_result})
+    # 그 결과에서 상위 10개 3개만 선택
+    result_top10 = result_all[:10]
+    # top10에 sorted 한 번 더 넣은 뒤 top3 뽑는 것도 고려
+    result_top3 = result_top10[:3]
+
+    return render(request, 'kdy_app/search_hotels.html', {'keyword':keyword, 'results':results, 'result_all': result_all, 'result_top10': result_top10, 'result_top3': result_top3})
+
+
+
+
+# def search_hotels_detail(request, daily_hotel_num):     
+
+#     # 하위 주소를 토대로 관광지 리스트 쿼리 
+#     # addr = "제주 서귀포시 안덕면"
+#     daily_hotel_all = DailyHotel.objects.get(Q(id=daily_hotel_num))
+#     keywords = daily_hotel_all.daily_hotel_address.split(" ")
+
+#     if len(keywords) > 2:
+#         keyword = keywords[2]
+#     elif len(keywords) == 2:
+#         keyword = keywords[1]
+#     else:
+#         keyword = keywords[0]
+
+#     attraction_list = Visitkorea.objects.filter(Q(visitkorea_address__contains=keyword))
+#     restaurant_list = Restaurant.objects.filter(Q(restaurant_address__contains=keyword))
+
+#     addr = keyword
+#     # print(keyword)
+#     # print(len(restaurant_list))
+
+#     if len(attraction_list) == 0:
+#         attraction_list = Visitkorea.objects.filter(Q(visitkorea_address__contains=keywords[1]))
+#         addr=keywords[1]
+
+#     if len(restaurant_list) == 0:
+#         restaurant_list = Restaurant.objects.filter(Q(restaurant_address__contains=keywords[1]))
+
+#     # youtube_list = Youtube.objects.filter(Q(visitkorea_address__contains=keywords))
+
+#     # 숙소 주변 관광지 리스트를 토대로 쿼리 날리는 방법 #
+#     #################################################################################
+    
+#     # 관광지 이름 리스트
+#     keywords = [attr.visitkorea_title for attr in attraction_list]  
+
+#     # 맛집 이름 리스트
+
+#     keywords2 = [restaurant.restaurant_shop_name for restaurant in restaurant_list]  
+    
+
+#     all_keywords = keywords + keywords2
+
+#     # 유튜브 검색을 위한 쿼리 조합#
+#     q_objects = Q(youtube_title__contains=all_keywords[0])
+#     # 나머지 키워드들을 OR 조건으로 추가
+#     for keyword in all_keywords[1:]:
+#         q_objects |= Q(youtube_title__contains=keyword)
+#     # 쿼리 실행
+#     youtube_list = Youtube.objects.filter(q_objects)
+#     #################################################################################    
+
+#     # 블로그 검색을 위한 쿼리 조합#
+#     q_objects2 = Q(naver_blog_title__contains=all_keywords[0])
+#     # # 나머지 키워드들을 OR 조건으로 추가
+#     for keyword in all_keywords[1:]:
+#         q_objects2 |= Q(naver_blog_title__contains=keyword)
+#     # # 쿼리 실행
+#     blog_list = NaverBlog.objects.filter(q_objects2)
+#     #################################################################################
+
+
+#     attraction_list = attraction_list[:3]
+#     restaurant_list = restaurant_list[:3]
+#     youtube_list = youtube_list[:3] 
+#     blog_list = blog_list[:3]
+    
+#     return render(request, 'accommodation_app/accommodation_detail.html', {'addr':addr,'attraction_list':attraction_list ,'accommodation':accommodation, 'youtube_list':youtube_list, 'restaurant_list':restaurant_list , 'blog_list':blog_list})
+
+
 
 
 
@@ -264,7 +348,7 @@ def send_mail(to_email, inneats_user_id):
 # 유저 선호도에 따른 필터링 결과 출력
 
 # @login_required
-def naver_blog_list_user(request):
+def naver_blog_list_user(request, keyword):
     user_info = request.user  # 현재 로그인한 사용자
     preferred_region_no = get_user_preferred_region(user_info.username) # 테마 타입이 일치하는 유저 정보 
 
@@ -280,12 +364,12 @@ def naver_blog_list_user(request):
     else:
         naver_blog_data1 = naver_blog_list[0]
     grouped_naver_blog_list = [naver_blog_list[i:i+3] for i in range(0, len(naver_blog_list), 3)]
-    return render(request, 'kdy_app/naver_blog_list.html', {'naver_blog_data1':naver_blog_data1, 'naver_blog_data':naver_blog_data, 'naver_blog_list':naver_blog_list, 'grouped_naver_blog_list': grouped_naver_blog_list})
+    return render(request, 'kdy_app/naver_blog_list.html', {'naver_blog_data1':naver_blog_data1, 'naver_blog_data':naver_blog_data, 'naver_blog_list':naver_blog_list, 'grouped_naver_blog_list': grouped_naver_blog_list, 'keyword':keyword})
 
 
 # 유저 로그인 시 해당 유저가 설정한 선호 지역 숙소 테마 등을 키워드로 필터링해서 출력
 @login_required
-def youtube_list_user(request):
+def youtube_list_user(request, keyword):
     user_info = request.user  # 현재 로그인한 사용자
     preferred_region_no = get_user_preferred_region(user_info.username) # 테마 타입이 일치하는 유저 정보 
 
@@ -301,7 +385,7 @@ def youtube_list_user(request):
     else:
         youtube_data1 = youtube_list[0]
     grouped_youtube_list = [youtube_list[i:i+3] for i in range(0, len(youtube_list), 3)]
-    return render(request, 'kdy_app/youtube_list.html', {'youtube_data1':youtube_data1, 'youtube_data':youtube_data, 'youtube_list':youtube_list, 'grouped_youtube_list': grouped_youtube_list})
+    return render(request, 'kdy_app/youtube_list.html', {'youtube_data1':youtube_data1, 'youtube_data':youtube_data, 'youtube_list':youtube_list, 'grouped_youtube_list': grouped_youtube_list, 'keyword':keyword})
 
 
 

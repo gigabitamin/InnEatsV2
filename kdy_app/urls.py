@@ -3,9 +3,11 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path('search_hotels/<str:keyword>', views.search_hotels, name='search_hotels'),
+    # path('search_hotels_detail/<str:daily_hotel_num>', views.search_hotels_detail, name='search_hotels_detail'),    
 
-    path('youtube_list_user', views.youtube_list_user, name='youtube_list_user'),
-    path('naver_blog_list_user', views.naver_blog_list_user, name='naver_blog_list_user'),
+    path('youtube_list_user/<str:keyword>', views.youtube_list_user, name='youtube_list_user'),
+    path('naver_blog_list_user/<str:keyword>', views.naver_blog_list_user, name='naver_blog_list_user'),
 
     path('youtube_user_preferred_tour_theme_type/<int:id>', views.youtube_user_preferred_tour_theme_type, name='youtube_user_preferred_tour_theme_type'),
     # path('youtube_user_address/<int:id>', views.youtube_user_address, name='youtube_user_address'),
