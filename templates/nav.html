@@ -1,4 +1,6 @@
 {% load static %}
+{% load humanize %}
+
 
 {% block content %}  
 
@@ -16,9 +18,13 @@
             </button>
            
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav ms-auto">                    
+                <div class="navbar-nav ms-auto">
+                    {% comment %} <a href="{% url 'show_map' lat=33.450580|floatformat:6 lng=126.574942|floatformat:6 %}" class="nav-item nav-link">지도 좌표</a> {% endcomment %}
+                    <a href="{% url 'show_map' %}" class="nav-item nav-link">지도 좌표</a>
                     <a href="{% url 'about' %}" class="nav-item nav-link">TEAM def Troll</a>
-                    <a href="{% url 'search_hotels' keyword='제주' %}" class="nav-item nav-link">호텔 검색</a>
+                    <a href="{% url 'search_hotels' keyword='애월' %}" class="nav-item nav-link">호텔 검색</a>
+                    <a href="{% url 'accommodation_da' keyword='애월' %}" class="nav-item nav-link">숙소_da</a> 
+                    
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">페이지</a>
                         <div class="dropdown-menu rounded-0 m-0">

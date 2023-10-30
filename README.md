@@ -5,6 +5,26 @@
 
 ==============================================================
 
+1.1.6 / 231030 / 
+제주도 시설 장소 들에 대한 좌표값이 들어있는 공공데이터 테이블과 accommodation 테이블에서 주소 4번째 요소가 일치하는 행을 찾아서 accom_map 이라는테이블로 저장
+SELECT DISTINCT a.address, `위치좌표 X축값`, `위치좌표 Y축값`, a.title, jp.장소명, jp.소재지
+FROM inneats_db.jeju_place jp
+INNER JOIN inneats_db.accommodation a
+ON SUBSTRING_INDEX(jp.소재지, ' ', 4) = SUBSTRING_INDEX(a.address, ' ', 4);
+애월읍, 한경읍 등의 좌표값 매칭 시킨 후 숙소 주소와 5번째 자리까지 일치하는 장소 좌표값 반환
+
+
+1.1.5 / 231030 / 
+숙소 검색 결과에서 맛집(sjh_app 지도 매핑 페이지)로 이동하는 방식 수정 
+수정 전:맛집 클릭하면 그냥 상세 지역 구역지도 페이지로 이동하는 링크만 걸려있는 map_main 페이지로 이동
+수정 후:맛집 클릭시 숙소 검색시 accom 테이블로부터 받아온 address 정보를 입력값으로 받아오고 해당 address 를 split으로 쪼개서 3번째 주소값이 sjh_app views에서 정한 매핑 매칭값이랑 명칭이 같으면 해당 지역 맛집 마킹과 지도화면이 보이는 해당 지역 detail 맵으로 이동
+kdy_app/views.py map_main_detail_adress 함수 참조
+
+
+1.1.4 / 231029 / 
+attraction 검색창 추가
+
+
 1.1.3 / 231029 / 
 kdy_app에 로그인 유저의 정보 user_info 를 render 시 추가해주는 user_info.py 컨텍스트 프로세서 작성
 settings.py TEMPLATES OPTIONS 에 추가

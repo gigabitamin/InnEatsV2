@@ -2,6 +2,29 @@
 {% load static %}
 <!-- {% block title %} 숙소 상세:{{ keyword }}{% endblock %} -->
 {% block content %}
+
+
+    <!-- Search Start -->
+
+    <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
+        <div class="container">
+            <div class="row g-2">
+                <div class="col-md-10">                
+                    <input type="text" class="form-control border-0 py-3" id="search_keyword" placeholder={{ keyword }}>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-dark border-0 w-100 py-3" onclick="search_result()">검색</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search End -->
+
+
+
+
+
 <!-- Property List Start -->
 <div class="container-xxl py-5">
     <div class="container">
@@ -59,4 +82,14 @@
     </div>
 </div>
 <!-- Property List End -->
+
+
+<script>
+    function search_result() {
+        let keyword = document.getElementById("search_keyword").value;
+        window.location.href = keyword;
+    }
+</script>
+
+
 {% endblock content %}
