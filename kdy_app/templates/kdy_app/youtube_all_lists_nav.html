@@ -17,8 +17,15 @@
 </style>
 
 
-
 <div id="youtube_all_lists_nav">
+
+    {% if user_info.is_authenticated %}
+        <a href="{% url 'search_hotels' keyword=user_info.preferred_region_no.preferred_region %}" class="nav-item nav-link">호텔 검색</a>
+    {% else %}
+        <a href="{% url 'search_hotels' keyword='서울' %}" class="nav-item nav-link">호텔 검색</a>
+    {% endif %}
+    
+
 
     <div>
     {% comment %} 로그인 user만 마이페이지에 접근가능, 로그인 안한 사용자의 경우 자동으로 로그인 창으로 리다이렉트 {% endcomment %}                    

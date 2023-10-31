@@ -3,11 +3,8 @@
 {% load static %}
 {% load youtube_filters %}
 
-
 <!-- base.html 랑 다른 title -->
-{% block title %} Blog list:{{ keyword }}{% endblock %}
-
-<a href="{% url 'naver_blog_all_detail' naver_blog.naver_blog_id %}">
+{% comment %} {% block title %} Blog list:{{ keyword }}{% endblock %} {% endcomment %}
 
 
  
@@ -61,32 +58,24 @@
     <!-- Header End -->
 
     <!-- Search Start -->
+
     <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
         <div class="container">
             <div class="row g-2">
-                <div class="col-md-5">                
-                    <input type="text" class="form-control border-0 py-3" id="search_keyword" placeholder="검색어를 입력해 주세요">          
-                </div>
-                <div class="col-md-5">
-                    <select id="portal_select" class="form-select border-0 py-3">
-                        <option selected>검색하실 포탈을 선택하세요</option>
-                        <option value="accommodation">숙소</option>
-                        <option value="youtube/list">유투브</option>
-                        <option value="naver_blog/list">블로그</option>
-                        <option value="attraction">여행지</option>
-                    </select>                    
+                <div class="col-md-10">                
+                    <input type="text" class="form-control border-0 py-3" id="search_keyword" placeholder={{ keyword }}>
                 </div>
                 <div class="col-md-2">
-                    <button class="btn btn-dark border-0 w-100 py-3" onclick="portal_search()">검색</button>
+                    <button class="btn btn-dark border-0 w-100 py-3" onclick="search_result()">검색</button>
                 </div>
             </div>
         </div>
     </div>
+
     <!-- Search End -->
 
 
-
-    <!-- 유투브 슬라이드 시작 --> 
+    <!-- 블로그 슬라이드 시작 --> 
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
@@ -94,12 +83,12 @@
                 <!-- 오늘의 추천 채널(채널 링크가 있다면) or 오늘의 추천 영상 둘 중 하나 선택 -->
                 <!-- recommend_keyword 사용 -->
                 <h1 class="mb-3">{{keyword}} 오늘의 추천 블로그 </h1>
-                <p>{{ naver_blog.naver_blog_title }}</p>
+                
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
 
                 <!-- 반복문 시작 -->
-                {% for naver_blog in naver_blog_list %}
+                {% for naver_blog in naver_blog_data %}
                 <div class="testimonial-item bg-light rounded p-3">
                     <div class="bg-white border rounded p-4">
                         <a href="{{ naver_blog.naver_blog_link }}" title="영상으로 이동"><p> {{ naver_blog.naver_blog_title }}</p></a>
@@ -108,7 +97,7 @@
                             <a href="{{ naver_blog.naver_blog_link }}" title="블로그로 이동"><img class="img-fluid flex-shrink-0 rounded"></a>
                             <a href="{{ naver_blog.naver_blog_link }}" title="블로그로 이동"><div class="ps-3">
                                 <h6 class="fw-bold mb-1">{{ naver_blog.naver_bloger_name }}</h6>
-                                <small>좋아요 수 : {{ naver_blog.naver_blog_content_likeit_count|intcomma }}</small>
+                                <small>좋아요 수 : {{ naver_blog.naver_blog_content_likeit_count }}</small>
                             </div></a>
                         </div>
                     </div>
@@ -119,12 +108,16 @@
             </div>
         </div>        
     </div>
-    <!-- 유투브 슬라이드 끝 --> 
+    <!-- 블로그 슬라이드 끝 --> 
 
 
 
 
-    <!-- 유투브 리스트 반복 -->
+
+
+
+
+    <!-- 블로그 리스트 반복 -->
     <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-0 gx-5 align-items-end">
@@ -184,57 +177,26 @@
                         {% endfor %}
                     </div>
                 </div>
+                
                 <br><div class="col-12 text-center">
-                    <a class="btn btn-primary py-3 px-5" href="https://www.naver_blog.com/results?search_query={{keyword}}">{{keyword}} : 추천블로그 보러가기</a>
+                    <a class="btn btn-primary py-3 px-5" href="https://search.naver.com/search.naver?where=view&sm=tab_jum&query={{keyword}}">{{keyword}} : 추천블로그 보러가기</a>
                 </div><br>
 
             </div>
         </div>
     </div>
-    <!-- 유투브 반복 끝 -->
-
-
-    
-    
+    <!-- 블로그 반복 끝 -->
 </div>
 
 
-        {% comment %} if (keyword != '' OR selectedPortal != ''){
-            window.location.href = url;
-        } {% endcomment %}
-        {% comment %} if (!selectedPortal.value) {
-            alert("포탈을 선택하세요.");
-            return;
-        }
-
- {% endcomment %}
-
 <script>
-    function portal_search() {
-        var keyword = document.getElementById("search_keyword").value;
-        var portalSelect = document.getElementById("portal_select");
-        var selectedPortal = portalSelect.options[portalSelect.selectedIndex].value;
-        var url = "http://127.0.0.1:8000/" + selectedPortal + "/" + encodeURIComponent(keyword);
-                
-
-        if (keyword != ''){
-            window.location.href = url;
-        }        
-    } 
+    function search_result() {
+        let keyword = document.getElementById("search_keyword").value;
+        window.location.href = keyword;
+    }
 </script>
 
 
-</div>
-{% comment %} 
-<script>
-    function accommodation_search() {
-        var keyword = document.getElementById("search_keyword").value;
-        var portalSelect = document.getElementById("portal_select");
-        var selectedPortal = portalSelect.options[portalSelect.selectedIndex].value;
-        var url = "http://127.0.0.1:8000/" + selectedPortal + "/" + encodeURIComponent(keyword);
-        window.location.href = url;
-    }
-</script> {% endcomment %}
 
 
 {% endblock content %}

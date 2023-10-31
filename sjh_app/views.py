@@ -13,7 +13,7 @@ def map_detail(request):
 
 
 def my_map_detail(request, region):
-    # region에 따라 필요한 지도 html을 선택
+    # # region에 따라 필요한 지도 html을 선택 -병합출돌이 떠서 앞에 # 하나 추가 -kdy
     map_url = {
         'jeju-city': 'map_JejuCity.html',
         'aewol-eup': 'map_aewol.html',

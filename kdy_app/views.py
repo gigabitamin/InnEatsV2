@@ -1,3 +1,17 @@
+
+### 경고 메세지
+# import warnings
+# warnings.filterwarnings("ignore", category=UserWarning, module="tkinter")
+
+# matplotlib 관련
+# plt.rcParams['axes.unicode_minus'] = False
+# plt.rcParams['font.family'] = 'Malgun Gothic'
+# plt.rcParams['axes.grid'] = False
+# pd.set_option('display.max_columns', 250)
+# pd.set_option('display.max_rows', 250)
+# pd.set_option('display.width', 100)
+# pd.options.display.float_format = '{:.2f}'.format
+
 import urllib.request
 # import datetime
 from datetime import datetime, timedelta
@@ -46,15 +60,6 @@ from django.conf import settings
 # 커스텀 유저 폼 마이페이지 관련
 from .models import UsersAppUser
 from .forms import UserInfoForm
-from .forms import UserInfoForm_username
-from .forms import UserInfoForm_email
-from .forms import UserInfoForm_password
-from .forms import UserInfoForm_user_name
-from .forms import UserInfoForm_user_phone
-from .forms import UserInfoForm_user_address
-from .forms import UserInfoForm_preferred_accommodation_type_no
-from .forms import UserInfoForm_preferred_tour_theme_type_no
-from .forms import UserInfoForm_preferred_region_no
 
 # 네이버 데이터랩 트렌드 그래프
 from kdy_app.templatetags.naver_datalab import *
@@ -62,40 +67,132 @@ import io
 import base64
 import matplotlib.pyplot as plt
 
-### 경고 메세지
-# import warnings
-# warnings.filterwarnings("ignore", category=UserWarning, module="tkinter")
+# hotel_search_detail 관련
+# from inneats_app.models import Visitkorea
+# from inneats_app.models import Restaurant
+# from inneats_app.models import Accommodation
+
+# map_main_address 관련
+from inneats_app.models import Accommodation
+from .models import AccomMap
 
 
-plt.rcParams['axes.unicode_minus'] = False
-plt.rcParams['font.family'] = 'Malgun Gothic'
-plt.rcParams['axes.grid'] = False
-pd.set_option('display.max_columns', 250)
-pd.set_option('display.max_rows', 250)
-pd.set_option('display.width', 100)
-pd.options.display.float_format = '{:.2f}'.format
+
+
+def show_map(request):
+
+    return render(request, 'kdy_app/show_map.html')
+
+
+
+
+
+# 숙소 검색 후 주소 반환 받아서 해당 주소를 split한 뒤 2번째 주소를 map_main에 전달, 해당 페이지에서 2번째 주소 지도 상세페이지로 바로 이동
+def accommodation_da (request, keyword):    
+    accommodation_list = Accommodation.objects.filter(Q(address__contains=keyword))
+
+    accommodation_da = Accommodation.objects.filter(
+        (Q(title__icontains=keyword) | Q(address__icontains=keyword)) &
+        # (Q(da_price__isnull=False) & Q(go_price__isnull=False) & Q(tr_price__isnull=False) & Q(ya_price__isnull=False))
+        Q(da_price__isnull=False)
+    )
+    accommodation_da_sorted = sorted(accommodation_da, key=lambda x: x.da_price)
+
+
+    return render(request, 'accommodation_app/accommodation.html',{'keyword':keyword, 'accommodation_list':accommodation_list, 'accommodation_da_sorted':accommodation_da_sorted})
+
+
+def map_main_detail_address (request, address):
+
+    map_keywords = address.split(" ")
+    if len(map_keywords) >= 2:
+        if map_keywords[1] in ('제주시', '서귀포시'):
+            region = map_keywords[1]
+            if (len(map_keywords) >= 3) and ((map_keywords[2] in ('애월읍', '한림읍', '한경면', '대정읍', '안덕면', '서귀포시', '남원읍', '성산읍', '구좌읍', '조천읍'))):
+                region = map_keywords[2]
+    else:
+        region = "제주시"
+
+    map_url = {
+        '제주시': 'map_JejuCity.html',
+        '애월읍': 'map_aewol.html',
+        '한림읍': 'map_hallimeup.html',
+        '한경면': 'map_hngyeongmyeon.html',
+        '대정읍': 'map_daejeongeup.html',
+        '안덕면': 'map_andeokmyeon.html',
+        '서귀포시': 'map_seogwipoCity.html',
+        '남원읍': 'map_namwoneup.html',
+        '성산읍': 'map_seongsaneup.html',
+        '구좌읍': 'map_gujwaeup.html',
+        '조천읍': 'map_jocheoneup.html',        
+        'jeju-city': 'map_JejuCity.html',
+        'aewol-eup': 'map_aewol.html',
+        'hallim-eup': 'map_hallimeup.html',
+        'hngyeong-myeon': 'map_hngyeongmyeon.html',
+        'daejeong-eup': 'map_daejeongeup.html',
+        'andeok-myeon': 'map_andeokmyeon.html',
+        'seogwipo-city': 'map_seogwipoCity.html',
+        'namwon-eup': 'map_namwoneup.html',
+        'seongsan-eup': 'map_seongsaneup.html',
+        'gujwa-eup': 'map_gujwaeup.html',
+        'jocheon-eup': 'map_jocheoneup.html',
+        # ... 다른 지역들에 대한 매핑 ...
+    }.get(region, 'default_map.html')  # 만약 지역이 매핑에 없으면 기본 맵을 반환
+    region_names = {
+        '제주시': '제주시',
+        '애월읍': '애월읍',
+        '한림읍': '한림읍',
+        '한경면': '한경면',
+        '대정읍': '대정읍',
+        '안덕면': '안덕면',
+        '서귀포시': '서귀포시',
+        '남원읍': '남원읍',
+        '성산읍': '성산읍',
+        '구좌읍': '구좌읍',
+        '조천읍': '조천읍',
+        'jeju-city': '제주시',
+        'aewol-eup': '애월읍',
+        'hallim-eup': '한림읍',
+        'hngyeong-myeon': '한경면',
+        'daejeong-eup': '대정읍',
+        'andeok-myeon': '안덕면',
+        'seogwipo-city': '서귀포시',
+        'namwon-eup': '남원읍',
+        'seongsan-eup': '성산읍',
+        'gujwa-eup': '구좌읍',
+        'jocheon-eup': '조천읍',
+        # ... 다른 지역들에 대한 매핑 ...
+    }
+    selected_area = region_names.get(region, '알 수 없는 지역')  # 매핑에 없는 지역은 '알 수 없는 지역'으로 반환
+
+    return render(request, 'sjh_app/map_detail.html', {'map_file': map_url, 'selected_area': selected_area, 'map_keywords':map_keywords})
+
 
 
 # 데일리 호텔 필터링 정렬 처리 결과물 -> limit 걸어서 추천 리스트 로 출력해줄 리스트도 따로 작성해서 같이 변수 처리
-def search_hotels(request):
-    # 'daily_hotel_name' 또는 'daily_hotel_address'에서 '애월' 문자열을 포함하고, 'daily_hotel_price'가 NULL이 아닌 행을 검색
-    result = DailyHotel.objects.filter(
-        (Q(daily_hotel_name__icontains='애월') | Q(daily_hotel_address__icontains='애월')) &
+def search_hotels(request, keyword):
+    # 'daily_hotel_name' 또는 'daily_hotel_address'에서 keyword 문자열을 포함하고, 'daily_hotel_price'가 NULL이 아닌 행을 검색
+    results = DailyHotel.objects.filter(
+        (Q(daily_hotel_name__icontains=keyword) | Q(daily_hotel_address__icontains=keyword)) &
         Q(daily_hotel_price__isnull=False)
     ).order_by(
-        '-daily_hotel_rating', 'daily_hotel_price', '-daily_hotel_discount_rate',
-        '-daily_hotel_review_clear', '-daily_hotel_review_service',
-        '-daily_hotel_review_facility', '-daily_hotel_review_location'
+        '-daily_hotel_review_clear', '-daily_hotel_review_service', # 청결도 우선순위
+        '-daily_hotel_review_facility', '-daily_hotel_review_location', '-daily_hotel_discount_rate'
     )
 
-    # 상위 10개 결과 추출
-    top_10_result = result[:10]
+    result_all = sorted(results, key=lambda x: x.daily_hotel_price)
 
-    return render(request, 'search_results.html', {'result': result, 'top_10_result': top_10_result})
+    # 그 결과에서 상위 10개 3개만 선택
+    result_top10 = result_all[:10]
+    # top10에 sorted 한 번 더 넣은 뒤 top3 뽑는 것도 고려
+    result_top3 = result_top10[:3]
+
+    return render(request, 'kdy_app/search_hotels.html', {'keyword':keyword, 'results':results, 'result_all': result_all, 'result_top10': result_top10, 'result_top3': result_top3})
 
 
 
 
+# 마이페이지에 유저의 선호도 지정 키워드 -> 구글트렌드 관련검색어, 네이버 검색트렌드 에 입력 후 반환 된 결과 그래프로 추가
 @login_required
 def my_page(request):
     user_info = request.user  # 현재 로그인한 사용자
@@ -126,9 +223,9 @@ def my_page(request):
 
     img_data = api.month_trend()
 
-    return render(request, 'kdy_app/my_page.html', {'user_info': user_info, 'img_data': img_data, 'last_date_str':last_date_str, 'first_date_str':first_date_str})
+    return render(request, 'kdy_app/my_page.html', {'user_info' : user_info, 'img_data': img_data, 'last_date_str':last_date_str, 'first_date_str':first_date_str})
 
-
+ 
 # @login_required
 # def my_page(request):
 #     user_info = request.user  # 현재 로그인한 사용자
@@ -137,9 +234,6 @@ def my_page(request):
 #     else:
 #         # 로그인하지 않은 사용자나 다른 사용자의 마이페이지에 접근하려는 경우 리디렉션
 #         return redirect('sign_in')  
-
-
-
 
 
 # 로그인시 해당 유저 이메일로 자동 메일 발송
@@ -230,7 +324,9 @@ def send_mail(to_email, inneats_user_id):
 
 
 
-# 세션 처리 문제
+
+# 페이지별 세션 처리 문제 -> kdy_app/user_info.py 컨텍스트 로 해결
+
 # @receiver(user_logged_in, dispatch_uid="set_session")
 # def set_session(sender, request, user, **kwargs):
 #     user_info = user
@@ -258,13 +354,9 @@ def send_mail(to_email, inneats_user_id):
 
 
 
-
-
-
 # 유저 선호도에 따른 필터링 결과 출력
-
-# @login_required
-def naver_blog_list_user(request):
+@login_required
+def naver_blog_list_user(request, keyword):
     user_info = request.user  # 현재 로그인한 사용자
     preferred_region_no = get_user_preferred_region(user_info.username) # 테마 타입이 일치하는 유저 정보 
 
@@ -275,17 +367,17 @@ def naver_blog_list_user(request):
 
     naver_blog_list = Youtube.objects.all()
     # 추천영상 알고리즘에 포함
-    if len(naver_blog_data) > 1:
+    if len(naver_blog_data) >= 1:
         naver_blog_data1 = naver_blog_data[0]
     else:
         naver_blog_data1 = naver_blog_list[0]
     grouped_naver_blog_list = [naver_blog_list[i:i+3] for i in range(0, len(naver_blog_list), 3)]
-    return render(request, 'kdy_app/naver_blog_list.html', {'naver_blog_data1':naver_blog_data1, 'naver_blog_data':naver_blog_data, 'naver_blog_list':naver_blog_list, 'grouped_naver_blog_list': grouped_naver_blog_list})
+    return render(request, 'kdy_app/naver_blog_list.html', {'naver_blog_data1':naver_blog_data1, 'naver_blog_data':naver_blog_data, 'naver_blog_list':naver_blog_list, 'grouped_naver_blog_list': grouped_naver_blog_list, 'keyword':keyword})
 
 
 # 유저 로그인 시 해당 유저가 설정한 선호 지역 숙소 테마 등을 키워드로 필터링해서 출력
 @login_required
-def youtube_list_user(request):
+def youtube_list_user(request, keyword):
     user_info = request.user  # 현재 로그인한 사용자
     preferred_region_no = get_user_preferred_region(user_info.username) # 테마 타입이 일치하는 유저 정보 
 
@@ -296,17 +388,15 @@ def youtube_list_user(request):
 
     youtube_list = Youtube.objects.all()
     # 추천영상 알고리즘에 포함
-    if len(youtube_data) > 1:
+    if len(youtube_data) >= 1:
         youtube_data1 = youtube_data[0]
     else:
         youtube_data1 = youtube_list[0]
     grouped_youtube_list = [youtube_list[i:i+3] for i in range(0, len(youtube_list), 3)]
-    return render(request, 'kdy_app/youtube_list.html', {'youtube_data1':youtube_data1, 'youtube_data':youtube_data, 'youtube_list':youtube_list, 'grouped_youtube_list': grouped_youtube_list})
-
+    return render(request, 'kdy_app/youtube_list.html', {'youtube_data1':youtube_data1, 'youtube_data':youtube_data, 'youtube_list':youtube_list, 'grouped_youtube_list': grouped_youtube_list, 'keyword':keyword})
 
 
 # 선호 지역을 받아오는 함수
-
 def get_user_preferred_region(username):
     try:
         user_profile = UsersAppUser.objects.get(username=username)
@@ -348,7 +438,6 @@ def get_user_address(user_id):
     except UsersAppUser.DoesNotExist:
         return None
 
-
 # 로그인한 유저가 회원가입시 지정한 테마 타입을 키워드로 반환
 @login_required
 def youtube_user_preferred_tour_theme_type(request):
@@ -363,30 +452,9 @@ def youtube_user_preferred_tour_theme_type(request):
 
     return render(request, 'your_app/youtube_list.html', {'youtube_user_preferred_tour_theme_type': youtube_user_preferred_tour_theme_type})
 
-@login_required
-def youtube_user_address_login(request):
-    user_info = request.user
-    return render(request, 'kdy_app/youtube_list.html', {'user_info': user_info})
-
-@login_required
-def youtube_user_address(request):
-    user_info = request.user
-    user_address = get_user_address(user_info.id)
-
-    if user_address:        
-        youtube_user_address = Youtube.objects.filter(address=user_address)
-    else:        
-        youtube_user_address = None
-
-    return render(request, 'your_app/youtube_list.html', {'youtube_user_address': youtube_user_address})
 
 
-
-
-
-
-
-
+# 회원정보 삭제 = 탈퇴
 def my_page_delete_move(request, id):
     user_info = get_object_or_404(UsersAppUser, pk=id)        
     return render(request, 'kdy_app/my_page_delete_confirm.html', {'user_info':user_info})
@@ -400,7 +468,6 @@ def my_page_delete(request):
     return render(request, 'kdy_app/my_page_delete_confirm.html')
 
 
-
 class MyPageDeleteView(DeleteView):
     model = UsersAppUser
     success_url = 'index'  # 회원 탈퇴 후 리디렉션할 URL
@@ -409,6 +476,7 @@ class MyPageDeleteView(DeleteView):
     template_name = 'kdy_app/my_page_delete_confirm.html'
 
 
+# 이미지 업로드
 def sign_up_upload_image(request):
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES)
@@ -434,10 +502,10 @@ def upload_image(request):
 
 
 
-
-
+# 회원정보 수정
+@login_required
 def my_page_update(request, id):  
-    user_info = get_object_or_404(UsersAppUser, pk=id)    
+    user_info = get_object_or_404(UsersAppUser, pk=id)
     if request.method == "POST":
         user_form = UserInfoForm(request.POST, instance=user_info)
         if user_form.is_valid():
@@ -447,274 +515,37 @@ def my_page_update(request, id):
     else:
         user_form = UserInfoForm(instance=user_info)
     
-    return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info':user_info})
+    return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info_update':user_info})
 
-
-def my_page_update_username(request, id):  
-    user_info = get_object_or_404(UsersAppUser, pk=id)    
-    if request.method == "POST":
-        user_form = UserInfoForm_username(request.POST, instance=user_info)
-        if user_form.is_valid():
-            user_info = user_form.save(commit=False)
-            user_info.save()
-            return redirect('index')
-    else:
-        user_form = UserInfoForm_username(instance=user_info)
+# 개별 정보 수정
+# @login_required
+# def my_page_update_email(request, id):  
+#     user_info = get_object_or_404(UsersAppUser, pk=id)    
+#     if request.method == "POST":
+#         user_form = UserInfoForm_email(request.POST, instance=user_info)
+#         if user_form.is_valid():
+#             user_info = user_form.save(commit=False)
+#             user_info.save()
+#             return redirect('index')
+#     else:
+#         user_form = UserInfoForm_email(instance=user_info)
     
-    return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info':user_info})
-
-
-def my_page_update_email(request, id):  
-    user_info = get_object_or_404(UsersAppUser, pk=id)    
-    if request.method == "POST":
-        user_form = UserInfoForm_email(request.POST, instance=user_info)
-        if user_form.is_valid():
-            user_info = user_form.save(commit=False)
-            user_info.save()
-            return redirect('index')
-    else:
-        user_form = UserInfoForm_email(instance=user_info)
-    
-    return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info':user_info})
-
-def my_page_update_password(request, id):  
-    user_info = get_object_or_404(UsersAppUser, pk=id)    
-    if request.method == "POST":
-        user_form = UserInfoForm_password(request.POST, instance=user_info)
-        if user_form.is_valid():
-            user_info = user_form.save(commit=False)
-            user_info.save()
-            return redirect('index')
-    else:
-        user_form = UserInfoForm_password(instance=user_info)
-    
-    return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info':user_info})
-
-def my_page_update_user_name(request, id):  
-    user_info = get_object_or_404(UsersAppUser, pk=id)    
-    if request.method == "POST":
-        user_form = UserInfoForm_user_name(request.POST, instance=user_info)
-        if user_form.is_valid():
-            user_info = user_form.save(commit=False)
-            user_info.save()
-            return redirect('index')
-    else:
-        user_form = UserInfoForm_user_name(instance=user_info)
-    
-    return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info':user_info})
-
-def my_page_update_user_phone(request, id):  
-    user_info = get_object_or_404(UsersAppUser, pk=id)    
-    if request.method == "POST":
-        user_form = UserInfoForm_user_phone(request.POST, instance=user_info)
-        if user_form.is_valid():
-            user_info = user_form.save(commit=False)
-            user_info.save()
-            return redirect('index')
-    else:
-        user_form = UserInfoForm_user_phone(instance=user_info)
-    
-    return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info':user_info})
-
-def my_page_update_user_address(request, id):  
-    user_info = get_object_or_404(UsersAppUser, pk=id)    
-    if request.method == "POST":
-        user_form = UserInfoForm_user_address(request.POST, instance=user_info)
-        if user_form.is_valid():
-            user_info = user_form.save(commit=False)
-            user_info.save()
-            return redirect('index')
-    else:
-        user_form = UserInfoForm_user_address(instance=user_info)
-    
-    return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info':user_info})
-
-
-
-def my_page_update_preferred_region_no(request, id):  
-    user_info = get_object_or_404(UsersAppUser, pk=id)    
-    if request.method == "POST":
-        user_form = UserInfoForm_preferred_region_no(request.POST, instance=user_info)
-        if user_form.is_valid():
-            user_info = user_form.save(commit=False)
-            user_info.save()
-            return redirect('index')
-    else:
-        user_form = UserInfoForm_preferred_region_no(instance=user_info)
-    
-    return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info':user_info})
-
-
-
-def my_page_update_preferred_accommodation_type_no(request, id):  
-    user_info = get_object_or_404(UsersAppUser, pk=id)    
-    if request.method == "POST":
-        user_form = UserInfoForm_preferred_accommodation_type_no(request.POST, instance=user_info)
-        if user_form.is_valid():
-            user_info = user_form.save(commit=False)
-            user_info.save()
-            return redirect('index')
-    else:
-        user_form = UserInfoForm_preferred_accommodation_type_no(instance=user_info)
-    
-    return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info':user_info})
-
-def my_page_update_preferred_tour_theme_type_no(request, id):  
-    user_info = get_object_or_404(UsersAppUser, pk=id)    
-    if request.method == "POST":
-        user_form = UserInfoForm_preferred_tour_theme_type_no(request.POST, instance=user_info)
-        if user_form.is_valid():
-            user_info = user_form.save(commit=False)
-            user_info.save()
-            return redirect('index')
-    else:
-        user_form = UserInfoForm_preferred_tour_theme_type_no(instance=user_info)
-    
-    return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info':user_info})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-def my_page_update_custom(request, id):  
-    user_info = get_object_or_404(UsersAppUser, pk=id)    
-    if request.method == "POST":
-        user_form = UserInfoForm(request.POST, instance=user_info)
-        if user_form.is_valid():
-            user_info = user_form.save(commit=False)
-            user_info.save()
-            return redirect('my_page', user_info.id)
-    else:
-        user_form = UserInfoForm(instance=user_info)
-    
-    return render(request, 'kdy_app/my_page_update_custom.html', {'user_form':user_form, 'user_info':user_info})
-
-
-# def my_page_delete(id):
-#     user_info = get_object_or_404(UsersAppUser, pk=id)
-#     user_info.delete()
-#     print('탈퇴가 완료되었습니다')
-#     return redirect('index')
-
-def jeju_accom_type(request):
-    return render(request, 'kdy_app/jeju_accom_type.html')
+#     return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info':user_info})
 
 
 def naver_blog_list(request, keyword):
     naver_blog_data = NaverBlog.objects.filter(naver_blog_title__icontains=keyword)
-    naver_blog_list = NaverBlog.objects.all()
-    
-    naver_blog_list = NaverBlog.objects.all()[0:30]
+    naver_blog_list = NaverBlog.objects.all()        
     if len(naver_blog_data) > 1:
         naver_blog_data1 = naver_blog_data[0]
     else:
         naver_blog_data1 = naver_blog_list[0]
-
     grouped_naver_blog_list = [naver_blog_list[i:i+3] for i in range(0, len(naver_blog_list), 3)]
-    
     return render(request, 'kdy_app/naver_blog_list.html', {'naver_blog_data1':naver_blog_data1, 'naver_blog_data':naver_blog_data,'naver_blog_list':naver_blog_list, 'grouped_naver_blog_list': grouped_naver_blog_list, 'keyword':keyword})
 
 def naver_blog_detail(request, naver_blog_id):
     NaverBlog = get_object_or_404(NaverBlog, pk=naver_blog_id)
     return render(request, 'kdy_app/naver_blog_detail.html', {'NaverBlog':NaverBlog})
-
-def naver_blog_list_kdy(request,keyword):
-    return render(request, 'kdy_app/naver_blog_list_kdy.html',{'keyword':keyword})
-
-def naver_blog_all_lists(request):
-    naver_blog_all_lists = NaverBlog.objects.all()
-    return render(request, 'kdy_app/naver_blog_all_lists.html', {'naver_blog_all_lists':naver_blog_all_lists})
-
-def naver_blog_all_detail(request, naver_blog_id):
-    NaverBlog = get_object_or_404(NaverBlog, pk=naver_blog_id)
-    return render(request, 'kdy_app/naver_blog_all_detail.html', {'NaverBlog':NaverBlog})
-
-def naver_blog_insert(request):    
-    if request.method == "POST":        
-        form = NaverBlogForm(request.POST)        
-        if form.is_valid():
-            NaverBlog = form.save(commit=False)            
-            NaverBlog.save()
-            return redirect('naver_blog_all_lists')
-    else:
-        form = NaverBlogForm()
-    
-    return render(request, 'kdy_app/naver_blog_all_insert.html', {'form':form})
-        
-def naver_blog_update(request, naver_blog_id):  
-    NaverBlog = get_object_or_404(NaverBlog, pk=naver_blog_id)    
-    if request.method == "POST":        
-        form = NaverBlogForm(request.POST, instance=NaverBlog)        
-        if form.is_valid(): # 저장 지연
-            NaverBlog = form.save(commit=False)
-            NaverBlog.save() # 저장
-            return redirect('naver_blog_all_lists')
-    else:
-        form = NaverBlogForm(instance=NaverBlog)        
-    
-    return render(request, 'kdy_app/naver_blog_all_update.html', {'form':form})
-
-def naver_blog_delete(naver_blog_id):
-    NaverBlog = get_object_or_404(NaverBlog, pk=naver_blog_id)    
-    NaverBlog.delete()
-    return redirect('naver_blog_list')
-
-def naver_blog_search_custom_form(request):
-    return render(request, 'kdy_app/naver_blog_search_custom.html')
-
-def naver_blog_search_custom(request):
-    if request.method == "POST":
-        type = request.POST['type']
-        keyword = request.POST['keyword']
-
-        print(type, keyword)
-
-        if type == "naver_blog_title":
-            naver_blog_list = NaverBlog.objects.filter(Q(naver_blog_title__contains=keyword)) 
-        elif type == "naver_blog_channel_name":
-            naver_blog_list = NaverBlog.objects.filter(Q(naver_blog_channel_name__contains=keyword))
-        elif type == "naver_blog_hashtag":
-            naver_blog_list = NaverBlog.objects.filter(Q(naver_blog_hashtag__contains=keyword))
-        else: 
-            pass
-
-        return render(request, 'kdy_app/naver_blog_search_custom.html', {'naver_blog_list':naver_blog_list})
-
-def naver_blog_search_ajax_form(request):
-    return render(request, 'kdy_app/naver_blog_search_ajax.html')
-
-def naver_blog_search_ajax(request):
-    if request.method == "POST":
-        type = request.POST['type']
-        keyword = request.POST['keyword']
-
-        print(type, keyword)
-
-        if type == "naver_blog_title":
-            naver_blog_list = NaverBlog.objects.filter(Q(naver_blog_title__contains=keyword)) 
-        elif type == "naver_blog_channel_name":
-            naver_blog_list = NaverBlog.objects.filter(Q(naver_blog_channel_name__contains=keyword))
-        elif type == "naver_blog_hashtag":
-            naver_blog_list = NaverBlog.objects.filter(Q(naver_blog_hashtag__contains=keyword))
-        else: 
-            pass
-
-        naver_blog_list_json = json.loads(serializers.serialize('json', naver_blog_list, ensure_ascii=False))
-
-        return JsonResponse({'reload_all':False, 'naver_blog_list_json':naver_blog_list_json})
-    
 
 
 def youtube_list(request, keyword):
@@ -726,6 +557,7 @@ def youtube_list(request, keyword):
     # 해당 절차를 다른 컨텐츠 페이지에 동일하게 적용
     youtube_data = Youtube.objects.filter(youtube_title__icontains=keyword)
     youtube_list = Youtube.objects.all()
+
     # 추천영상 알고리즘에 포함
     if len(youtube_data) > 1:
         youtube_data1 = youtube_data[0]
@@ -742,7 +574,40 @@ def youtube_list(request, keyword):
     # grouped_youtube_list[1]
     # grouped_youtube_list[2]
     
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def youtube_detail(request, youtube_id):
     youtube = get_object_or_404(Youtube, pk=youtube_id)
     return render(request, 'kdy_app/youtube_detail.html', {'youtube':youtube})
@@ -853,155 +718,3 @@ def youtube_search_ajax(request):
 
 
 
-
-
-# def book_search(request):
-#     if request.method == "POST":
-#         type = request.POST['type']
-#         keyword = request.POST['keyword']
-
-#         print(type, keyword)
-
-#         if type == "bookname":
-#             book_list = Book.objects.filter(Q(bookname__contains=keyword))
-#         elif type == "bookauthor":
-#             book_list = Book.objects.filter(Q(bookauthor__contains=keyword))
-#         elif type == "pubname":
-#             book_list = Book.objects.filter(Q(pubno__pubname__contains=keyword))
-#         # elif type == "bookstock":
-#         #     book_list = Book.objects.filter(Q(bookstock=keyword))
-#         elif type == "bookprice":
-#             book_list = Book.objects.filter(Q(bookprice=keyword))        
-#         elif type == "bookprice":
-#             price_range = keyword.split("-")  # 가격 범위 (-) 기준으로 분리
-#             if len(price_range) == 2:
-#                 min_price, max_price = price_range
-#                 book_list = Book.objects.filter(Q(bookprice__gte = min_price, bookprice__lte = max_price))       
-#         else:
-#             return render(request, 'book_app/book_search_form.html')
-        
-#         return render(request, 'book_app/book_search_form.html', {'book_list':book_list})
-    
-#     else: # GET
-#         return render(request, 'book_app/book_search_form.html')
-
-# def book_search_form2(request):
-#     return render(request, 'book_app/book_search_form2.html')
-
-# # 검색 기능 수행하고 결과를 JsonResponse로 반환
-# def book_search2(request):
-#     if request.method == "POST":
-#         # if 문으로 type or keyword 골라서 받기 구현
-#         type = request.POST['type']
-#         keyword = request.POST['keyword']
-#         print(type, keyword)
-
-#         if type == "bookname":
-#             book_list = Book.objects.filter(Q(bookname__contains=keyword))
-#         elif type == "bookauthor":
-#             book_list = Book.objects.filter(Q(bookauthor__contains=keyword))
-#         elif type == "pubname":
-#             book_list = Book.objects.filter(Q(pubno__pubname__contains=keyword))
-#         # elif type == "bookstock":
-#         #     book_list = Book.objects.filter(Q(bookstock=keyword))
-#         # elif type == "bookprice":
-#         #     book_list = Book.objects.filter(Q(bookprice=keyword))              
-#         elif type == "bookprice":
-#             price_range = int(keyword.split("-"))  # 가격 범위 (-) 기준으로 분리
-#             try:
-#                 if len(price_range) == 2:
-#                     min_price, max_price = price_range
-#                     book_list = Book.objects.filter(Q(bookprice__gte = min_price, bookprice__lte = max_price))
-#                 else:
-#                     print("가격은 [ 최소-최대 ] 형식으로 숫자만 입력하세요")
-#             except:
-#                 print('올바른 형식으로 입력하세요')
-                               
-#         else:
-#             print("검색조건을 선택하세요")
-
-#         book_list_json = json.loads(serializers.serialize('json', book_list, ensure_ascii=False))
-
-#         return JsonResponse({'reload_all':False, 'book_list_json':book_list_json})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# def youtube_detail(request,keyword):    
-#     # print(keyword)    
-
-#     # 하위 주소를 토대로 관광지 리스트 쿼리 
-#     addr = "제주 서귀포시 안덕면"
-#     keywords = addr.split(" ")
-
-#     if len(keywords) > 2 :
-#         keyword = keywords[2]
-#     else:
-#         keyword = keywords[1]
-
-#     # print(keyword)
-#     # attraction_list = Visitkorea.objects.filter(Q(visitkorea_address__contains=keyword))[:3]
-#     # 숙소 주변 관광지 리스트를 토대로 쿼리 날리는 방법 #
-#     #################################################################################
-#     # 키워드를 포함한 리스트
-#     keywords = ['용연구름다리', '화북포구', '아날로그감귤밭']  # 나머지 키워드들을 포함
-#     # 초기 쿼리 생성
-#     q_objects = Q(youtube_title__contains=keywords[0])
-#     # 나머지 키워드들을 OR 조건으로 추가
-#     for keyword in keywords[1:]:
-#         q_objects |= Q(youtube_title__contains=keyword)
-#     # 쿼리 실행
-#     attraction_list = Youtube.objects.filter(q_objects)
-#     #################################################################################
-#     return render(request, 'kdy_app/youtube_detail.html', {'attraction_list':attraction_list}, keyword) 
-  
-
-# def naver_blog_list(request,keyword):
-#     print(keyword)
-#     return render(request, 'kdy_app/naver_blog_list.html',{'keyword':keyword}, {'youtube_title': youtube_title}) 
-
-
-# def naver_blog_detail(request,keyword):
-#     # 하위 주소를 토대로 관광지 리스트 쿼리 
-#     addr = "제주 서귀포시 안덕면"
-#     keywords = addr.split(" ")
-
-#     if len(keywords) > 2 :
-#         keyword = keywords[2]
-#     else:
-#         keyword = keywords[1]
-
-#     # print(keyword)
-#     # attraction_list = Visitkorea.objects.filter(Q(visitkorea_address__contains=keyword))[:3]
-
-#     # 숙소 주변 관광지 리스트를 토대로 쿼리 날리는 방법 #
-#     #################################################################################
-#     # 키워드를 포함한 리스트
-#     keywords = ['용연구름다리', '화북포구', '아날로그감귤밭']  # 나머지 키워드들을 포함
-#     # 초기 쿼리 생성
-#     q_objects = Q(naver_blog_title__contains=keywords[0])
-#     # 나머지 키워드들을 OR 조건으로 추가
-#     for keyword in keywords[1:]:
-#         q_objects |= Q(naver_blog_title__contains=keyword)
-#     # 쿼리 실행
-#     attraction_list = NaverBlog.objects.filter(q_objects)
-#     #################################################################################
-     
-#     return render(request, 'kdy_app/naver_blog_detail.html', {'attraction_list':attraction_list})

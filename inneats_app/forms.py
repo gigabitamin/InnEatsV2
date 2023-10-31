@@ -24,18 +24,32 @@ class DailyHotelForm(forms.ModelForm):
             'daily_hotel_image_link',
             'daily_hotel_rating',
             'daily_hotel_link',
+            'daily_hotel_room_type',
+            'daily_hotel_review_clear',
+            'daily_hotel_review_location',
+            'daily_hotel_review_service',
+            'daily_hotel_review_facility',
+            'daily_hotel_price',
             'daily_hotel_date',
-            'daily_hotel_price'
+            'daily_hotel_stay_date',
+            'daily_hotel_discount_rate'
         )
 
         labels = {
-            'daily_hotel_name' : '숙소 이름',
-            'daily_hotel_address' : '주소',
-            'daily_hotel_image_link' : '이미지 url',
-            'daily_hotel_rating' : '별점',
-            'daily_hotel_link' : '숙소 url',
-            'daily_hotel_date' : '예약 가능 날짜',
-            'daily_hotel_price' : '예약 가격'
+            'daily_hotel_name':'숙소명',
+            'daily_hotel_address':'주소',
+            'daily_hotel_image_link':'이미지링크',
+            'daily_hotel_rating':'별점',
+            'daily_hotel_link':'링크',
+            'daily_hotel_room_type':'룸타입',
+            'daily_hotel_review_clear':'청결도 별점',
+            'daily_hotel_review_location':'위치 별점',
+            'daily_hotel_review_service':'서비스 별점',
+            'daily_hotel_review_facility':'시설 별점',
+            'daily_hotel_price':'가격',
+            'daily_hotel_date':'데이터 입력일',
+            'daily_hotel_stay_date':'예약 가능일',
+            'daily_hotel_discount_rate':'할인율'
         }
 
 class YanoljaForm(forms.ModelForm):
