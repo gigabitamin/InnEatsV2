@@ -74,6 +74,7 @@
 
                             </div>
                             <div class="d-flex border-top">
+                                <small class="flex-fill text-center border-end py-2"><i class="bi bi-cup-hot-fill text-primary me-2"></i><a href="{% url 'show_map' daily_hotel_name=result.daily_hotel_name %}">숙소위치</a></small>
                                 <small class="flex-fill text-center border-end py-2"><i class="bi bi-cup-hot-fill text-primary me-2"></i><a href="{% url 'map_main_detail_address' address=result.daily_hotel_address %}">맛집</a></small>
                                 <small class="flex-fill text-center border-end py-2"><i class="bi bi-camera-fill text-primary me-2"></i><a href="{% url 'attraction' keyword=result.daily_hotel_name %}">여행지</a></small>
                                 <small class="flex-fill text-center border-end py-2"><i class="bi bi-youtube text-primary me-2"></i><a href="{% url 'youtube_list' keyword=result.daily_hotel_name %}">유튜브</a></small>

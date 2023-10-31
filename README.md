@@ -4,8 +4,15 @@ database 폴더에 accom_map.sql 에서 accom_map import 후 구동
 
 ==============================================================
 
+1.1.7 / 231031 / 
+jeju_place row행 39404개, daily_hotel row행 825개, 
+daily_hotel 테이블에 x축 y축 컬럼 추가, jeju_place을 join 해서 주소명 3번째에 맞는 좌표값 삽입 후 daily_hotel_num으로 파티션 정렬한 daily_hotel_map 테이블 새로 생성(database/daily_hotel_filter_order_sql_query_231031 구문 참조)
+inneats_app/models.py 수정
+네비바 호텔 검색에서 숙소 검색 후 숙소위치 클릭시 숙소명을 건네받아 kdy/show_map.html 페이지로 이동, daily_hotel 테이블에서 숙소명에 해당하는 row 행을 찾은 후 x_coordi, y_coordi 를 받아 해당 숙소 좌표로 등록 된 지도 위치로 지도 이동(zoom 레벨은 4) 하도록 기능 추가
+
+
 1.1.6 / 231030 / 
-제주도 시설 장소 들에 대한 좌표값이 들어있는 공공데이터 테이블과 accommodation 테이블에서 주소 4번째 요소가 일치하는 행을 찾아서 accom_map 이라는테이블로 저장
+제주도 시설 장소 들에 대한 좌표값이 들어있는 공공데이터 테이블과 accommodation 테이블에서 주소 4번째 요소가 일치하는 행을 찾아서 accom_map 이라는 테이블로 저장
 SELECT DISTINCT a.address, `위치좌표 X축값`, `위치좌표 Y축값`, a.title, jp.장소명, jp.소재지
 FROM inneats_db.jeju_place jp
 INNER JOIN inneats_db.accommodation a

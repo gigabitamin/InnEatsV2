@@ -48,12 +48,38 @@ class DailyHotel(models.Model):
     daily_hotel_date = models.DateField(blank=True, null=True)
     daily_hotel_stay_date = models.DateField(blank=True, null=True)
     daily_hotel_discount_rate = models.IntegerField(blank=True, null=True)
+    x_coordi = models.DecimalField(max_digits=10, decimal_places=6, blank=True, null=True)
+    y_coordi = models.DecimalField(max_digits=10, decimal_places=6, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'daily_hotel'
         unique_together = (('daily_hotel_name', 'daily_hotel_address'),)
 
+
+class DailyHotelMap(models.Model):
+    daily_hotel_name = models.CharField(max_length=200)
+    daily_hotel_address = models.CharField(max_length=255)
+    daily_hotel_image_link = models.TextField(blank=True, null=True)
+    daily_hotel_rating = models.DecimalField(max_digits=3, decimal_places=1, blank=True, null=True)
+    daily_hotel_link = models.TextField(blank=True, null=True)
+    daily_hotel_room_type = models.CharField(max_length=20, blank=True, null=True)
+    daily_hotel_num = models.CharField(max_length=20, blank=True, null=True)
+    daily_hotel_review_clear = models.DecimalField(max_digits=3, decimal_places=1, blank=True, null=True)
+    daily_hotel_review_location = models.DecimalField(max_digits=3, decimal_places=1, blank=True, null=True)
+    daily_hotel_review_service = models.DecimalField(max_digits=3, decimal_places=1, blank=True, null=True)
+    daily_hotel_review_facility = models.DecimalField(max_digits=3, decimal_places=1, blank=True, null=True)
+    daily_hotel_price = models.IntegerField(blank=True, null=True)
+    daily_hotel_date = models.DateField(blank=True, null=True)
+    daily_hotel_stay_date = models.DateField(blank=True, null=True)
+    daily_hotel_discount_rate = models.IntegerField(blank=True, null=True)
+    x_coordi = models.DecimalField(max_digits=10, decimal_places=6, blank=True, null=True)
+    y_coordi = models.DecimalField(max_digits=10, decimal_places=6, blank=True, null=True)
+    row_num = models.PositiveBigIntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'daily_hotel_map'
 
 class DjangoAdminLog(models.Model):
     action_time = models.DateTimeField()

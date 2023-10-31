@@ -30,7 +30,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 
 # 데이터베이스 필터링 관련
 from django.db.models import Q
-from .models import DailyHotel, NaverBlog
+from .models import DailyHotel, NaverBlog, DailyHotelMap
 from .models import Youtube
 from .forms import YoutubeForm
 from .forms import NaverBlogForm
@@ -79,16 +79,21 @@ from .models import AccomMap
 
 
 
-def show_map(request):
+def show_map(request, daily_hotel_name):
+    # dam_results = DailyHotelMap.objects.filter(Q(daily_hotel_name__contains=daily_hotel_name))
+    # dam_result_0 = dam_results[0] 
+    # , 'dam_result_0':dam_result_0
+    da_results = DailyHotel.objects.filter(Q(daily_hotel_name__contains=daily_hotel_name))    
+    da_result_0 = da_results[0]
 
-    return render(request, 'kdy_app/show_map.html')
-
-
-
+    return render(request, 'kdy_app/show_map.html', {'da_result_0':da_result_0})
 
 
 # 숙소 검색 후 주소 반환 받아서 해당 주소를 split한 뒤 2번째 주소를 map_main에 전달, 해당 페이지에서 2번째 주소 지도 상세페이지로 바로 이동
-def accommodation_da (request, keyword):    
+def accommodation_da (request, keyword):
+    accom_map_list = AccomMap.objects.filter(Q(title__contains=keyword))
+    accom_map_address_0 = accom_map_list[0]
+    accom_map_address_0_title = accom_map_address_0.title
     accommodation_list = Accommodation.objects.filter(Q(address__contains=keyword))
 
     accommodation_da = Accommodation.objects.filter(
@@ -98,8 +103,7 @@ def accommodation_da (request, keyword):
     )
     accommodation_da_sorted = sorted(accommodation_da, key=lambda x: x.da_price)
 
-
-    return render(request, 'accommodation_app/accommodation.html',{'keyword':keyword, 'accommodation_list':accommodation_list, 'accommodation_da_sorted':accommodation_da_sorted})
+    return render(request, 'accommodation_app/accommodation.html',{'keyword':keyword, 'accommodation_list':accommodation_list, 'accommodation_da_sorted':accommodation_da_sorted, 'accom_map_address_0':accom_map_address_0, 'accom_map_address_0_title':accom_map_address_0_title})
 
 
 def map_main_detail_address (request, address):
