@@ -1,6 +1,6 @@
 # InnEats V2 working on gigabitamin
 
-database 폴더에 accom_map.sql 에서 accom_map import 후 구동
+database 폴더에 추가 db import 후 구동
 
 ==============================================================
 
