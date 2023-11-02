@@ -6,6 +6,8 @@ from . import views
 # register_converter(FloatConverter, 'float')
 
 urlpatterns = [    
+    path('load_price_min/', views.load_price_min, name='load_price_min'),
+    path('load_discount_rate/<str:keyword>', views.load_discount_rate, name='load_discount_rate'),
     path('show_map/<str:daily_hotel_name>', views.show_map, name='show_map'),
     path('accommodation_da/<str:keyword>', views.accommodation_da, name='accommodation_da'),
     path('map_main_detail_address/<str:address>', views.map_main_detail_address, name='map_main_detail_address'),
