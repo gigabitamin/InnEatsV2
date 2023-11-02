@@ -3,29 +3,19 @@
 # import warnings
 # warnings.filterwarnings("ignore", category=UserWarning, module="tkinter")
 
-# matplotlib 관련
-# plt.rcParams['axes.unicode_minus'] = False
-# plt.rcParams['font.family'] = 'Malgun Gothic'
-# plt.rcParams['axes.grid'] = False
-# pd.set_option('display.max_columns', 250)
-# pd.set_option('display.max_rows', 250)
-# pd.set_option('display.width', 100)
-# pd.options.display.float_format = '{:.2f}'.format
-
+# 기타 등등
 import urllib.request
 # import datetime
 from datetime import datetime, timedelta
 import glob
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
 import plotly.express as px
 import seaborn as sns
 import os
 import json
 from django.http import HttpResponse, JsonResponse
 from django.core import serializers
-from datetime import datetime, timedelta
 from django.shortcuts import get_object_or_404, render, redirect
 
 # 데이터베이스 필터링 관련
@@ -65,7 +55,16 @@ from .forms import UserInfoForm
 from kdy_app.templatetags.naver_datalab import *
 import io
 import base64
+
+# matplotlib 관련
 import matplotlib.pyplot as plt
+# plt.rcParams['axes.unicode_minus'] = False
+# plt.rcParams['font.family'] = 'Malgun Gothic'
+# plt.rcParams['axes.grid'] = False
+# pd.set_option('display.max_columns', 250)
+# pd.set_option('display.max_rows', 250)
+# pd.set_option('display.width', 100)
+# pd.options.display.float_format = '{:.2f}'.format
 
 # hotel_search_detail 관련
 # from inneats_app.models import Visitkorea
@@ -77,7 +76,148 @@ from inneats_app.models import Accommodation
 from .models import AccomMap
 
 
+def load_price_min(request):
+    # 최저가 템플릿 로드
+    return render(request, 'kdy_app/search_hotels_price_min.html')
 
+
+
+def load_discount_rate(request, keyword):
+
+    ################################### 기본 필터링 ###############################################
+
+    # 'daily_hotel_name' 또는 'daily_hotel_address'에서 keyword 문자열을 포함하고, 'daily_hotel_price'가 NULL이 아닌 행을 검색
+    results = DailyHotel.objects.filter(
+        (Q(daily_hotel_name__icontains=keyword) | Q(daily_hotel_address__icontains=keyword)) &
+        Q(daily_hotel_price__isnull=False)
+    ).order_by(
+        '-daily_hotel_review_clear', '-daily_hotel_review_service', # 청결도 우선순위
+        '-daily_hotel_review_facility', '-daily_hotel_review_location', '-daily_hotel_discount_rate'
+    )
+
+    # results 결과물 가격순으로 재정렬
+    result_all = sorted(results, key=lambda x: x.daily_hotel_price)
+    # 그 결과에서 상위 10개 3개만 선택
+    result_top10 = result_all[:10]
+    # top10에 sorted 한 번 더 넣은 뒤 top3 뽑는 것도 고려
+    result_top3 = result_top10[:3]
+
+    ##################################### column 종류별 정렬 #################################################
+
+    # 최저가순
+    price_min = DailyHotel.objects.filter(daily_hotel_discount_rate__isnull=False).order_by('daily_hotel_price')
+
+    # 최저가순
+    price_max = DailyHotel.objects.filter(daily_hotel_discount_rate__isnull=False).order_by('-daily_hotel_price')
+
+    # 할인율순
+    discount_rate = DailyHotel.objects.filter(daily_hotel_discount_rate__isnull=False).order_by('-daily_hotel_discount_rate')    
+
+    # 리뷰 청결도순
+    clear = DailyHotel.objects.filter(daily_hotel_discount_rate__isnull=False).order_by('-daily_hotel_review_clear')
+
+    # 리뷰 서비스순
+    service = DailyHotel.objects.filter(daily_hotel_discount_rate__isnull=False).order_by('-daily_hotel_review_service')
+
+    # 리뷰 시설순
+    facility = DailyHotel.objects.filter(daily_hotel_discount_rate__isnull=False).order_by('-daily_hotel_review_facility')
+
+    # 리뷰 위치순
+    location = DailyHotel.objects.filter(daily_hotel_discount_rate__isnull=False).order_by('-daily_hotel_review_location')
+
+    # return 문
+    return render(request,                  
+                  'kdy_app/search_hotels_discount_rate.html', 
+                    {
+                        'keyword':keyword, 
+                        'results':results, 
+                        'result_all': result_all, 
+                        'result_top10': result_top10, 
+                        'result_top3': result_top3,
+                        'discount_rate':discount_rate,
+                        'price_min':price_min,
+                        'price_max':price_max,
+                        'clear':clear,
+                        'service':service,
+                        'facility':facility,
+                        'location':location,                        
+                    }                    
+            )
+
+
+
+
+
+# 데일리 호텔 필터링 정렬 처리 결과물 -> limit 걸어서 추천 리스트 로 출력해줄 리스트도 따로 작성해서 같이 변수 처리
+def search_hotels(request, keyword):
+
+    ################################### 기본 필터링 ###############################################
+
+    # 'daily_hotel_name' 또는 'daily_hotel_address'에서 keyword 문자열을 포함하고, 'daily_hotel_price'가 NULL이 아닌 행을 검색
+    results = DailyHotel.objects.filter(
+        (Q(daily_hotel_name__icontains=keyword) | Q(daily_hotel_address__icontains=keyword)) &
+        Q(daily_hotel_price__isnull=False)
+    ).order_by(
+        '-daily_hotel_review_clear', '-daily_hotel_review_service', # 청결도 우선순위
+        '-daily_hotel_review_facility', '-daily_hotel_review_location', '-daily_hotel_discount_rate'
+    )
+
+    # results 결과물 가격순으로 재정렬
+    result_all = sorted(results, key=lambda x: x.daily_hotel_price)
+    # 그 결과에서 상위 10개 3개만 선택
+    result_top10 = result_all[:10]
+    # top10에 sorted 한 번 더 넣은 뒤 top3 뽑는 것도 고려
+    result_top3 = result_top10[:3]
+
+    ##################################### column 종류별 정렬 #################################################
+
+    # 최저가순
+    price_min = DailyHotel.objects.filter(daily_hotel_discount_rate__isnull=False).order_by('daily_hotel_price')
+
+    # 최저가순
+    price_max = DailyHotel.objects.filter(daily_hotel_discount_rate__isnull=False).order_by('-daily_hotel_price')
+
+    # 할인율순
+    discount_rate = DailyHotel.objects.filter(daily_hotel_discount_rate__isnull=False).order_by('-daily_hotel_discount_rate')    
+
+    # 리뷰 청결도순
+    clear = DailyHotel.objects.filter(daily_hotel_discount_rate__isnull=False).order_by('-daily_hotel_review_clear')
+
+    # 리뷰 서비스순
+    service = DailyHotel.objects.filter(daily_hotel_discount_rate__isnull=False).order_by('-daily_hotel_review_service')
+
+    # 리뷰 시설순
+    facility = DailyHotel.objects.filter(daily_hotel_discount_rate__isnull=False).order_by('-daily_hotel_review_facility')
+
+    # 리뷰 위치순
+    location = DailyHotel.objects.filter(daily_hotel_discount_rate__isnull=False).order_by('-daily_hotel_review_location')
+
+
+    # return 문
+    return render(request, 
+                  'kdy_app/search_hotels.html', 
+                    {
+                        'keyword':keyword, 
+                        'results':results, 
+                        'result_all': result_all, 
+                        'result_top10': result_top10, 
+                        'result_top3': result_top3,
+                        'discount_rate':discount_rate,
+                        'price_min':price_min,
+                        'price_max':price_max,
+                        'clear':clear,
+                        'service':service,
+                        'facility':facility,
+                        'location':location,                        
+                    }                    
+            )
+
+
+
+
+
+
+# 맵관련
 
 def show_map(request, daily_hotel_name):
     # dam_results = DailyHotelMap.objects.filter(Q(daily_hotel_name__contains=daily_hotel_name))
@@ -106,6 +246,7 @@ def accommodation_da (request, keyword):
     return render(request, 'accommodation_app/accommodation.html',{'keyword':keyword, 'accommodation_list':accommodation_list, 'accommodation_da_sorted':accommodation_da_sorted, 'accom_map_address_0':accom_map_address_0, 'accom_map_address_0_title':accom_map_address_0_title})
 
 
+# 기본값 제주시(매칭해줄 해당 디테일 맵페이지가 없을 경우)
 def map_main_detail_address (request, address):
 
     map_keywords = address.split(" ")
@@ -173,30 +314,7 @@ def map_main_detail_address (request, address):
 
 
 
-# 데일리 호텔 필터링 정렬 처리 결과물 -> limit 걸어서 추천 리스트 로 출력해줄 리스트도 따로 작성해서 같이 변수 처리
-def search_hotels(request, keyword):
-    # 'daily_hotel_name' 또는 'daily_hotel_address'에서 keyword 문자열을 포함하고, 'daily_hotel_price'가 NULL이 아닌 행을 검색
-    results = DailyHotel.objects.filter(
-        (Q(daily_hotel_name__icontains=keyword) | Q(daily_hotel_address__icontains=keyword)) &
-        Q(daily_hotel_price__isnull=False)
-    ).order_by(
-        '-daily_hotel_review_clear', '-daily_hotel_review_service', # 청결도 우선순위
-        '-daily_hotel_review_facility', '-daily_hotel_review_location', '-daily_hotel_discount_rate'
-    )
-
-    result_all = sorted(results, key=lambda x: x.daily_hotel_price)
-
-    # 그 결과에서 상위 10개 3개만 선택
-    result_top10 = result_all[:10]
-    # top10에 sorted 한 번 더 넣은 뒤 top3 뽑는 것도 고려
-    result_top3 = result_top10[:3]
-
-    return render(request, 'kdy_app/search_hotels.html', {'keyword':keyword, 'results':results, 'result_all': result_all, 'result_top10': result_top10, 'result_top3': result_top3})
-
-
-
-
-# 마이페이지에 유저의 선호도 지정 키워드 -> 구글트렌드 관련검색어, 네이버 검색트렌드 에 입력 후 반환 된 결과 그래프로 추가
+# 마이페이지에 유저의 선호도 지정 키워드 -> 구글트렌드 관련검색어, 네이버 검색트렌드 에 입력 후 반환 된 결과 matplotlib 그래프로 추가
 @login_required
 def my_page(request):
     user_info = request.user  # 현재 로그인한 사용자
@@ -229,16 +347,229 @@ def my_page(request):
 
     return render(request, 'kdy_app/my_page.html', {'user_info' : user_info, 'img_data': img_data, 'last_date_str':last_date_str, 'first_date_str':first_date_str})
 
- 
-# @login_required
-# def my_page(request):
-#     user_info = request.user  # 현재 로그인한 사용자
-#     if user_info.is_authenticated and user_info.id == id:
-#         return render(request, 'kdy_app/my_page.html', {'user_info': user_info})
-#     else:
-#         # 로그인하지 않은 사용자나 다른 사용자의 마이페이지에 접근하려는 경우 리디렉션
-#         return redirect('sign_in')  
 
+# 유저 로그인 시 해당 유저가 설정한 선호 지역 숙소 테마 등을 키워드로 필터링해서 출력
+@login_required
+def youtube_list_user(request, keyword):
+    user_info = request.user  # 현재 로그인한 사용자
+    preferred_region_no = get_user_preferred_region(user_info.username) # 테마 타입이 일치하는 유저 정보 
+
+    if preferred_region_no:        
+        youtube_data = Youtube.objects.filter(youtube_title__icontains=preferred_region_no)
+    else:
+        youtube_data = None
+
+    youtube_list = Youtube.objects.all()
+    # 추천영상 필터링에 포함
+    if len(youtube_data) >= 1:
+        youtube_data1 = youtube_data[0]
+    else:
+        youtube_data1 = youtube_list[0]
+    grouped_youtube_list = [youtube_list[i:i+3] for i in range(0, len(youtube_list), 3)]
+    return render(request, 'kdy_app/youtube_list.html', {'youtube_data1':youtube_data1, 'youtube_data':youtube_data, 'youtube_list':youtube_list, 'grouped_youtube_list': grouped_youtube_list, 'keyword':keyword})
+
+
+
+# 유저 선호도에 따른 필터링 결과 출력
+@login_required
+def naver_blog_list_user(request, keyword):
+    user_info = request.user  # 현재 로그인한 사용자
+    preferred_region_no = get_user_preferred_region(user_info.username) # 테마 타입이 일치하는 유저 정보 
+
+    if preferred_region_no:
+        naver_blog_data = NaverBlog.objects.filter(naver_blog_title__icontains=preferred_region_no)
+    else:
+        naver_blog_data = None
+
+    naver_blog_list = Youtube.objects.all()
+    # 추천영상 필터링에 포함
+    if len(naver_blog_data) >= 1:
+        naver_blog_data1 = naver_blog_data[0]
+    else:
+        naver_blog_data1 = naver_blog_list[0]
+    grouped_naver_blog_list = [naver_blog_list[i:i+3] for i in range(0, len(naver_blog_list), 3)]
+    return render(request, 'kdy_app/naver_blog_list.html', {'naver_blog_data1':naver_blog_data1, 'naver_blog_data':naver_blog_data, 'naver_blog_list':naver_blog_list, 'grouped_naver_blog_list': grouped_naver_blog_list, 'keyword':keyword})
+
+
+# 선호 지역을 받아오는 함수
+def get_user_preferred_region(username):
+    try:
+        user_profile = UsersAppUser.objects.get(username=username)        
+        return user_profile.preferred_region_no.preferred_region
+    
+    except UsersAppUser.DoesNotExist:
+        return None
+
+# 선호 숙소 형태를 받아오는 함수
+def get_user_preferred_accommodation_type(user_id):
+    try:
+        user = User.objects.get(id=user_id)
+        user_profile = UsersAppUser.objects.get(user=user)
+        return user_profile.preferred_accommodation_type_no.preferred_accommodation_type
+    except User.DoesNotExist:
+        return None
+    except UsersAppUser.DoesNotExist:
+        return None
+
+# 선호 테마를 받아오는 함수
+def get_user_preferred_tour_theme_type(user_id):
+    try:
+        user = User.objects.get(id=user_id)
+        user_profile = UsersAppUser.objects.get(user=user)
+        return user_profile.preferred_tour_theme_type_no.preferred_tour_theme_type
+    except User.DoesNotExist:
+        return None
+    except UsersAppUser.DoesNotExist:
+        return None
+
+# 유저 테이블에 저장된 해당 유저의 주소정보를 받아오는 함수
+def get_user_address(user_id):
+    try:
+        user = User.objects.get(id=user_id)
+        user_profile = UsersAppUser.objects.get(user=user)
+        return user_profile.user_address
+    except User.DoesNotExist:
+        return None
+    except UsersAppUser.DoesNotExist:
+        return None
+
+
+# 로그인한 유저가 회원가입시 지정한 테마 타입을 키워드로 반환
+@login_required
+def youtube_user_preferred_tour_theme_type(request):
+    user_info = request.user # 로그인 유저 정보 저장
+    preferred_tour_theme_type_no = get_user_preferred_region(user_info.id) # 테마 타입이 일치하는 유저 정보 
+
+    if preferred_tour_theme_type_no:
+        # 'preferred_tour_theme_type_no' 변수의 'preferred_tour_theme_type' 값이 'Youtube' 모델의 'youtube_title' 필드에 포함되는 비디오를 검색
+        youtube_user_preferred_tour_theme_type = Youtube.objects.filter(youtube_title__icontains=preferred_tour_theme_type_no.preferred_tour_theme_type)
+    else:
+        youtube_user_preferred_tour_theme_type = None        
+
+    return render(request, 'your_app/youtube_list.html', {'youtube_user_preferred_tour_theme_type': youtube_user_preferred_tour_theme_type})
+
+
+
+# 회원정보 수정
+@login_required
+def my_page_update(request, id):  
+    user_info = get_object_or_404(UsersAppUser, pk=id)
+    if request.method == "POST":
+        user_form = UserInfoForm(request.POST, instance=user_info)
+        if user_form.is_valid():
+            user_info = user_form.save(commit=False)
+            user_info.save()
+            return redirect('index')
+    else:
+        user_form = UserInfoForm(instance=user_info)
+    
+    return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info_update':user_info})
+
+
+
+# 회원정보 탈퇴 페이지로 이동 후 회원정보 삭제
+
+class MyPageDeleteView(DeleteView):
+    model = UsersAppUser
+    success_url = 'index'  # 회원 탈퇴 후 리디렉션할 URL
+
+    # 'my_page_delete_confirm.html' 템플릿을 사용하도록 설정
+    template_name = 'kdy_app/my_page_delete_confirm.html'
+
+@login_required
+def my_page_delete_move(request, id):
+    user_info = get_object_or_404(UsersAppUser, pk=id)        
+    return render(request, 'kdy_app/my_page_delete_confirm.html', {'user_info':user_info})
+
+@login_required
+def my_page_delete(request):
+    if request.method == "POST":
+        user = request.user  # 현재 로그인한 사용자
+        user.delete()  # 사용자 정보 삭제
+        return redirect('index')  # 탈퇴 후 리디렉션할 URL
+    return render(request, 'kdy_app/my_page_delete_confirm.html')
+
+
+# 이미지 업로드
+def sign_up_upload_image(request):
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.cleaned_data['image']
+            ImageForm.objects.create(image=image)
+            return redirect('users_app/sign_up2.html')
+    else:
+        form = ImageForm()
+    return render(request, 'users_app/sign_up2.html', {'form': form})
+
+def upload_image(request):
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.cleaned_data['image']
+            ImageForm.objects.create(image=image)
+            return redirect('kdy_app/my_page.html')
+    else:
+        form = ImageForm()
+    return render(request, 'kdy_app/my_page.html', {'form': form})
+
+
+def youtube_list(request, keyword):
+    # keyword 가 포함된 youtube_title을 db에서 검색한 뒤 해당 row가 존재하면 불러와서 youtube_data 에 저장, 
+    # 리스트 일 시 첫행만 반환, 해당 조건으로 검색해서 결과값이 없을 시 all_list 에서 첫 행 반환 
+    # 필터링으로 추천 리스트 테이블을 따로 만들어 둔 뒤에 그 테이블에서 첫 행을 반환시켜서 해당 keyword와 관련된 '오늘의 추천 유투브' 라는 식으로 출력할 것
+    # 추천 리스트는 view나 instance 로 만들어도 되고 해당 테이블 정렬 순서는 필터링 상 가장 첫 행이 가장 추천 가치가 높도록 
+    # 객관적 수치(조회수 댓글 수 좋아요 수 등) 을 비교해서 정렬 될 수 있도록 짤 것
+    # 해당 절차를 다른 컨텐츠 페이지에 동일하게 적용
+    youtube_data = Youtube.objects.filter(youtube_title__icontains=keyword)
+    youtube_list = Youtube.objects.all()
+
+    # 추천영상 필터링에 포함
+    if len(youtube_data) > 1:
+        youtube_data1 = youtube_data[0]
+    else:
+        youtube_data1 = youtube_list[0]
+    grouped_youtube_list = [youtube_list[i:i+3] for i in range(0, len(youtube_list), 3)]
+    return render(request, 'kdy_app/youtube_list.html', {'youtube_data1':youtube_data1, 'youtube_data':youtube_data, 'youtube_list':youtube_list, 'grouped_youtube_list': grouped_youtube_list, 'keyword':keyword})
+
+    # 3개씩 묶어서 출력 -> for 문 출력시 css 문제로 1개씩 출력할경우 1개별로 행이 달라지는 문제가 발생, 3개씩 미리 구성후 한 행에 3개씩 출력
+    # if len(youtube_list) % 3 == 0:
+    #     print()
+    # for i in grouped_youtube_list
+    # grouped_youtube_list[0]
+    # grouped_youtube_list[1]
+    # grouped_youtube_list[2]
+    
+
+def naver_blog_list(request, keyword):
+    naver_blog_data = NaverBlog.objects.filter(naver_blog_title__icontains=keyword)
+    naver_blog_list = NaverBlog.objects.all()        
+    if len(naver_blog_data) > 1:
+        naver_blog_data1 = naver_blog_data[0]
+    else:
+        naver_blog_data1 = naver_blog_list[0]
+    grouped_naver_blog_list = [naver_blog_list[i:i+3] for i in range(0, len(naver_blog_list), 3)]
+    return render(request, 'kdy_app/naver_blog_list.html', {'naver_blog_data1':naver_blog_data1, 'naver_blog_data':naver_blog_data,'naver_blog_list':naver_blog_list, 'grouped_naver_blog_list': grouped_naver_blog_list, 'keyword':keyword})
+
+
+
+
+
+
+
+
+
+
+
+# 로그인 시 유저에게 이메일 발송 - 프로젝트 종료로 메일링 기능 임시 정지
+
+# @receiver(user_logged_in)
+# def send_login_email(sender, request, user, **kwargs):
+#     # 사용자 정보에서 이메일 주소 가져오기
+#     user_email = user.email
+#     inneats_user_id = user.username
+#     # 이메일 보내기
+#     send_mail(user_email, inneats_user_id)
 
 # 로그인시 해당 유저 이메일로 자동 메일 발송
 def send_mail(to_email, inneats_user_id):
@@ -317,19 +648,35 @@ def send_mail(to_email, inneats_user_id):
     server.quit()
 
 
-# 로그인 시 유저에게 이메일 발송
-# @receiver(user_logged_in)
-# def send_login_email(sender, request, user, **kwargs):
-#     # 사용자 정보에서 이메일 주소 가져오기
-#     user_email = user.email
-#     inneats_user_id = user.username
-#     # 이메일 보내기
-#     send_mail(user_email, inneats_user_id)
 
 
+# 개별 정보 수정 -- 전체수정에서 개별 수정이 가능해서 필요 없어지고 임시 기능 정지
+# @login_required
+# def my_page_update_email(request, id):  
+#     user_info = get_object_or_404(UsersAppUser, pk=id)    
+#     if request.method == "POST":
+#         user_form = UserInfoForm_email(request.POST, instance=user_info)
+#         if user_form.is_valid():
+#             user_info = user_form.save(commit=False)
+#             user_info.save()
+#             return redirect('index')
+#     else:
+#         user_form = UserInfoForm_email(instance=user_info)
+    
+#     return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info':user_info})
 
 
 # 페이지별 세션 처리 문제 -> kdy_app/user_info.py 컨텍스트 로 해결
+
+# @login_required
+# def my_page(request):
+#     user_info = request.user  # 현재 로그인한 사용자
+#     if user_info.is_authenticated and user_info.id == id:
+#         return render(request, 'kdy_app/my_page.html', {'user_info': user_info})
+#     else:
+#         # 로그인하지 않은 사용자나 다른 사용자의 마이페이지에 접근하려는 경우 리디렉션
+#         return redirect('sign_in')  
+
 
 # @receiver(user_logged_in, dispatch_uid="set_session")
 # def set_session(sender, request, user, **kwargs):
@@ -358,259 +705,36 @@ def send_mail(to_email, inneats_user_id):
 
 
 
-# 유저 선호도에 따른 필터링 결과 출력
-@login_required
-def naver_blog_list_user(request, keyword):
-    user_info = request.user  # 현재 로그인한 사용자
-    preferred_region_no = get_user_preferred_region(user_info.username) # 테마 타입이 일치하는 유저 정보 
-
-    if preferred_region_no:
-        naver_blog_data = NaverBlog.objects.filter(naver_blog_title__icontains=preferred_region_no)
-    else:
-        naver_blog_data = None
-
-    naver_blog_list = Youtube.objects.all()
-    # 추천영상 알고리즘에 포함
-    if len(naver_blog_data) >= 1:
-        naver_blog_data1 = naver_blog_data[0]
-    else:
-        naver_blog_data1 = naver_blog_list[0]
-    grouped_naver_blog_list = [naver_blog_list[i:i+3] for i in range(0, len(naver_blog_list), 3)]
-    return render(request, 'kdy_app/naver_blog_list.html', {'naver_blog_data1':naver_blog_data1, 'naver_blog_data':naver_blog_data, 'naver_blog_list':naver_blog_list, 'grouped_naver_blog_list': grouped_naver_blog_list, 'keyword':keyword})
-
-
-# 유저 로그인 시 해당 유저가 설정한 선호 지역 숙소 테마 등을 키워드로 필터링해서 출력
-@login_required
-def youtube_list_user(request, keyword):
-    user_info = request.user  # 현재 로그인한 사용자
-    preferred_region_no = get_user_preferred_region(user_info.username) # 테마 타입이 일치하는 유저 정보 
-
-    if preferred_region_no:        
-        youtube_data = Youtube.objects.filter(youtube_title__icontains=preferred_region_no)
-    else:
-        youtube_data = None
-
-    youtube_list = Youtube.objects.all()
-    # 추천영상 알고리즘에 포함
-    if len(youtube_data) >= 1:
-        youtube_data1 = youtube_data[0]
-    else:
-        youtube_data1 = youtube_list[0]
-    grouped_youtube_list = [youtube_list[i:i+3] for i in range(0, len(youtube_list), 3)]
-    return render(request, 'kdy_app/youtube_list.html', {'youtube_data1':youtube_data1, 'youtube_data':youtube_data, 'youtube_list':youtube_list, 'grouped_youtube_list': grouped_youtube_list, 'keyword':keyword})
-
-
-# 선호 지역을 받아오는 함수
-def get_user_preferred_region(username):
-    try:
-        user_profile = UsersAppUser.objects.get(username=username)
-
-        return user_profile.preferred_region_no.preferred_region
-    except UsersAppUser.DoesNotExist:
-        return None
-
-# 선호 숙소 형태를 받아오는 함수
-def get_user_preferred_accommodation_type(user_id):
-    try:
-        user = User.objects.get(id=user_id)
-        user_profile = UsersAppUser.objects.get(user=user)
-        return user_profile.preferred_accommodation_type_no.preferred_accommodation_type
-    except User.DoesNotExist:
-        return None
-    except UsersAppUser.DoesNotExist:
-        return None
-
-# 선호 테마를 받아오는 함수
-def get_user_preferred_tour_theme_type(user_id):
-    try:
-        user = User.objects.get(id=user_id)
-        user_profile = UsersAppUser.objects.get(user=user)
-        return user_profile.preferred_tour_theme_type_no.preferred_tour_theme_type
-    except User.DoesNotExist:
-        return None
-    except UsersAppUser.DoesNotExist:
-        return None
-
-# 유저 테이블에 저장된 해당 유저의 주소정보를 받아오는 함수
-def get_user_address(user_id):
-    try:
-        user = User.objects.get(id=user_id)
-        user_profile = UsersAppUser.objects.get(user=user)
-        return user_profile.user_address
-    except User.DoesNotExist:
-        return None
-    except UsersAppUser.DoesNotExist:
-        return None
-
-# 로그인한 유저가 회원가입시 지정한 테마 타입을 키워드로 반환
-@login_required
-def youtube_user_preferred_tour_theme_type(request):
-    user_info = request.user # 로그인 유저 정보 저장
-    preferred_tour_theme_type_no = get_user_preferred_region(user_info.id) # 테마 타입이 일치하는 유저 정보 
-
-    if preferred_tour_theme_type_no:
-        # 'preferred_tour_theme_type_no' 변수의 'preferred_tour_theme_type' 값이 'Youtube' 모델의 'youtube_title' 필드에 포함되는 비디오를 검색
-        youtube_user_preferred_tour_theme_type = Youtube.objects.filter(youtube_title__icontains=preferred_tour_theme_type_no.preferred_tour_theme_type)
-    else:
-        youtube_user_preferred_tour_theme_type = None        
-
-    return render(request, 'your_app/youtube_list.html', {'youtube_user_preferred_tour_theme_type': youtube_user_preferred_tour_theme_type})
 
 
 
-# 회원정보 삭제 = 탈퇴
-def my_page_delete_move(request, id):
-    user_info = get_object_or_404(UsersAppUser, pk=id)        
-    return render(request, 'kdy_app/my_page_delete_confirm.html', {'user_info':user_info})
-
-@login_required
-def my_page_delete(request):
-    if request.method == "POST":
-        user = request.user  # 현재 로그인한 사용자
-        user.delete()  # 사용자 정보 삭제
-        return redirect('index')  # 탈퇴 후 리디렉션할 URL
-    return render(request, 'kdy_app/my_page_delete_confirm.html')
-
-
-class MyPageDeleteView(DeleteView):
-    model = UsersAppUser
-    success_url = 'index'  # 회원 탈퇴 후 리디렉션할 URL
-
-    # 'my_page_delete_confirm.html' 템플릿을 사용하도록 설정
-    template_name = 'kdy_app/my_page_delete_confirm.html'
-
-
-# 이미지 업로드
-def sign_up_upload_image(request):
-    if request.method == 'POST':
-        form = ImageForm(request.POST, request.FILES)
-        if form.is_valid():
-            image = form.cleaned_data['image']
-            ImageForm.objects.create(image=image)
-            return redirect('users_app/sign_up2.html')
-    else:
-        form = ImageForm()
-    return render(request, 'users_app/sign_up2.html', {'form': form})
-
-
-def upload_image(request):
-    if request.method == 'POST':
-        form = ImageForm(request.POST, request.FILES)
-        if form.is_valid():
-            image = form.cleaned_data['image']
-            ImageForm.objects.create(image=image)
-            return redirect('kdy_app/my_page.html')
-    else:
-        form = ImageForm()
-    return render(request, 'kdy_app/my_page.html', {'form': form})
 
 
 
-# 회원정보 수정
-@login_required
-def my_page_update(request, id):  
-    user_info = get_object_or_404(UsersAppUser, pk=id)
-    if request.method == "POST":
-        user_form = UserInfoForm(request.POST, instance=user_info)
-        if user_form.is_valid():
-            user_info = user_form.save(commit=False)
-            user_info.save()
-            return redirect('index')
-    else:
-        user_form = UserInfoForm(instance=user_info)
-    
-    return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info_update':user_info})
-
-# 개별 정보 수정
-# @login_required
-# def my_page_update_email(request, id):  
-#     user_info = get_object_or_404(UsersAppUser, pk=id)    
-#     if request.method == "POST":
-#         user_form = UserInfoForm_email(request.POST, instance=user_info)
-#         if user_form.is_valid():
-#             user_info = user_form.save(commit=False)
-#             user_info.save()
-#             return redirect('index')
-#     else:
-#         user_form = UserInfoForm_email(instance=user_info)
-    
-#     return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info':user_info})
 
 
-def naver_blog_list(request, keyword):
-    naver_blog_data = NaverBlog.objects.filter(naver_blog_title__icontains=keyword)
-    naver_blog_list = NaverBlog.objects.all()        
-    if len(naver_blog_data) > 1:
-        naver_blog_data1 = naver_blog_data[0]
-    else:
-        naver_blog_data1 = naver_blog_list[0]
-    grouped_naver_blog_list = [naver_blog_list[i:i+3] for i in range(0, len(naver_blog_list), 3)]
-    return render(request, 'kdy_app/naver_blog_list.html', {'naver_blog_data1':naver_blog_data1, 'naver_blog_data':naver_blog_data,'naver_blog_list':naver_blog_list, 'grouped_naver_blog_list': grouped_naver_blog_list, 'keyword':keyword})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# CRUD 연습용으로 넣었다가 삭제한 기능들
+# insert 게시글 등록 기능은 살려서 유저가 직접 컨텐츠를 등록할 수 있는 폼으로 활용할 것
+# 게시판 용도로 재활용 가능하도록 만들 것
 
 def naver_blog_detail(request, naver_blog_id):
     NaverBlog = get_object_or_404(NaverBlog, pk=naver_blog_id)
     return render(request, 'kdy_app/naver_blog_detail.html', {'NaverBlog':NaverBlog})
-
-
-def youtube_list(request, keyword):
-    # keyword 가 포함된 youtube_title을 db에서 검색한 뒤 해당 row가 존재하면 불러와서 youtube_data 에 저장, 
-    # 리스트 일 시 첫행만 반환, 해당 조건으로 검색해서 결과값이 없을 시 all_list 에서 첫 행 반환 
-    # 알고리즘으로 추천 리스트 테이블을 따로 만들어 둔 뒤에 그 테이블에서 첫 행을 반환시켜서 해당 keyword와 관련된 '오늘의 추천 유투브' 라는 식으로 출력할 것
-    # 추천 리스트는 view나 instance 로 만들어도 되고 해당 테이블 정렬 순서는 알고리즘 상 가장 첫 행이 가장 추천 가치가 높도록 
-    # 객관적 수치(조회수 댓글 수 좋아요 수 등) 을 비교해서 정렬 될 수 있도록 짤 것
-    # 해당 절차를 다른 컨텐츠 페이지에 동일하게 적용
-    youtube_data = Youtube.objects.filter(youtube_title__icontains=keyword)
-    youtube_list = Youtube.objects.all()
-
-    # 추천영상 알고리즘에 포함
-    if len(youtube_data) > 1:
-        youtube_data1 = youtube_data[0]
-    else:
-        youtube_data1 = youtube_list[0]
-    grouped_youtube_list = [youtube_list[i:i+3] for i in range(0, len(youtube_list), 3)]
-    return render(request, 'kdy_app/youtube_list.html', {'youtube_data1':youtube_data1, 'youtube_data':youtube_data, 'youtube_list':youtube_list, 'grouped_youtube_list': grouped_youtube_list, 'keyword':keyword})
-
-    # 3개씩 묶어서 출력 -> for 문 출력시 css 문제로 1개씩 출력할경우 1개별로 행이 달라지는 문제가 발생, 3개씩 미리 구성후 한 행에 3개씩 출력
-    # if len(youtube_list) % 3 == 0:
-    #     print()
-    # for i in grouped_youtube_list
-    # grouped_youtube_list[0]
-    # grouped_youtube_list[1]
-    # grouped_youtube_list[2]
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 def youtube_detail(request, youtube_id):
     youtube = get_object_or_404(Youtube, pk=youtube_id)
