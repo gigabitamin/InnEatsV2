@@ -76,77 +76,20 @@ from inneats_app.models import Accommodation
 from .models import AccomMap
 
 
-def load_price_min(request):
-    # 최저가 템플릿 로드
-    return render(request, 'kdy_app/search_hotels_price_min.html')
+def review_clear(request, keyword):
+    return search_hotels(request, keyword)
 
+def review_service(request, keyword):
+    return search_hotels(request, keyword)
 
+def review_facility(request, keyword):
+    return search_hotels(request, keyword)
 
-def load_discount_rate(request, keyword):
+def review_location(request, keyword):
+    return search_hotels(request, keyword)
 
-    ################################### 기본 필터링 ###############################################
-
-    # 'daily_hotel_name' 또는 'daily_hotel_address'에서 keyword 문자열을 포함하고, 'daily_hotel_price'가 NULL이 아닌 행을 검색
-    results = DailyHotel.objects.filter(
-        (Q(daily_hotel_name__icontains=keyword) | Q(daily_hotel_address__icontains=keyword)) &
-        Q(daily_hotel_price__isnull=False)
-    ).order_by(
-        '-daily_hotel_review_clear', '-daily_hotel_review_service', # 청결도 우선순위
-        '-daily_hotel_review_facility', '-daily_hotel_review_location', '-daily_hotel_discount_rate'
-    )
-
-    # results 결과물 가격순으로 재정렬
-    result_all = sorted(results, key=lambda x: x.daily_hotel_price)
-    # 그 결과에서 상위 10개 3개만 선택
-    result_top10 = result_all[:10]
-    # top10에 sorted 한 번 더 넣은 뒤 top3 뽑는 것도 고려
-    result_top3 = result_top10[:3]
-
-    ##################################### column 종류별 정렬 #################################################
-
-    # 최저가순
-    price_min = DailyHotel.objects.filter(daily_hotel_discount_rate__isnull=False).order_by('daily_hotel_price')
-
-    # 최저가순
-    price_max = DailyHotel.objects.filter(daily_hotel_discount_rate__isnull=False).order_by('-daily_hotel_price')
-
-    # 할인율순
-    discount_rate = DailyHotel.objects.filter(daily_hotel_discount_rate__isnull=False).order_by('-daily_hotel_discount_rate')    
-
-    # 리뷰 청결도순
-    clear = DailyHotel.objects.filter(daily_hotel_discount_rate__isnull=False).order_by('-daily_hotel_review_clear')
-
-    # 리뷰 서비스순
-    service = DailyHotel.objects.filter(daily_hotel_discount_rate__isnull=False).order_by('-daily_hotel_review_service')
-
-    # 리뷰 시설순
-    facility = DailyHotel.objects.filter(daily_hotel_discount_rate__isnull=False).order_by('-daily_hotel_review_facility')
-
-    # 리뷰 위치순
-    location = DailyHotel.objects.filter(daily_hotel_discount_rate__isnull=False).order_by('-daily_hotel_review_location')
-
-    # return 문
-    return render(request,                  
-                  'kdy_app/search_hotels_discount_rate.html', 
-                    {
-                        'keyword':keyword, 
-                        'results':results, 
-                        'result_all': result_all, 
-                        'result_top10': result_top10, 
-                        'result_top3': result_top3,
-                        'discount_rate':discount_rate,
-                        'price_min':price_min,
-                        'price_max':price_max,
-                        'clear':clear,
-                        'service':service,
-                        'facility':facility,
-                        'location':location,                        
-                    }                    
-            )
-
-
-
-
+def discount_rate(request, keyword):
+    return search_hotels(request, keyword)
 
 # 데일리 호텔 필터링 정렬 처리 결과물 -> limit 걸어서 추천 리스트 로 출력해줄 리스트도 따로 작성해서 같이 변수 처리
 def search_hotels(request, keyword):
@@ -194,27 +137,43 @@ def search_hotels(request, keyword):
 
 
     # return 문
-    return render(request, 
-                  'kdy_app/search_hotels.html', 
-                    {
-                        'keyword':keyword, 
-                        'results':results, 
-                        'result_all': result_all, 
-                        'result_top10': result_top10, 
-                        'result_top3': result_top3,
-                        'discount_rate':discount_rate,
-                        'price_min':price_min,
-                        'price_max':price_max,
-                        'clear':clear,
-                        'service':service,
-                        'facility':facility,
-                        'location':location,                        
-                    }                    
-            )
+    urls_name = request.resolver_match.url_name
+    query = {
+                'keyword':keyword, 
+                'results':results, 
+                'result_all': result_all, 
+                'result_top10': result_top10, 
+                'result_top3': result_top3,
+                'discount_rate':discount_rate,
+                'price_min':price_min,
+                'price_max':price_max,
+                'clear':clear,
+                'service':service,
+                'facility':facility,
+                'location':location,                        
+            }              
 
+    # urls 매핑
+    if urls_name == 'search_hotels':
+        return render(request, 'kdy_app/search_hotels.html', query)
 
+    elif urls_name == 'discount_rate':
+        return render(request, 'kdy_app/search_hotels_discount_rate.html', query)
 
+    elif urls_name == 'review_clear':
+        return render(request, 'kdy_app/search_hotels_review_clear.html', query)
+    
+    elif urls_name == 'review_service':
+        return render(request, 'kdy_app/search_hotels_review_service.html', query)
+    
+    elif urls_name == 'review_facility':
+        return render(request, 'kdy_app/search_hotels_review_facility.html', query)
+    
+    elif urls_name == 'review_location':
+        return render(request, 'kdy_app/search_hotels_review_location.html', query)    
 
+    else:
+        pass
 
 
 # 맵관련

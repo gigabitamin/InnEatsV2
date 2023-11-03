@@ -5,15 +5,21 @@ from . import views
 # from django.urls.converters import FloatConverter
 # register_converter(FloatConverter, 'float')
 
-urlpatterns = [    
-    path('load_price_min/', views.load_price_min, name='load_price_min'),
-    path('load_discount_rate/<str:keyword>', views.load_discount_rate, name='load_discount_rate'),
-    path('show_map/<str:daily_hotel_name>', views.show_map, name='show_map'),
-    path('accommodation_da/<str:keyword>', views.accommodation_da, name='accommodation_da'),
-    path('map_main_detail_address/<str:address>', views.map_main_detail_address, name='map_main_detail_address'),
+urlpatterns = [
+    
+    path('review_location/<str:keyword>', views.review_location, name='review_location'),
+    path('review_facility/<str:keyword>', views.review_facility, name='review_facility'),
+    path('review_service/<str:keyword>', views.review_service, name='review_service'),
+    path('review_clear/<str:keyword>', views.review_clear, name='review_clear'),
+    # path('price_min/', views.price_min, name='price_min'),
+    path('discount_rate/<str:keyword>', views.discount_rate, name='discount_rate'),
     path('search_hotels/<str:keyword>', views.search_hotels, name='search_hotels'),
     # path('search_hotels_detail/<str:daily_hotel_num>', views.search_hotels_detail, name='search_hotels_detail'),    
 
+    path('show_map/<str:daily_hotel_name>', views.show_map, name='show_map'),
+    path('accommodation_da/<str:keyword>', views.accommodation_da, name='accommodation_da'),
+    path('map_main_detail_address/<str:address>', views.map_main_detail_address, name='map_main_detail_address'),
+    
     path('youtube_list_user/<str:keyword>', views.youtube_list_user, name='youtube_list_user'),
     path('naver_blog_list_user/<str:keyword>', views.naver_blog_list_user, name='naver_blog_list_user'),
 

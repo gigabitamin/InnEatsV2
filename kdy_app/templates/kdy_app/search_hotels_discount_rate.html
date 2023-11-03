@@ -1,14 +1,68 @@
-{% comment %} {% extends 'search.html' %} {% endcomment %}
-
+{% extends 'base.html' %}
 {% load static %}
 
-{% block content %}   
+<!-- base.html 랑 다른 title -->
+<!-- {% block title %} 숙소 리스트:{{ keyword }}{% endblock %} -->
 
-{% comment %} {% endblock content %} {% endcomment %}
 
-{% comment %} {% include "./.html" %} {% endcomment %}
+{% block content %}
+
 
 {% comment %} {% block super %} {% endcomment %}
+
+
+<!-- Search Start -->
+
+<div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
+    <div class="container">
+        <div class="row g-2">
+            <div class="col-md-10">                
+                <input type="text" class='form-control border-0 py-3' id='search_keyword' placeholder={{ keyword }}>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-dark border-0 w-100 py-3" onclick="search_result()">검색</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Search End -->
+
+
+
+
+
+
+
+{% comment %} 검색 결과 start {% endcomment %}
+
+<div class="container-xxl py-5">    
+    <div class="container">
+        <div class="row g-0 gx-5 align-items-end">
+            <div class="col-lg-6">
+                <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
+                    <h1>숙소</h1>
+                    <h3>"{{ keyword }}" 검색 결과 입니다.</h3>
+                    <!-- <h1 class="mb-3">Property Listing</h1>
+                    <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit diam justo sed rebum.</p> -->
+                </div>
+            </div>
+            <!-- <div class="col-lg-6 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
+                <ul class="nav nav-pills d-inline-flex justify-content-end mb-5">
+                    <li class="nav-item me-2">
+                        <a class="btn btn-outline-primary active" data-bs-toggle="pill" href="#tab-1">Featured</a>
+                    </li>
+                    <li class="nav-item me-2">
+                        <a class="btn btn-outline-primary" data-bs-toggle="pill" href="#tab-2">For Sell</a>
+                    </li>
+                    <li class="nav-item me-0">
+                        <a class="btn btn-outline-primary" data-bs-toggle="pill" href="#tab-3">For Rent</a>
+                    </li>
+                </ul>
+            </div> -->
+        </div>
+        <div class="tab-content">
+
 
 
 
@@ -18,22 +72,22 @@
                 <h3>정렬기준</h3>
                 <ul class="nav nav-pills d-inline-flex justify-content-end mb-5">        
                     <li class="nav-item me-2">
-                        <a class="btn btn-outline-primary" data-bs-toggle="pill" href="#tab-1" id="price_min_a">최저가</a>
+                        <a class="btn btn-outline-primary" href="{%url 'search_hotels' keyword=keyword %}">최저가</a>
                     </li>
                     <li class="nav-item me-0">
-                        <a class="btn btn-outline-primary active" data-bs-toggle="pill" href="#tab-2" id="discount_rate_a">할인율</a>
+                        <a class="btn btn-outline-primary active" data-bs-toggle="pill" href="#">할인율</a>
                     </li>
                     <li class="nav-item me-0">
-                        <a class="btn btn-outline-primary" data-bs-toggle="pill" href="#tab-3">청결도 평점</a>
+                        <a class="btn btn-outline-primary" href="{%url 'review_clear' keyword=keyword %}">청결도 평점</a>
                     </li>
                     <li class="nav-item me-0">
-                        <a class="btn btn-outline-primary" data-bs-toggle="pill" href="#tab-4">서비스 평점</a>
+                        <a class="btn btn-outline-primary" href="{%url 'review_service' keyword=keyword %}">서비스 평점</a>
                     </li>
                     <li class="nav-item me-0">
-                        <a class="btn btn-outline-primary" data-bs-toggle="pill" href="#tab-5">시설 평점</a>
+                        <a class="btn btn-outline-primary" href="{%url 'review_facility' keyword=keyword %}">시설 평점</a>
                     </li>
                     <li class="nav-item me-0">
-                        <a class="btn btn-outline-primary" data-bs-toggle="pill" href="#tab-6">위치 평점</a>
+                        <a class="btn btn-outline-primary" href="{%url 'review_location' keyword=keyword %}">위치 평점</a>
                     </li>
                 </ul>
             </div>
@@ -59,13 +113,22 @@
                             </div>
                             <div class="p-4 pb-0">                                
                                 <a href="{{result.daily_hotel_link}}"><h6 class="text-primary mb-3">
-                                데일리 : {{ result.daily_hotel_price|floatformat }}원                                    
+                                데일리 : {{ result.daily_hotel_price|floatformat }}원 | 할인율 : {{ result.daily_hotel_discount_rate }}%
                                 <i class="bi bi-link-45deg"></i></h6></a>
                                             
                                 <!-- <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a>
                                 <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York, USA</p> -->
 
                             </div>
+                            <div class="flex-fill text-center border-end py-2">리뷰평점</div>
+                            <div class="d-flex border-top">                                                                
+                                <small class="flex-fill text-center border-end py-2"><i class="bi bi-stars"></i><a href="#">청결도 {{ result.daily_hotel_review_clear }}</a></small>
+                                <small class="flex-fill text-center border-end py-2"><i class="bi bi-chat-right-heart"></i><a href="#">서비스 {{ result.daily_hotel_review_service }}</a></small>
+                            </div>
+                            <div class="d-flex border-top">                                                                
+                                <small class="flex-fill text-center border-end py-2"><i class="bi bi-building"></i><a href="#">시설 {{ result.daily_hotel_review_facility }}</a></small>
+                                <small class="flex-fill text-center py-2"><i class="bi bi-geo-alt-fill"></i><a href="#">위치 {{ result.daily_hotel_review_location }}</a></small>
+                            </div>                                                       
                             <div class="d-flex border-top">
                                 <small class="flex-fill text-center border-end py-2"><i class="bi bi-cup-hot-fill text-primary me-2"></i><a href="{% url 'show_map' daily_hotel_name=result.daily_hotel_name %}">숙소위치</a></small>
                                 <small class="flex-fill text-center border-end py-2"><i class="bi bi-cup-hot-fill text-primary me-2"></i><a href="{% url 'map_main_detail_address' address=result.daily_hotel_address %}">맛집</a></small>
@@ -86,5 +149,41 @@
             </div>            
 
             {% comment %} <div id="tab-1"> end {% endcomment %}
+
+
+
+
+
+
+
+
+
+
+
+
+            {% comment %} <div id="tab-1"> start {% endcomment %}
+            <!-- 템플릿 영역 시작 -->
+            {% comment %} <div class="container"> {% endcomment %}
+                {% comment %} {% block super %} {% endcomment %}                
+                        {% comment %} {% include "./search_hotels_price_min.html" %} {% endcomment %}
+                {% comment %} {% endblock %} {% endcomment %}
+            {% comment %} </div> {% endcomment %}
+            <!-- 템플릿 영역 끝 -->
+            {% comment %} <div id="tab-1"> end {% endcomment %}
+
+
+        </div>
+    </div>
+</div>
+
+{% comment %} 검색 결과 end {% endcomment %}
+
+
+<script>
+    function search_result() {
+        let keyword = document.getElementById("search_keyword").value;
+        window.location.href = keyword;
+    }
+</script>
 
 {% endblock content %}

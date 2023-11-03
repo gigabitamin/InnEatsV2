@@ -20,11 +20,9 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto">
                     {% comment %} <a href="{% url 'show_map' lat=33.450580|floatformat:6 lng=126.574942|floatformat:6 %}" class="nav-item nav-link">지도 좌표</a> {% endcomment %}
-                    <a href="{% url 'show_map' daily_hotel_name='제주 블루엘스파&풀펜션' %}" class="nav-item nav-link">지도 좌표</a>
-                    <a href="{% url 'about' %}" class="nav-item nav-link">TEAM def Troll</a>
-                    <a href="{% url 'search_hotels' keyword='애월' %}" class="nav-item nav-link">호텔 검색</a>
-                    <a href="{% url 'load_discount_rate' keyword='애월' %}" class="nav-item nav-link">호텔 검색d</a>
-                    <a href="{% url 'accommodation_da' keyword='애월' %}" class="nav-item nav-link">숙소_da</a> 
+
+                    <a href="{% url 'show_map' daily_hotel_name='제주 블루엘스파&풀펜션' %}" class="nav-item nav-link">지도 좌표</a>                    
+                    <a href="{% url 'search_hotels' keyword='애월' %}" class="nav-item nav-link">호텔 검색</a>                    
                     
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">페이지</a>
@@ -32,7 +30,8 @@
                             <a href="{% url 'accommodation' keyword='우도면' %}">&nbsp;&nbsp;&nbsp;&nbsp;숙소<br><br></a>                                                    
                             <a href="{% url 'attraction' keyword='우도면' %}" >&nbsp;&nbsp;&nbsp;&nbsp;여행지<br><br></a>                    
                             <a href="{% url 'map_main' %}" >&nbsp;&nbsp;&nbsp;&nbsp;맛집|여행지도<br><br></a>
-                            <a href="{% url 'contact' %}" >&nbsp;&nbsp;&nbsp;&nbsp;고객센터<br><br></a>
+                            <a href="{% url 'about' %}">&nbsp;&nbsp;&nbsp;&nbsp;TEAM def Troll</a><br><br>
+                            <a href="{% url 'contact' %}">&nbsp;&nbsp;&nbsp;&nbsp;고객센터<br><br></a>
                         </div>
                     </div> 
                  
