@@ -2,7 +2,9 @@
 
 import os
 from pathlib import Path
+from urllib import request
 import db_settings
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -64,6 +66,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'inneats_project.urls'
 
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -76,15 +80,16 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
                 # 로그인 사용자용 user_info 컨텍스트 프로세서 -kdy
-                'kdy_app.user_info.user_info',                
+                'kdy_app.user_info.user_info'
+
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = 'inneats_project.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
