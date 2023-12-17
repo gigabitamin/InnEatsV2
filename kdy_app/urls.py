@@ -1,9 +1,6 @@
 from django.urls import path
 from . import views
 
-# from django.urls import register_converter
-# from django.urls.converters import FloatConverter
-# register_converter(FloatConverter, 'float')
 
 urlpatterns = [
     
@@ -54,5 +51,9 @@ urlpatterns = [
     path('naver_blog/list/<str:keyword>', views.naver_blog_list, name='naver_blog_list'),
     path('naver_blog/detail/<str:naver_blog_id>', views.naver_blog_detail, name='naver_blog_detail'),          
 
+    # 카메라
+    path('upload_photo/', views.upload_photo, name='upload_photo'),
+
 ]
+
 

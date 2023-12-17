@@ -21,6 +21,7 @@
                 <div class="navbar-nav ms-auto">
                     {% comment %} <a href="{% url 'show_map' lat=33.450580|floatformat:6 lng=126.574942|floatformat:6 %}" class="nav-item nav-link">지도 좌표</a> {% endcomment %}
 
+                    <a href="{% url 'upload_photo' %}" class="nav-item nav-link">카메라</a>
                     <a href="{% url 'show_map' daily_hotel_name='제주 블루엘스파&풀펜션' %}" class="nav-item nav-link">지도 좌표</a>                    
                     <a href="{% url 'search_hotels' keyword='애월' %}" class="nav-item nav-link">호텔 검색</a>                    
                     

@@ -50,7 +50,10 @@ INSTALLED_APPS = [
 
     # sjh_app 추가 -sjh
     'sjh_app',
-    
+                    
+    # https ssl - kdy
+    'django_extensions',
+    'sslserver',
 
 ]
 
@@ -82,7 +85,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 # 로그인 사용자용 user_info 컨텍스트 프로세서 -kdy
-                'kdy_app.user_info.user_info'
+                'kdy_app.user_info.user_info',
 
             ],
         },

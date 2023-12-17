@@ -188,7 +188,7 @@ class Place(models.Model):
 
 
 class PreferredAccommodationType(models.Model):
-    preferred_accommodation_type_no = models.CharField(primary_key=True, max_length=45)
+    preferred_accommodation_type_no = models.CharField(primary_key=True, max_length=45, default=1)
     preferred_accommodation_type = models.CharField(max_length=45)
 
 
@@ -201,7 +201,7 @@ class PreferredAccommodationType(models.Model):
 
 
 class PreferredRegion(models.Model):
-    preferred_region_no = models.CharField(primary_key=True, max_length=45)
+    preferred_region_no = models.CharField(primary_key=True, max_length=45, default=1)
     preferred_region = models.CharField(max_length=45)
 
     def __str__(self):
@@ -213,7 +213,7 @@ class PreferredRegion(models.Model):
         
 
 class PreferredTourThemeType(models.Model):
-    preferred_tour_theme_type_no = models.CharField(primary_key=True, max_length=45)
+    preferred_tour_theme_type_no = models.CharField(primary_key=True, max_length=45, default=1)
     preferred_tour_theme_type = models.CharField(max_length=45)
 
     def __str__(self):

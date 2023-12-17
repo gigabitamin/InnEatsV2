@@ -19,3 +19,13 @@ urlpatterns = [
     # sjh_app 추가 - sjh
     path('', include("sjh_app.urls")),
 ]
+
+
+# 카메라 스크린샷 html 화면에 표시
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

@@ -11,6 +11,7 @@ import glob
 import pandas as pd
 import numpy as np
 import plotly.express as px
+
 import seaborn as sns
 import os
 import json
@@ -74,6 +75,125 @@ import matplotlib.pyplot as plt
 # map_main_address 관련
 from inneats_app.models import Accommodation
 from .models import AccomMap
+
+from django.http import HttpResponseBadRequest
+
+
+from pathlib import Path
+
+
+
+def upload_photo(request):
+    if request.method == 'POST':
+        # base64로 인코딩된 이미지 데이터 가져오기
+        base64_image_data = request.POST.get('photo')
+
+        if not base64_image_data:
+            return JsonResponse({'error_message': 'base64_image_data 비어 있음'})
+
+        try:
+            # base64 데이터 디코딩
+            image_data = base64.b64decode(base64_image_data.split(',')[1])
+        except Exception as e:
+            return JsonResponse({'error_message': 'base64 data 디코딩 에러 : {}'.format(str(e))})
+
+        # 현재 시간을 이용해 파일명을 생성합니다.
+        current_time = datetime.now().strftime('%Y%m%d%H%M%S')
+        file_name = f'{current_time}_captured_photo.jpg'
+
+        # 파일의 전체 경로를 생성합니다.
+        file_path = Path(settings.MEDIA_ROOT) / file_name
+
+        # 이미지 파일로 저장
+        with open(file_path, 'wb') as destination:
+            destination.write(image_data)
+
+        # 파일의 전체 URL을 생성합니다.
+        file_url = Path(settings.MEDIA_URL) / file_name
+
+        return JsonResponse({'message': 'complete', 'file_path': str(file_path), 'file_name': file_name, 'file_url': str(file_url)})
+
+    return render(request, 'kdy_app/upload_photo.html')
+
+
+
+
+
+
+
+
+
+# def upload_photo(request):
+#     if request.method == 'POST':
+#         # base64로 인코딩된 이미지 데이터 가져오기
+#         base64_image_data = request.POST.get('photo')
+
+#         if not base64_image_data:
+#             return JsonResponse({'error_message': 'base64_image_data 비어 있음'})
+
+#         try:
+#             # base64 데이터 디코딩
+#             image_data = base64.b64decode(base64_image_data.split(',')[1])
+#         except Exception as e:
+#             return JsonResponse({'error_message': 'base64 data 디코딩 에러 : {}'.format(str(e))})
+
+#         # 현재 시간을 이용해 파일명을 생성합니다.
+#         current_time = datetime.now().strftime('%Y%m%d%H%M%S')
+#         file_name = f'{current_time}_captured_photo.jpg'
+#         file_path = 'media/' + file_name
+
+#         # 이미지 파일로 저장
+#         with open(file_path, 'wb') as destination:
+#             destination.write(image_data)
+
+#         # 파일의 전체 URL을 생성합니다.
+#         file_url = request.build_absolute_uri(file_path)
+
+#         return JsonResponse({'message': 'complete', 'file_path': file_path, 'file_name': file_name, 'file_url': file_url})
+
+#     return render(request, 'kdy_app/upload_photo.html')    
+
+# def upload_photo(request):
+#     if request.method == 'POST':
+#         # base64로 인코딩된 이미지 데이터 가져오기
+#         base64_image_data = request.POST.get('photo')
+
+#         if not base64_image_data:
+#             return HttpResponseBadRequest('base64_image_data 비어 있음')
+
+#         try:
+#             # base64 데이터 디코딩
+#             image_data = base64.b64decode(base64_image_data.split(',')[1])
+#         except Exception as e:
+#             return HttpResponseBadRequest('base64 data 디코딩 에러 : {}'.format(str(e)))
+
+#         # 현재 시간을 이용해 파일명을 생성합니다.
+#         current_time = datetime.now().strftime('%Y%m%d%H%M%S')
+#         file_name = f'{current_time}_captured_photo.jpg'
+#         file_path = 'media/' + file_name
+
+#         # 이미지 파일로 저장
+#         with open(file_path, 'wb') as destination:
+#             destination.write(image_data)
+
+#         # return JsonResponse({'message': 'complete', 'file_path': file_path, 'file_name': file_name})
+#         return render(request, 'kdy_app/upload_photo.html', {'file_name': file_name})
+
+#     return render(request, 'kdy_app/upload_photo.html')
+
+
+
+
+
+
+
+
+# def user_info_if(request):
+#     return 'kdy_app.user_info.user_info' if request.user.is_authenticated else '',
+
+
+# def user_info_if(request):
+#     return {'user_info': 'kdy_app.user_info.user_info'} if request.user.is_authenticated else {'user_info': None}
 
 
 def review_clear(request, keyword):
@@ -449,28 +569,30 @@ def my_page_delete(request):
     return render(request, 'kdy_app/my_page_delete_confirm.html')
 
 
-# 이미지 업로드
-def sign_up_upload_image(request):
-    if request.method == 'POST':
-        form = ImageForm(request.POST, request.FILES)
-        if form.is_valid():
-            image = form.cleaned_data['image']
-            ImageForm.objects.create(image=image)
-            return redirect('users_app/sign_up2.html')
-    else:
-        form = ImageForm()
-    return render(request, 'users_app/sign_up2.html', {'form': form})
+# # 이미지 업로드
+# def sign_up_upload_image(request):
+#     if request.method == 'POST':
+#         form = ImageForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             image = form.cleaned_data['image']
+#             ImageForm.objects.create(image=image)
+#             return redirect('users_app/sign_up2.html')
+#     else:
+#         form = ImageForm()
+#     return render(request, 'users_app/sign_up2.html', {'form': form})
 
-def upload_image(request):
-    if request.method == 'POST':
-        form = ImageForm(request.POST, request.FILES)
-        if form.is_valid():
-            image = form.cleaned_data['image']
-            ImageForm.objects.create(image=image)
-            return redirect('kdy_app/my_page.html')
-    else:
-        form = ImageForm()
-    return render(request, 'kdy_app/my_page.html', {'form': form})
+
+# @login_required
+# def upload_image(request):
+#     if request.method == 'POST':
+#         form = ImageForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             image = form.cleaned_data['image']
+#             ImageForm.objects.create(image=image)
+#             return redirect('kdy_app/my_page.html')
+#     else:
+#         form = ImageForm()
+#     return render(request, 'kdy_app/my_page.html', {'form': form})
 
 
 def youtube_list(request, keyword):
@@ -499,6 +621,8 @@ def youtube_list(request, keyword):
     # grouped_youtube_list[1]
     # grouped_youtube_list[2]
     
+
+
 
 def naver_blog_list(request, keyword):
     naver_blog_data = NaverBlog.objects.filter(naver_blog_title__icontains=keyword)
@@ -609,7 +733,7 @@ def send_mail(to_email, inneats_user_id):
 
 
 
-# 개별 정보 수정 -- 전체수정에서 개별 수정이 가능해서 필요 없어지고 임시 기능 정지
+# # 개별 정보 수정 -- 전체수정에서 개별 수정이 가능해서 필요 없어지고 임시 기능 정지
 # @login_required
 # def my_page_update_email(request, id):  
 #     user_info = get_object_or_404(UsersAppUser, pk=id)    
@@ -625,7 +749,7 @@ def send_mail(to_email, inneats_user_id):
 #     return render(request, 'kdy_app/my_page_update.html', {'user_form':user_form, 'user_info':user_info})
 
 
-# 페이지별 세션 처리 문제 -> kdy_app/user_info.py 컨텍스트 로 해결
+# # 페이지별 세션 처리 문제 -> kdy_app/user_info.py 컨텍스트 로 해결
 
 # @login_required
 # def my_page(request):
@@ -661,6 +785,38 @@ def send_mail(to_email, inneats_user_id):
 #             return response
 #         else:
 #             return JsonResponse({'message': '로그인 실패'})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -792,16 +948,4 @@ def youtube_search_ajax(request):
 
         return JsonResponse({'reload_all':False, 'youtube_list_json':youtube_list_json})
     
-
-
-
-
-
-
-
-
-
-
-
-
 
